@@ -51,11 +51,12 @@ public class Space {
         } 
     }
 	private void prepareArrayBarrera(){
-		barreraArray = new barreraArray[1][cantidadBarrera];
+		barreraArray = new barreraArray[3][cantidadBarrera];
         
         for (int i = 0; i < cantidadBarrera; i++){
-            barreraArray[i] = new Barrera(colorBarrera, i);
-            
+			for (int j = 0; j < 3; j++){
+				barreraArray[i] = new Barrera(colorBarrera, i,j);
+			}
         } 
     }
 	private void prepararNave() {
