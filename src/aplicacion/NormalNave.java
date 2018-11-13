@@ -10,21 +10,12 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
+public class NormalNave extends Nave{
 
 
-public class HUD {
-
-    private int puntaje;
-    private int vidas;
-    private int disparos;
-    private int[] estadoBarrera;
+    public NormalNave (){
 
 
-    public HUD(){
-        this.puntaje=0;
-        this.vidas=0;
-        this.disparos=0;
-
+        
     }
-
 }

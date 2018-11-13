@@ -13,9 +13,9 @@ import javax.swing.event.*;
 
 public abstract class Barrera {
     
-    protected int posicionX;
-    protected Color color;
-    protected int estado;
+    private int posicionX;
+    private Color color;
+    private int estado;
 
 
     public Barrera(int newPosicionX, Color newColor){
@@ -25,7 +25,7 @@ public abstract class Barrera {
 
     }
 
-    
+
 
 
 }
