@@ -11,21 +11,13 @@ import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
 
-public abstract class Barrera {
-    
-    protected int posicionX;
-    protected Color color;
-    protected int estado;
+public class Verde extends Barrera{
 
 
-    public Barrera(int newPosicionX, Color newColor){
 
-        this.posicionX=newPosicionX;
-        this.color=newColor;
+    public Verde(){
 
     }
 
-    
-
-
 }
+
