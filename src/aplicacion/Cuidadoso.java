@@ -11,11 +11,10 @@ import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
 
-public class Cuidadoso {
+public class Cuidadoso extends Nave {
 
-    public Cuidadoso(){
-        
-
+    public Cuidadoso(int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
+        super(newNumeroVidas, newNumeroDisparos, newPosicionX, newPosicionY, newColor);
     }
-    
+    public void setPosicionX(){}
 }

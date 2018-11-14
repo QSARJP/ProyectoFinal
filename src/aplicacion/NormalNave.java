@@ -13,9 +13,8 @@ import javax.swing.event.*;
 public class NormalNave extends Nave{
 
 
-    public NormalNave (){
-
-
-        
+    public NormalNave(int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
+        super(newNumeroVidas, newNumeroDisparos, newPosicionX, newPosicionY, newColor);
     }
+    public void setPosicionX(){}
 }

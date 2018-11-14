@@ -14,8 +14,9 @@ public abstract class Barrera {
     
     private int posicionX;
     private int posicionY;
-    private Color color;
+    protected Color color;
     private int estado;
+    protected Material[][] materiales;
 
 
     public Barrera(Color newColor, int posicionX, int posicionY){
@@ -23,10 +24,8 @@ public abstract class Barrera {
         this.posicionX=posicionX;
         this.posicionY = posicionY;
         this.color=newColor;
+        
 
     }
-
-
-
-
+    public abstract void prepareMatriz();
 }

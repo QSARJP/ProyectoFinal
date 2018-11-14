@@ -16,15 +16,18 @@ public abstract class Nave {
     private int numeroVidas;
     private int numeroDisparos;
     private int posicionX;
+    private int posicionY;
     private Color color;
 
-    public Nave (int newNumeroVidas, int newNumeroDisparos, int newPosicionX,Color newColor){
+    public Nave (int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
         this.numeroVidas=newNumeroVidas;
         this.numeroDisparos=newNumeroDisparos;
         this.posicionX=newPosicionX;
         this.color=newColor;
+        this.posicionY = newPosicionY;
 
 
     }
+    public abstract void setPosicionX();
     
 }

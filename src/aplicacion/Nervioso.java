@@ -13,9 +13,8 @@ import javax.swing.event.*;
 
 public class Nervioso extends Nave{
 
-    public Nervioso(){
-
-
-        
+    public Nervioso(int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
+        super(newNumeroVidas, newNumeroDisparos, newPosicionX, newPosicionY, newColor);
     }
+    public void setPosicionX(){}
 }

@@ -15,10 +15,10 @@ public class Space {
 	
 	private int alto;
 	private int ancho;
-	public Invasores[][] invasoresMatriz;
+	public Invasor[][] invasoresMatriz;
 	public Barrera[] barreraArray;
 	public Nave[] naveArray;
-	public Platillo platilloArray;
+	//public Platillo platilloArray;
 	private Color colorInvaders;
 	private Color colorNave;
 	private Color colorBarrera;
@@ -35,39 +35,36 @@ public class Space {
 	    prepareMatrizInvaders();
 	    prepareArrayBarrera();
 	    prepararNave();
-	    preparePlatillo();
+	    //preparePlatillo();
 	    
 	}
-	
-	
-	
 	private void prepareMatrizInvaders(){
-		invasoresMatriz = new invasoresMatriz[alto][ancho];
+		invasoresMatriz = new Invasor[alto][ancho];
         
         for (int i = 0; i < alto; i++){
             for (int j = 0; j < ancho; j++){
-            	invasoresMatriz[i][j] = new Invasor(colorInvaders, i,j);
+            	invasoresMatriz[i][j] = new Calamar(colorInvaders, i,j);
             }
         } 
     }
 	private void prepareArrayBarrera(){
-		barreraArray = new barreraArray[1][cantidadBarrera];
+		barreraArray = new Barrera[cantidadBarrera];
         
         for (int i = 0; i < cantidadBarrera; i++){
-            barreraArray[i] = new Barrera(colorBarrera, i);
+            barreraArray[i] = new Roja(colorBarrera,1 , i);
             
         } 
     }
 	private void prepararNave() {
-		naveArray = new naveArray[1]
+		naveArray = new Nave[1];
 				
-		naveArray[0]= new Nave(0,0,colorNave);
+		naveArray[0]= new NormalNave(0,0,0,0,colorNave);
 	}
-	private void preparePlatillo() {
+	/*private void preparePlatillo() {
 		platilloArray = new Platillo(Color.RED, 0,0);
 		
 		
-	}
+	}*/
 
 
 }
