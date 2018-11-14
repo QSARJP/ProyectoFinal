@@ -16,7 +16,8 @@ public class Roja extends Barrera{
 
 
 
-    public Roja(){
+    public Roja(Color color, int posicionX, int posicionY){
+        super(color, posicionX, posicionY);
 
     }
 

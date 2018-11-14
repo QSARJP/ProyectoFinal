@@ -1,5 +1,4 @@
 package aplicacion;
-
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -13,14 +12,16 @@ import javax.swing.event.*;
 
 public abstract class Barrera {
     
-    protected int posicionX;
-    protected Color color;
-    protected int estado;
+    private int posicionX;
+    private int posicionY;
+    private Color color;
+    private int estado;
 
 
-    public Barrera(int newPosicionX, Color newColor){
+    public Barrera(Color newColor, int posicionX, int posicionY){
 
-        this.posicionX=newPosicionX;
+        this.posicionX=posicionX;
+        this.posicionY = posicionY;
         this.color=newColor;
 
     }

@@ -15,8 +15,8 @@ public class Verde extends Barrera{
 
 
 
-    public Verde(){
-
+    public Verde(Color color, int fila, int columna){
+        super(color, fila, columna);
     }
 
 }
