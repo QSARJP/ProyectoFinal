@@ -114,7 +114,7 @@ public class SpaceGUI extends JFrame{
         File guardar = file.getSelectedFile();
     }
     public static void main(String[] args) {
-        Space space = new Space(10, 10);
+        Space space = new Space(1, 1);
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
     }
@@ -142,7 +142,7 @@ class Pintar extends JPanel {
             }
         }
         //nave
-        for (int i = 0; i<1; i++)
+        /*for (int i = 0; i<1; i++)
         {
             Nave n = space3.getNave(i);
             g.setColor(n.getColor());
@@ -157,7 +157,7 @@ class Pintar extends JPanel {
 
 
 
-        }
+        }*/
 
 
 
@@ -165,8 +165,18 @@ class Pintar extends JPanel {
 
 
         //invasores
-
-
+        for (int s = 0; s < 1; s ++){
+            for (int i = 0; i < 1; i++){
+                Invasor f = space3.getInvasor(s,i);
+                for (int j = 0; j < 8; j++){
+                    for (int k = 0; k < 8; k++){
+                        if (f.getBinario(j,k) == 1){
+                            g.fillRect(300+i*20+k*2, 300+s*20+j*2, 2, 2);
+                        }
+                    }
+                }
+            }
+        }
 
 
 

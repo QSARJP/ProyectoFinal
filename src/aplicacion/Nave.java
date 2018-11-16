@@ -30,7 +30,7 @@ public abstract class Nave {
     }
     public abstract void setPosicionX();
 
-    public void getColor{
+    public void getColor(){
         
     }
     
