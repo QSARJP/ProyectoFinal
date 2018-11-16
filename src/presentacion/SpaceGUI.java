@@ -128,6 +128,8 @@ class Pintar extends JPanel {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+
+        //Barrera
         for (int i = 0; i < 3; i++){
             Barrera b = space3.getBarrera(i);
             g.setColor(b.getColor());
@@ -139,5 +141,42 @@ class Pintar extends JPanel {
                 }
             }
         }
+        //nave
+        for (int i = 0; i<1; i++)
+        {
+            Nave n = space3.getNave(i);
+            g.setColor(n.getColor());
+            //space3.setNave(space.getNave(i));
+            for (int j = 0; j < 5; j++){
+                for (int k = 0; k < 5; k++){
+                    g.fillOval(i*200+175+k*5,400+j*5,5,5);
+                    n.getMaterial(j, k).setPosicionX(100+i*200+j*5);
+                    n.getMaterial(j, k).setPosicionY(300+k*5);
+                }
+            }
+
+
+
+        }
+
+
+
+
+
+
+        //invasores
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 }

@@ -17,7 +17,7 @@ public abstract class Nave {
     private int numeroDisparos;
     private int posicionX;
     private int posicionY;
-    private Color color;
+    protected Color color;
 
     public Nave (int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
         this.numeroVidas=newNumeroVidas;
@@ -29,5 +29,9 @@ public abstract class Nave {
 
     }
     public abstract void setPosicionX();
+
+    public void getColor{
+        
+    }
     
 }

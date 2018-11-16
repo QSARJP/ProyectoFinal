@@ -63,13 +63,61 @@ public class Space {
 	private void prepararNave() {
 		naveArray = new Nave[1];
 				
-		naveArray[0]= new NormalNave(0,0,0,0,colorNave);
+		naveArray[0]= new NormalNave(750,200,0,0,colorNave);
+	}
+	public Nave getNave(int i){
+		return naveArray[i];
 	}
 	/*private void preparePlatillo() {
 		platilloArray = new Platillo(Color.RED, 0,0);
 		
 		
 	}*/
+
+	//invasor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//nave
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
