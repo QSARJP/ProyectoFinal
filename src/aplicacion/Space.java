@@ -33,7 +33,7 @@ public class Space {
 		this.colorNave = Color.BLUE;
 		this.cantidadBarrera = 3;
 	  
-	    //prepareMatrizInvaders();
+	    prepareMatrizInvaders();
 	    prepareArrayBarrera();
 	    prepararNave();
 	    //preparePlatillo();
@@ -76,9 +76,9 @@ public class Space {
 
 	//invasor
 
-
-
-
+	public Invasor getInvasor(int f, int c){
+		return invasoresMatriz[f][c];
+	}
 
 
 

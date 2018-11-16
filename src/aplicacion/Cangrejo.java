@@ -11,4 +11,5 @@ public class Cangrejo extends Invasor{
     public void setResistencia(){
         this.resistencia = 2;
     }
+    public void setForma(){}
 }

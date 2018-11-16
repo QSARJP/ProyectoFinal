@@ -11,4 +11,5 @@ public class Pulpo extends Invasor{
     public void setResistencia(){
         this.resistencia = 1;
     }
+    public void setForma(){}
 }
