@@ -13,12 +13,12 @@ import javax.swing.event.*;
 
 
 public class Roja extends Barrera{
-
-
-
-    public Roja(Color color, int posicionX, int posicionY){
-        super(color, posicionX, posicionY);
-
+    public Roja( int columna){
+		super(columna);
+		this.color = Color.red;
+		prepareMatriz(color);
     }
-
+	
+	
+	
 }

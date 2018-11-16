@@ -30,11 +30,12 @@ public class Space {
 	    this.ancho=newAncho;
 	    this.colorInvaders = Color.GRAY;
 	    this.colorBarrera = Color.red;
-	    this.colorNave = Color.BLUE;
+		this.colorNave = Color.BLUE;
+		this.cantidadBarrera = 3;
 	  
-	    prepareMatrizInvaders();
+	    //prepareMatrizInvaders();
 	    prepareArrayBarrera();
-	    prepararNave();
+	    //prepararNave();
 	    //preparePlatillo();
 	    
 	}
@@ -51,10 +52,14 @@ public class Space {
 		barreraArray = new Barrera[cantidadBarrera];
         
         for (int i = 0; i < cantidadBarrera; i++){
-            barreraArray[i] = new Roja(colorBarrera,1 , i);
+            barreraArray[i] = new Roja(i);
             
         } 
     }
+	
+	public Barrera getBarrera(int i){
+		return barreraArray[i];
+	}
 	private void prepararNave() {
 		naveArray = new Nave[1];
 				

@@ -13,7 +13,7 @@ import javax.swing.event.*;
 import aplicacion.*;
 
 public class SpaceGUI extends JFrame{
-    public Space space;
+    public Space space2;
 
     //aributos menu
     private JMenuBar barra;
@@ -23,15 +23,14 @@ public class SpaceGUI extends JFrame{
     
     //Atributos tablero
     private JPanel infoHUD;
-    private JPanel game;
     private JLabel puntaje;
     private JLabel vidas;
+    private Pintar invaders;
 
     public SpaceGUI(Space space){
-        this.space = space;
+        this.space2 = space;
         this.setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         prepareElementos();
         prepareAcciones();
     }
@@ -81,9 +80,8 @@ public class SpaceGUI extends JFrame{
         menu.add(exit);
     }
     private void prepareElementosJuego(){
-        Pintar invaders = new Pintar(space);
+        invaders = new Pintar(space2);
         infoHUD = new JPanel();
-        game = new JPanel();
         puntaje = new JLabel("Puntaje:");
         vidas = new JLabel("Vidas:");
         infoHUD.setBorder(new EmptyBorder(5,50,5,50));
@@ -92,7 +90,8 @@ public class SpaceGUI extends JFrame{
         infoHUD.add(vidas,BorderLayout.WEST);
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(infoHUD,BorderLayout.NORTH);
-        getContentPane().add(game,BorderLayout.SOUTH);
+        getContentPane().add(invaders,BorderLayout.CENTER);
+        //getContentPane().add(game,BorderLayout.SOUTH);
         
     }
     private void salga(){
@@ -117,21 +116,26 @@ public class SpaceGUI extends JFrame{
     public static void main(String[] args) {
         Space space = new Space(10, 10);
         SpaceGUI s = new SpaceGUI(space);
+        s.setVisible(true);
     }
 }
 
 class Pintar extends JPanel {
-    private Space space;
+    private Space space3;
     public Pintar(Space space){
-        this.space = space;
+        space3 = space;
     }
 
     public void paintComponent(Graphics g){
-        Super.paintComponent(g);
+        super.paintComponent(g);
         for (int i = 0; i < 3; i++){
+            Barrera b = space3.getBarrera(i);
+            g.setColor(b.getColor());
             for (int j = 0; j < 5; j++){
                 for (int k = 0; k < 5; k++){
-                    
+                    g.fillOval(i*200+175+k*5,400+j*5,5,5);
+                    b.getMaterial(j, k).setPosicionX(100+i*200+j*5);
+                    b.getMaterial(j, k).setPosicionY(300+k*5);
                 }
             }
         }
