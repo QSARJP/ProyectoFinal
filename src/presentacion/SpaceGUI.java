@@ -147,22 +147,22 @@ class Pintar extends JPanel {
             Nave n = space3.getNave(i);
             g.setColor(n.getColor());
             //space3.setNave(space.getNave(i));
-            for (int j = 0; j < 5; j++){
-                for (int k = 0; k < 5; k++){
-                    g.fillOval(i*200+175+k*5,400+j*5,5,5);
-                    n.getMaterial(j, k).setPosicionX(100+i*200+j*5);
-                    n.getMaterial(j, k).setPosicionY(300+k*5);
+            for (int j = 0; j < 4; j++){
+                for (int k = 0; k < 9; k++){
+                    if (j == 0){
+                        if (k == 5){
+                            g.fillRect(170+k*5,n.getPosition()+j*5,5,5);
+                        }
+                    }else{
+                        g.fillRect(175+k*5,n.getPosition()+j*5,5,5);
+                        n.getMaterial(j, k).setPosicionX(n.getPosition()+j*5);
+                        n.getMaterial(j, k).setPosicionY(175+k*5);
+                    }
+                        
                 }
             }
-
-
-
         }
-
-
-
-
-
+    
 
         //invasores
 
@@ -177,6 +177,6 @@ class Pintar extends JPanel {
 
 
 
-        
+
     }
 }

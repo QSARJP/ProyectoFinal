@@ -15,6 +15,11 @@ public class NormalNave extends Nave{
 
     public NormalNave(int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
         super(newNumeroVidas, newNumeroDisparos, newPosicionX, newPosicionY, newColor);
+        prepareMatriz(newColor);
     }
-    public void setPosicionX(){}
+    public void movePosicionX(int newPostitionX){
+        this.posicionX=newPostitionX;
+    }
+
+
 }

@@ -23,8 +23,8 @@ public class Space {
 	private Color colorNave;
 	private Color colorBarrera;
 	private int cantidadBarrera;
-	
-	
+	private Nave naveSpace;
+		
 	public Space(int newAlto , int newAncho) {
 		this.alto=newAlto;
 	    this.ancho=newAncho;
@@ -35,7 +35,7 @@ public class Space {
 	  
 	    //prepareMatrizInvaders();
 	    prepareArrayBarrera();
-	    //prepararNave();
+	    prepararNave();
 	    //preparePlatillo();
 	    
 	}
@@ -63,7 +63,7 @@ public class Space {
 	private void prepararNave() {
 		naveArray = new Nave[1];
 				
-		naveArray[0]= new NormalNave(750,200,0,0,colorNave);
+		naveArray[0]= new NormalNave(0,0,475,500,colorNave);
 	}
 	public Nave getNave(int i){
 		return naveArray[i];
@@ -97,7 +97,11 @@ public class Space {
 
 
 
-//nave
+	//nave
+	public void moveNave(int i,int newPosicionX,int newPosicionY){
+		nave = getNave(i);
+		nave.movePosicionX(newPosicionX);
+	}
 
 
 
