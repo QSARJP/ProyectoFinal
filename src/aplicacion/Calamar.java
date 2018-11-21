@@ -21,6 +21,9 @@ public class Calamar extends Invasor{
         forma = new int[8][8];
         // = {0,0,0,1,1,0,0,0},{0,0,1,1,1,1,0,0},{0,1,1,1,1,1,1,0},{1,1,0,1,1,0,1,1},{1,1,1,1,1,1,1,1},{0,0,1,0,0,1,0,0},{0,1,0,1,1,0,1,0},{1,0,1,0,0,1,0,1}};
     }
+    public  int getBinario(int f, int c){
+        return forma[f][c];   
+    }
 
 
 }

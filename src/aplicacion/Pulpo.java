@@ -12,4 +12,7 @@ public class Pulpo extends Invasor{
         this.resistencia = 1;
     }
     public void setForma(){}
+    public  int getBinario(int f, int c){
+        return forma[f][c];   
+    }
 }

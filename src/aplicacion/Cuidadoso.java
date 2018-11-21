@@ -16,5 +16,5 @@ public class Cuidadoso extends Nave {
     public Cuidadoso(int newNumeroVidas, int newNumeroDisparos, int newPosicionX, int newPosicionY, Color newColor){
         super(newNumeroVidas, newNumeroDisparos, newPosicionX, newPosicionY, newColor);
     }
-    public void setPosicionX(){}
+    public void movePosicionX(int newPostitionX){}
 }

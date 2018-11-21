@@ -12,4 +12,7 @@ public class Cangrejo extends Invasor{
         this.resistencia = 2;
     }
     public void setForma(){}
+    public  int getBinario(int f, int c){
+        return forma[f][c];   
+    }
 }

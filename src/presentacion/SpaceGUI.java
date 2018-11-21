@@ -42,6 +42,35 @@ public class SpaceGUI extends JFrame{
             }
         };
         this.addWindowListener(w);
+        KeyListener accionNave = new KeyListener(){
+        
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+        
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+        
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_LEFT) {
+                    int dx = -1;
+                    moveNave(dx);
+                    refresque();
+                }
+                if (key == KeyEvent.VK_RIGHT) {
+                    int dx = 1;
+                    moveNave(dx);
+                    refresque();
+                }             
+            }  
+        };
+        invaders.addKeyListener(accionNave);
+
         ActionListener accionMenu = new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(e.getSource() == exit){
@@ -94,6 +123,18 @@ public class SpaceGUI extends JFrame{
         //getContentPane().add(game,BorderLayout.SOUTH);
         
     }
+    //es el metodo responsable de repintar el juego cuando es necesario
+    private void refresque(){
+        invaders.repaint();
+    }
+    private void moveNave(int dx){
+        Nave n = space2.getNave(0);
+        n.movePosicionX(dx);
+    }
+    private void moveNave2(int dx){
+        Nave n = space2.getNave(1);
+        n.movePosicionX(dx);
+    }
     private void salga(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.NO_OPTION){
@@ -142,7 +183,7 @@ class Pintar extends JPanel {
             }
         }
         //nave
-        /*for (int i = 0; i<1; i++)
+        for (int i = 0; i<1; i++)
         {
             Nave n = space3.getNave(i);
             g.setColor(n.getColor());
@@ -152,6 +193,7 @@ class Pintar extends JPanel {
                     if (j == 0){
                         if (k == 5){
                             g.fillRect(170+k*5,n.getPosition()+j*5,5,5);
+                            System.out.println(n.getPosition());
                         }
                     }else{
                         g.fillRect(175+k*5,n.getPosition()+j*5,5,5);
@@ -164,7 +206,7 @@ class Pintar extends JPanel {
 
 
 
-        }*/
+        }
 
 
 

@@ -47,8 +47,5 @@ public abstract class Invasor {
         return forma;
     }
 
-    public int getBinario(int f, int c){
-        System.out.println(forma[0][0]);
-        return forma[f][c];   
-    }
+    public abstract int getBinario(int f, int c);
 }

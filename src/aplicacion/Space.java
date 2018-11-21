@@ -99,8 +99,8 @@ public class Space {
 
 	//nave
 	public void moveNave(int i,int newPosicionX,int newPosicionY){
-		nave = getNave(i);
-		nave.movePosicionX(newPosicionX);
+		naveSpace = getNave(i);
+		naveSpace.movePosicionX(newPosicionX);
 	}
 
 
