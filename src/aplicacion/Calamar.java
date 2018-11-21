@@ -2,13 +2,13 @@ package aplicacion;
 import java.util.*;
 import java.awt.*;
 
-public class Calamar extends Invasor{
+public final  class Calamar extends Invasor{
 
     private Material[][] materiales;
     private int[][] forma = {{0,0,0,1,1,0,0,0},{0,0,1,1,1,1,0,0},{0,1,1,1,1,1,1,0},{1,1,0,1,1,0,1,1},{1,1,1,1,1,1,1,1},{0,0,1,0,0,1,0,0},{0,1,0,1,1,0,1,0},{1,0,1,0,0,1,0,1}};
     private int[][] forma2;
-    public Calamar(Color color, int posicionX, int posicionY){
-        super(color, posicionX, posicionY);
+    public Calamar(Color color, int fila, int columna){
+        super(color, fila, columna);
         setResistencia();
         setPuntaje(50);
         setDano(2);

@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
 
-public class Barrera {
+public abstract class Barrera {
     
     private int posicionX, posicionY, columna;
     protected Material[][] materiales;
@@ -23,9 +23,9 @@ public class Barrera {
     }
 
     public void prepareMatriz(Color color){
-		materiales = new Material[5][5];
-		for (int i = 0; i < 5; i++){
-			for (int j = 0; j < 5; j++){
+		materiales = new Material[20][20];
+		for (int i = 0; i < 20; i++){
+			for (int j = 0; j < 20; j++){
 				materiales[i][j] = new Material(color,true);
 			}
 		}
@@ -43,4 +43,5 @@ public class Barrera {
     public Color getColor(){
         return color;
     }
+    public abstract int getBinario(int f, int c);
 }

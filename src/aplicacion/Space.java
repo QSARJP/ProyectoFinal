@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
+import java.lang.*;
+import java.lang.reflect.InvocationTargetException;
 
 public class Space {
 	
@@ -41,13 +43,21 @@ public class Space {
 	}
 	private void prepareMatrizInvaders(){
 		invasoresMatriz = new Invasor[alto][ancho];
+		try{
+			addInvaders("aplicacion.Calamar", Color.blue, 0, 0);
+		}catch(Exception e){
+			throw new RuntimeException(e); //mala práctica: esconder excepciones
+		   
+
+		}
         
-        for (int i = 0; i < alto; i++){
+        /*for (int i = 0; i < alto; i++){
             for (int j = 0; j < ancho; j++){
-            	invasoresMatriz[i][j] = new Calamar(colorInvaders, i,j);
+				
+            	
             }
-        } 
-    }
+        } */
+	}
 	private void prepareArrayBarrera(){
 		barreraArray = new Barrera[cantidadBarrera];
         
@@ -55,8 +65,11 @@ public class Space {
             barreraArray[i] = new Roja(i);
             
         } 
-    }
-	
+	}
+	public void addInvaders(String invasores,Color newColorInvaders,int fila,int columna) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
+		invasoresMatriz[fila][columna]=(Invasor)(Class.forName(invasores).getConstructors()[0].newInstance(newColorInvaders,fila,columna));
+
+	}
 	public Barrera getBarrera(int i){
 		return barreraArray[i];
 	}
@@ -98,7 +111,7 @@ public class Space {
 
 
 	//nave
-	public void moveNave(int i,int newPosicionX,int newPosicionY){
+	public void moveNave(int i,int newPosicionX){
 		naveSpace = getNave(i);
 		naveSpace.movePosicionX(newPosicionX);
 	}

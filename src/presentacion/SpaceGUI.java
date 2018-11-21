@@ -126,8 +126,7 @@ public class SpaceGUI extends JFrame{
         invaders.repaint();
     }
     private void moveNave(int dx){
-        Nave n = space2.getNave(0);
-        n.movePosicionX(dx);
+        space2.moveNave(0, dx);
     }
     private void moveNave2(int dx){
         Nave n = space2.getNave(1);
@@ -172,11 +171,14 @@ class Pintar extends JPanel {
         for (int i = 0; i < 3; i++){
             Barrera b = space3.getBarrera(i);
             g.setColor(b.getColor());
-            for (int j = 0; j < 5; j++){
-                for (int k = 0; k < 5; k++){
-                    g.fillOval(i*200+175+k*5,400+j*5,5,5);
-                    b.getMaterial(j, k).setPosicionX(100+i*200+j*5);
-                    b.getMaterial(j, k).setPosicionY(300+k*5);
+            for (int j = 0; j < 20; j++){
+                for (int k = 0; k < 20; k++){
+                    if (b.getBinario(j, k)==1){
+                        g.fillRect(i*200+175+k*2,400+j*2,2,2);
+                        b.getMaterial(j, k).setPosicionX(100+i*200+j*2);
+                        b.getMaterial(j, k).setPosicionY(300+k*2);
+                    }
+                    
                 }
             }
         }
