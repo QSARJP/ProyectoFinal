@@ -15,6 +15,7 @@ public class Barrera {
     private int posicionX, posicionY, columna;
     protected Material[][] materiales;
     protected Color color;
+    protected int[][] forma;
 
 
     public Barrera(int columna){

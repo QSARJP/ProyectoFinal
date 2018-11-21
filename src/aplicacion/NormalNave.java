@@ -18,7 +18,7 @@ public class NormalNave extends Nave{
         prepareMatriz(newColor);
     }
     public void movePosicionX(int newPostitionX){
-        this.posicionX=newPostitionX;
+        this.posicionX+=newPostitionX;
     }
 
 

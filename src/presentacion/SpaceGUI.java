@@ -46,7 +46,6 @@ public class SpaceGUI extends JFrame{
         
             @Override
             public void keyTyped(KeyEvent e) {
-                
             }
         
             @Override
@@ -56,20 +55,19 @@ public class SpaceGUI extends JFrame{
         
             @Override
             public void keyPressed(KeyEvent e) {
-                int key = e.getKeyCode();
-                if (key == KeyEvent.VK_LEFT) {
-                    int dx = -1;
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    int dx = -5;
                     moveNave(dx);
                     refresque();
                 }
-                if (key == KeyEvent.VK_RIGHT) {
-                    int dx = 1;
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    int dx = 5;
                     moveNave(dx);
                     refresque();
                 }             
             }  
         };
-        invaders.addKeyListener(accionNave);
+        this.addKeyListener(accionNave);
 
         ActionListener accionMenu = new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -192,20 +190,19 @@ class Pintar extends JPanel {
                 for (int k = 0; k < 9; k++){
                     if (j == 0){
                         if (k == 5){
-                            g.fillRect(170+k*5,n.getPosition()+j*5,5,5);
-                            System.out.println(n.getPosition());
+                            g.fillRect(n.getPosition()-5+k*5,475+j*5,5,5);
+
                         }
                     }else{
-                        g.fillRect(175+k*5,n.getPosition()+j*5,5,5);
+                        g.fillRect(n.getPosition()+k*5,475+j*5,5,5);
                         n.getMaterial(j, k).setPosicionX(n.getPosition()+j*5);
                         n.getMaterial(j, k).setPosicionY(175+k*5);
+                        
                     }
                         
                 }
             }
-
-
-
+            
         }
 
 
