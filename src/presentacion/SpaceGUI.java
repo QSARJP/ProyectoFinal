@@ -19,7 +19,7 @@ public class SpaceGUI extends JFrame{
     private JMenuBar barra;
     private JMenu menu;
     private JMenuItem open, save, saveAs, exit;
-    private JFileChooser file;
+    private JFileChooser fileChooser;
     
     //Atributos tablero
     private JPanel infoHUD;
@@ -34,6 +34,45 @@ public class SpaceGUI extends JFrame{
         prepareElementos();
         prepareAcciones();
     }
+
+    private void prepareElementos(){
+        prepareElementosMenu();
+        prepareElementosJuego();
+    }
+
+    private void prepareElementosMenu(){
+
+        barra = new JMenuBar();
+        menu = new JMenu("Menu");
+        open = new JMenuItem("Abrir");
+        save = new JMenuItem("Guardar");
+        saveAs = new JMenuItem("Guardar como");
+        exit = new JMenuItem("Salir");
+
+        setJMenuBar(barra);
+
+        barra.add(menu);
+        menu.add(open);
+        menu.add(save);
+        menu.add(saveAs);
+        menu.add(exit);
+    }
+
+    private void prepareElementosJuego(){
+
+        invaders = new Pintar(space2);
+        infoHUD = new JPanel();
+        puntaje = new JLabel("Puntaje:");
+        vidas = new JLabel("Vidas:");
+        infoHUD.setBorder(new EmptyBorder(5,50,5,50));
+        infoHUD.setLayout(new BorderLayout());
+        infoHUD.add(puntaje,BorderLayout.EAST);
+        infoHUD.add(vidas,BorderLayout.WEST);
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(infoHUD,BorderLayout.NORTH);
+        getContentPane().add(invaders,BorderLayout.CENTER);   
+    }
+
     private void prepareAcciones(){
 
         WindowListener w = new WindowAdapter(){
@@ -42,32 +81,6 @@ public class SpaceGUI extends JFrame{
             }
         };
         this.addWindowListener(w);
-        KeyListener accionNave = new KeyListener(){
-        
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-        
-            @Override
-            public void keyReleased(KeyEvent e) {
-                
-            }
-        
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    int dx = -5;
-                    moveNave(dx);
-                    refresque();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    int dx = 5;
-                    moveNave(dx);
-                    refresque();
-                }             
-            }  
-        };
-        this.addKeyListener(accionNave);
 
         ActionListener accionMenu = new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -85,53 +98,40 @@ public class SpaceGUI extends JFrame{
         exit.addActionListener(accionMenu);
         open.addActionListener(accionMenu);
         save.addActionListener(accionMenu);
-    }
-    private void prepareElementos(){
-        prepareElementosMenu();
-        prepareElementosJuego();
-    }
-    private void prepareElementosMenu(){
-        barra = new JMenuBar();
-        menu = new JMenu("Menu");
-        open = new JMenuItem("Abrir");
-        save = new JMenuItem("Guardar");
-        saveAs = new JMenuItem("Guardar como");
-        exit = new JMenuItem("Salir");
 
-        setJMenuBar(barra);
-
-        barra.add(menu);
-        menu.add(open);
-        menu.add(save);
-        menu.add(saveAs);
-        menu.add(exit);
-    }
-    private void prepareElementosJuego(){
-        invaders = new Pintar(space2);
-        infoHUD = new JPanel();
-        puntaje = new JLabel("Puntaje:");
-        vidas = new JLabel("Vidas:");
-        infoHUD.setBorder(new EmptyBorder(5,50,5,50));
-        infoHUD.setLayout(new BorderLayout());
-        infoHUD.add(puntaje,BorderLayout.EAST);
-        infoHUD.add(vidas,BorderLayout.WEST);
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(infoHUD,BorderLayout.NORTH);
-        getContentPane().add(invaders,BorderLayout.CENTER);
-        //getContentPane().add(game,BorderLayout.SOUTH);
+        KeyListener accionNave = new KeyListener(){
         
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP){
+                    Nave nave = space2.getNaves().get(0);
+                    space2.disparo(nave);
+                }
+            }
+        
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+        
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                    int dx = -5;
+                    Nave nave = space2.getNaves().get(0);
+                    space2.mover(nave, nave.getPosicionInt()[0] + dx, nave.getPosicionInt()[1]);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                    int dx = 5;
+                    Nave nave = space2.getNaves().get(0);
+                    space2.mover(nave, nave.getPosicionInt()[0] + dx, nave.getPosicionInt()[1]);
+                }
+                refresque();
+            }
+        };
+        this.addKeyListener(accionNave);
     }
-    //es el metodo responsable de repintar el juego cuando es necesario
-    private void refresque(){
-        invaders.repaint();
-    }
-    private void moveNave(int dx){
-        space2.moveNave(0, dx);
-    }
-    private void moveNave2(int dx){
-        Nave n = space2.getNave(1);
-        n.movePosicionX(dx);
-    }
+
     private void salga(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.NO_OPTION){
@@ -141,18 +141,24 @@ public class SpaceGUI extends JFrame{
             System.exit(0);
         }
     }
+
     private void abra(){
-        file = new JFileChooser();
-        file.showOpenDialog(this);
-        File abre = file.getSelectedFile();
+        fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(this);
+        File abre = fileChooser.getSelectedFile();
     }
     private void salvar(){
-        file = new JFileChooser();
-        file.showSaveDialog(this);
-        File guardar = file.getSelectedFile();
+        fileChooser = new JFileChooser();
+        fileChooser.showSaveDialog(this);
+        File guardar = fileChooser.getSelectedFile();
     }
+
+    private void refresque(){
+        invaders.repaint();
+    }
+
     public static void main(String[] args) {
-        Space space = new Space(1, 1);
+        Space space = new Space();
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
     }
@@ -161,80 +167,58 @@ public class SpaceGUI extends JFrame{
 class Pintar extends JPanel {
     private Space space3;
     public Pintar(Space space){
-        space3 = space;
+        this.space3 = space;
+        setBackground(Color.black);
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        pintarInvasores(g);
+        pintarBarreras(g);
+        pintarNaves(g);
 
-        //Barrera
-        for (int i = 0; i < 3; i++){
-            Barrera b = space3.getBarrera(i);
-            g.setColor(b.getColor());
-            for (int j = 0; j < 20; j++){
-                for (int k = 0; k < 20; k++){
-                    if (b.getBinario(j, k)==1){
-                        g.fillRect(i*200+175+k*2,400+j*2,2,2);
-                        b.getMaterial(j, k).setPosicionX(100+i*200+j*2);
-                        b.getMaterial(j, k).setPosicionY(300+k*2);
-                    }
-                    
-                }
-            }
-        }
-        //nave
-        for (int i = 0; i<1; i++)
-        {
-            Nave n = space3.getNave(i);
-            g.setColor(n.getColor());
-            //space3.setNave(space.getNave(i));
-            for (int j = 0; j < 4; j++){
-                for (int k = 0; k < 9; k++){
-                    if (j == 0){
-                        if (k == 5){
-                            g.fillRect(n.getPosition()-5+k*5,475+j*5,5,5);
-
-                        }
-                    }else{
-                        g.fillRect(n.getPosition()+k*5,475+j*5,5,5);
-                        n.getMaterial(j, k).setPosicionX(n.getPosition()+j*5);
-                        n.getMaterial(j, k).setPosicionY(175+k*5);
-                        
-                    }
-                        
-                }
-            }
-            
-        }
-
-
-
-
-
-
-        //invasores
-        for (int s = 0; s < 1; s ++){
-            for (int i = 0; i < 1; i++){
-                Invasor f = space3.getInvasor(s,i);
-                for (int j = 0; j < 8; j++){
-                    for (int k = 0; k < 8; k++){
-                        if (f.getBinario(j,k) == 1){
-                            g.fillRect(300+i*20+k*2, 300+s*20+j*2, 2, 2);
-                        }
+    }
+    
+    public void pintarInvasores(Graphics g){
+        TreeMap<String, Invasor> invasores = space3.getInvasores();
+        g.setColor(Color.white);
+        for (String i: invasores.keySet()){
+            int[] posicion = invasores.get(i).getPosicionInt();
+            int[][] matriz = invasores.get(i).getBinarios();
+            for (int j = 0; j < matriz.length; j++){
+                for (int k = 0 ; k < matriz[j].length; k++){
+                    if(matriz[j][k] == 1){
+                        g.fillRect(posicion[0]+k*3,posicion[1]+j*3,3,3);
                     }
                 }
             }
         }
+    }
 
+    public void pintarBarreras(Graphics g){
+        TreeMap<String, Barrera> barreras = space3.getBarreras();
+        for (String i: barreras.keySet()){
+            g.setColor(barreras.get(i).getColor());
+            TreeMap<String, Material> materiales = barreras.get(i).getMateriales();
+            for (String j: materiales.keySet()){
+                int[] posicion = materiales.get(j).getPosicionInt();
+                g.fillRect(posicion[0], posicion[1], 2, 2);
+            }
+        }
+    }
 
-
-
-
-
-
-
-
-
-
+    public void pintarNaves(Graphics g){
+        ArrayList<Nave> naves = space3.getNaves();
+        for (int i = 0; i < naves.size(); i++){
+            int[] posicion = naves.get(i).getPosicionInt();
+            int[][] matriz = naves.get(i).getBinarios();
+            for (int j = 0; j < matriz.length; j++){
+                for (int k = 0; k < matriz[j].length; k++){
+                    if (matriz[j][k] == 1){
+                        g.fillRect(posicion[0]+3*k, posicion[1]+3*j, 3, 3);
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,10 +1,6 @@
 package aplicacion;
 
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -13,128 +9,70 @@ import javax.swing.event.*;
 import java.lang.*;
 import java.lang.reflect.InvocationTargetException;
 
-public class Space {
-	
-	private int alto;
-	private int ancho;
-	public Invasor[][] invasoresMatriz;
-	public Barrera[] barreraArray;
-	public Nave[] naveArray;
-	//public Platillo platilloArray;
-	private Color colorInvaders;
-	private Color colorNave;
-	private Color colorBarrera;
-	private int cantidadBarrera;
-	private Nave naveSpace;
-		
-	public Space(int newAlto , int newAncho) {
-		this.alto=newAlto;
-	    this.ancho=newAncho;
-	    this.colorInvaders = Color.GRAY;
-	    this.colorBarrera = Color.red;
-		this.colorNave = Color.BLUE;
-		this.cantidadBarrera = 3;
-	  
-	    prepareMatrizInvaders();
-	    prepareArrayBarrera();
-	    prepararNave();
-	    //preparePlatillo();
-	    
-	}
-	private void prepareMatrizInvaders(){
-		invasoresMatriz = new Invasor[alto][ancho];
-		try{
-			addInvaders("aplicacion.Calamar", Color.blue, 0, 0);
-		}catch(Exception e){
-			throw new RuntimeException(e); //mala práctica: esconder excepciones
-		   
+public class Space{
+    private TreeMap<String, Invasor> invasores;
+    private TreeMap<String, Barrera> barreras;
+    private ArrayList<Nave> naves;
 
-		}
-        
-        /*for (int i = 0; i < alto; i++){
-            for (int j = 0; j < ancho; j++){
-				
-            	
-            }
-        } */
-	}
-	private void prepareArrayBarrera(){
-		barreraArray = new Barrera[cantidadBarrera];
-        
-        for (int i = 0; i < cantidadBarrera; i++){
-            barreraArray[i] = new Roja(i);
-            
-        } 
-	}
-	public void addInvaders(String invasores,Color newColorInvaders,int fila,int columna) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
-		invasoresMatriz[fila][columna]=(Invasor)(Class.forName(invasores).getConstructors()[0].newInstance(newColorInvaders,fila,columna));
+    public Space(){
+        invasores = new TreeMap<String, Invasor>();
+        barreras = new TreeMap<String, Barrera>();
+        naves = new ArrayList<Nave>();
+        leerElemento();
+    }
 
-	}
-	public Barrera getBarrera(int i){
-		return barreraArray[i];
-	}
-	private void prepararNave() {
-		naveArray = new Nave[1];
-				
-		naveArray[0]= new NormalNave(0,0,475,500,colorNave);
-	}
-	public Nave getNave(int i){
-		return naveArray[i];
-	}
-	/*private void preparePlatillo() {
-		platilloArray = new Platillo(Color.RED, 0,0);
-		
-		
-	}*/
+    public void addInvasor(Invasor invasor){
+        invasores.put(invasor.getPosicion(), invasor);
+    }
 
-	//invasor
+    public void addBarrera(Barrera barrera){
+        barreras.put(barrera.getPosicion(), barrera);
+    }
 
-	public Invasor getInvasor(int f, int c){
-		return invasoresMatriz[f][c];
-	}
+    public void addNave(Nave nave){
+        naves.add(nave);
+    }
 
+    private void leerElemento(){
+        try{
+            addElemento("aplicacion.Platillo", 330, 10);
+            addElemento("aplicacion.Calamar", 210, 50);
+            addElemento("aplicacion.Calamar", 250, 50);
+            addElemento("aplicacion.Calamar", 290, 50);
+            addElemento("aplicacion.Cangrejo", 330, 50);
+            addElemento("aplicacion.Cangrejo", 370, 50);
+            addElemento("aplicacion.Cangrejo", 410, 50);
+            addElemento("aplicacion.Pulpo", 450, 50);
+            addElemento("aplicacion.Pulpo", 490, 50);
+            addElemento("aplicacion.Pulpo", 530, 50);
+            addElemento("aplicacion.BarreraVerde",300,400);
+            addElemento("aplicacion.BarreraRoja",200,400);
+            addElemento("aplicacion.BarreraRoja",400,400);
+            addElemento("aplicacion.BarreraVerde",500,400);
+            addElemento("aplicacion.NaveJugador",400, 480);
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
+    private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
+        Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
+    }
 
+    public void mover(Elemento elemento, int posicionX, int posicionY){
+        elemento.mover(posicionX, posicionY);
+    }
 
+    public TreeMap<String, Invasor> getInvasores(){
+        return invasores;
+    }
 
+    public TreeMap<String, Barrera> getBarreras(){
+        return barreras;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-	//nave
-	public void moveNave(int i,int newPosicionX){
-		naveSpace = getNave(i);
-		naveSpace.movePosicionX(newPosicionX);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public ArrayList<Nave> getNaves(){
+        return naves;
+    }
 }

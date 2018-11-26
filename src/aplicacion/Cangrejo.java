@@ -1,18 +1,25 @@
 package aplicacion;
-import java.awt.*;
 
 public class Cangrejo extends Invasor{
-    public Cangrejo(Color color, int posicionX, int posicionY){
-        super(color, posicionX, posicionY);
-        setDano(1);
-        setPuntaje(30);
+
+    private int resistencia;
+    private int[][] forma = {{0,0,1,0,0,0,0,0,1,0,0},{0,0,0,1,0,0,0,1,0,0,0},{0,0,1,1,1,1,1,1,1,0,0},{0,1,1,0,1,1,1,0,1,1,0},{1,1,1,1,1,1,1,1,1,1,1},{1,0,1,1,1,1,1,1,1,0,1},{1,0,1,0,0,0,0,0,1,0,1},{0,0,0,1,1,0,1,1,0,0,0}};
+
+    public Cangrejo(Space space, int posicionX, int posicionY){
+        super(space, posicionX, posicionY);
         setResistencia();
+        addInvasor(this);
     }
+
     public void setResistencia(){
         this.resistencia = 2;
     }
-    public void setForma(){}
-    public  int getBinario(int f, int c){
-        return forma[f][c];   
+
+    public int[][] getBinarios(){
+        return forma;
+    }
+
+    public int getResistencia(){
+        return resistencia;
     }
 }

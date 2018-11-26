@@ -1,26 +1,39 @@
 package aplicacion;
 
-import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-
+import java.util.TreeMap;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.event.*;
 
-public class Verde extends Barrera{
+public class BarreraVerde extends Barrera{
+
+    private Color color;
     private int[][] forma = {{0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0},{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0},{0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1},{1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1},{1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1},{1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1}};
-    public Verde(int columna){
-        super(columna);
+    private TreeMap <String, Material> materiales;
+
+    public BarreraVerde(Space space, int posicionX, int posicionY){
+        super(space, posicionX, posicionY);
         this.color = Color.green;
-        prepareMatriz(color);
-    }
-    public  int getBinario(int f, int c){
-        return forma[f][c];   
+        materiales = new TreeMap<String, Material>();
+        addMateriales();
+        space.addBarrera(this);
+
     }
 
+    public void addMateriales(){
+        for (int i = 0; i < forma.length; i++){
+            for (int j = 0; j < forma[i].length; j++){
+                if (forma[i][j] == 1){
+                    String posicion = Integer.toString(posicionX+j*2)+","+Integer.toString(posicionY+i*2);
+                    materiales.put(posicion, new Material(space, posicionX+j*2, posicionY+i*2));
+                }
+            }
+        }
+    }
+
+    public TreeMap<String, Material> getMateriales(){
+        return materiales;
+    }
+
+    public Color getColor(){
+        return color;
+    }
 }
-
