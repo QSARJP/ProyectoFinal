@@ -13,11 +13,13 @@ public class Space{
     private TreeMap<String, Invasor> invasores;
     private TreeMap<String, Barrera> barreras;
     private ArrayList<Nave> naves;
+    private ArrayList<Disparo> disparos;
 
     public Space(){
         invasores = new TreeMap<String, Invasor>();
         barreras = new TreeMap<String, Barrera>();
         naves = new ArrayList<Nave>();
+        disparos = new ArrayList<Disparos>();
         leerElemento();
     }
 
@@ -74,5 +76,9 @@ public class Space{
 
     public ArrayList<Nave> getNaves(){
         return naves;
+    }
+
+    public void addDisparo(Disparo disparo){
+        diaparos.add(disparo);
     }
 }

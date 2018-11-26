@@ -162,6 +162,29 @@ public class SpaceGUI extends JFrame{
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }
 
 class Pintar extends JPanel {
