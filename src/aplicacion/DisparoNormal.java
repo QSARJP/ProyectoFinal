@@ -1,14 +1,15 @@
 package aplicacion;
 
-import javafx.scene.paint.Color;
-
+import java.awt.color.*;
+import java.awt.*;
 
 public class DisparoNormal extends Disparo{
 
-    private Color color = Color.WHITE;
+    private Color color;
 
     public DisparoNormal(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
+        this.color = Color.WHITE;
         
     }
 

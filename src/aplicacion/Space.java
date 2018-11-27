@@ -68,6 +68,7 @@ public class Space implements Serializable {
             disparo.setPosicionX(posicion[0]+21);
             disparo.setPosicionY(posicion[1]);
             disparos.add(disparo);
+           
         }
 
 
@@ -198,6 +199,16 @@ public class Space implements Serializable {
         }
         
 		//throw new automataExcepcion(automataExcepcion.CONSTRUCCION_IMPORTE);
-	}
-//98
+    }
+    
+
+
+
+
+
+
+
+
+
+    
 }

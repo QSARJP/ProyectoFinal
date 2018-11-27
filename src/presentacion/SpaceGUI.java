@@ -9,8 +9,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.lang.reflect.InvocationTargetException;
+
 
 import aplicacion.*;
 import excepcion.*;
@@ -118,10 +118,7 @@ public class SpaceGUI extends JFrame {
         
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_UP){
-                    Nave nave = space2.getNaves().get(0);
-                    space2.disparo(nave);
-                }
+
             }
         
             @Override
@@ -140,6 +137,10 @@ public class SpaceGUI extends JFrame {
                     int dx = 5;
                     Nave nave = space2.getNaves().get(0);
                     space2.mover(nave, nave.getPosicionInt()[0] + dx, nave.getPosicionInt()[1]);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP){
+                    Nave nave = space2.getNaves().get(0);
+                    space2.disparo(nave);
                 }
                 refresque();
             }
@@ -241,6 +242,7 @@ class Pintar extends JPanel {
         pintarInvasores(g);
         pintarBarreras(g);
         pintarNaves(g);
+        pintarDisparos(g);
 
     }
     
@@ -279,7 +281,6 @@ class Pintar extends JPanel {
             int[][] matriz = naves.get(i).getBinarios();
             for (int j = 0; j < matriz.length; j++){
                 for (int k = 0; k < matriz[j].length; k++){
-                    
                     if (matriz[j][k] == 1){
                         g.fillRect(posicion[0]+3*k, posicion[1]+3*j, 3, 3);
                     }
@@ -289,6 +290,14 @@ class Pintar extends JPanel {
     }
 
     public void pintarDisparos(Graphics g){
-
+        ArrayList<Disparo> disparos = space3.getDisparos();
+        for (int i = 0; i < disparos.size(); i++){
+            Disparo d = disparos.get(i);
+            int [] posicion = d.getPosicionInt();
+            g.setColor(d.getColor());
+            for (int j = 0; j < 3; j++){
+                g.fillRect(posicion[0], posicion[1]+j*3, 3, 3);
+            }
+        }
     }
 }
