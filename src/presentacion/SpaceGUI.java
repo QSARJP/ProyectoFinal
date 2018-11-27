@@ -11,10 +11,12 @@ import java.util.*;
 import javax.swing.event.*;
 
 import aplicacion.*;
-import expecion.*;
+import excepcion.*;
 
 public class SpaceGUI extends JFrame {
     public Space space2;
+    
+    
 
     //aributos menu
     private JMenuBar barra;
@@ -281,5 +283,9 @@ class Pintar extends JPanel {
                 }
             }
         }
+    }
+
+    public void pintarDisparos(Graphics g){
+
     }
 }
