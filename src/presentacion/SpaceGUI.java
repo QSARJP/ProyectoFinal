@@ -12,6 +12,7 @@ import javax.swing.event.*;
 
 import aplicacion.*;
 
+
 public class SpaceGUI extends JFrame{
     public Space space2;
 
@@ -47,6 +48,8 @@ public class SpaceGUI extends JFrame{
         open = new JMenuItem("Abrir");
         save = new JMenuItem("Guardar");
         saveAs = new JMenuItem("Guardar como");
+        
+        
         exit = new JMenuItem("Salir");
 
         setJMenuBar(barra);
@@ -56,6 +59,8 @@ public class SpaceGUI extends JFrame{
         menu.add(save);
         menu.add(saveAs);
         menu.add(exit);
+
+
     }
 
     private void prepareElementosJuego(){
@@ -92,6 +97,11 @@ public class SpaceGUI extends JFrame{
                 }
                 else if(e.getSource() == save){
                     salvar();
+
+
+
+
+
                 }
             }
         };
@@ -99,6 +109,7 @@ public class SpaceGUI extends JFrame{
         open.addActionListener(accionMenu);
         save.addActionListener(accionMenu);
 
+        
         KeyListener accionNave = new KeyListener(){
         
             @Override
@@ -157,34 +168,61 @@ public class SpaceGUI extends JFrame{
         invaders.repaint();
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
         Space space = new Space();
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 }
 
 class Pintar extends JPanel {

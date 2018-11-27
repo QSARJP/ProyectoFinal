@@ -9,6 +9,13 @@ public abstract class Disparo extends Elemento{
     }
 
     public abstract Color getColor();
-    public abstract ArrayList<Disparo> getDisparos();
+
+    public void setPosicionX(int posicionX){
+        this.posicionX = posicionX;
+    }
+
+    public void setPosicionY(int posicionY){
+        this.posicionY = posicionY;
+    }
 
 }

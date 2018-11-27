@@ -58,6 +58,25 @@ public class Space{
         }
     }
 
+    public disparo(Nave nave){
+        int[] posicion = nave.getPosicionInt();
+        ArraryList<Disparo> disp = nave.getDisparos();
+        Disparo disparo = disp.remove(0);
+        disparo.setPosicionX(posicion[0]+21);
+        disparo.setPosicionY(posicion[1]);
+        disparos.add(disparo);
+
+
+
+
+
+
+
+
+        
+
+    }
+
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
     }
@@ -78,7 +97,101 @@ public class Space{
         return naves;
     }
 
-    public void addDisparo(Disparo disparo){
-        diaparos.add(disparo);
+    public ArrayList<Disparo> getDisparos(Disparo disparo){
+        return disparos;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
