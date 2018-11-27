@@ -11,8 +11,8 @@ public abstract class Nave extends Elemento{
 
     public Nave(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
-        this.disparosNormales = 60;
-        prepareDisparos();
+        disparos = new ArrayList<Disparo>();
+        
     }
 
     public int[][] getBinarios(){
@@ -22,12 +22,13 @@ public abstract class Nave extends Elemento{
     public abstract Color getColor();
 
     public void prepareDisparos(){
-        for (int i = 0; i < numeroDisparosNormales(); i++){
-            disparos.add(new Disparo(space, null, null));
+        for (int i = 0; i < disparosNormales; i++){
+            disparos.add(new DisparoNormal(space, 0, 0));
         }
     }
-
     public ArrayList<Disparo> getDisparos(){
         return disparos;
     }
+
+    
 }

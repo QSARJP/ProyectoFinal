@@ -21,7 +21,7 @@ public class Space implements Serializable {
         invasores = new TreeMap<String, Invasor>();
         barreras = new TreeMap<String, Barrera>();
         naves = new ArrayList<Nave>();
-        disparos = new ArrayList<Disparos>();
+        disparos = new ArrayList<Disparo>();
         leerElemento();
     }
 
@@ -61,7 +61,7 @@ public class Space implements Serializable {
     }
 
     public void disparo(Nave nave){
-        ArraryList<Disparo> disp = nave.getDisparos();
+        ArrayList<Disparo> disp = nave.getDisparos();
         if (disp.size() != 0){
             int[] posicion = nave.getPosicionInt();
             Disparo disparo = disp.remove(0);
@@ -99,8 +99,8 @@ public class Space implements Serializable {
         return naves;
     }
 
-    public void addDisparo(Disparo disparo){
-        diaparos.add(disparo);
+    public ArrayList<Disparo> getDisparos(){
+        return disparos;
     }
     public void salvar(File archivo) throws spaceExcepcion {
         try {
@@ -126,7 +126,7 @@ public class Space implements Serializable {
 			
             FileInputStream archivos=new FileInputStream(file);
             ObjectInputStream lee=new ObjectInputStream(archivos);
-            au = (AutomataCelular)lee.readObject();
+            space = (Space)lee.readObject();
             lee.close();
             
         }catch(IOException ex){
@@ -149,15 +149,15 @@ public class Space implements Serializable {
                 BufferedWriter save2 = new BufferedWriter(save);
 
                 for (int i = 0;i<invasores.size() ; i++){
-                    save2.write(invasores.get(i).getName()+" "+invasores.get(i).getPosicion());
+                    save2.write(invasores.get(i).getClass().getName()+" "+invasores.get(i).getPosicionInt()[0]+" "+invasores.get(i).getPosicionInt()[1]);
                     save2.newLine();
                 }
                 for (int i = 0;i<naves.size() ; i++){
-                    save2.write(naves.get(i).getName()+" "+naves.get(i).getPosicion());
+                    save2.write(naves.get(i).getClass().getName()+" "+naves.get(i).getPosicionInt()[0]+" "+naves.get(i).getPosicionInt()[1]);
                     save2.newLine();
                 }
                 for (int i = 0;i<barreras.size() ; i++){
-                    save2.write(barreras.get(i).getName()+" "+barreras.get(i).getPosicion()[0]+" "+barreras.get(i).getPosicion()[1]);
+                    save2.write(barreras.get(i).getClass().getName()+" "+barreras.get(i).getPosicionInt()[0]+" "+barreras.get(i).getPosicionInt()[1]);
                     save2.newLine();
                 }
                 save2.close();
@@ -182,9 +182,9 @@ public class Space implements Serializable {
                 FileReader archivos=new FileReader(abre);
                 BufferedReader lee=new BufferedReader(archivos);
                 int i = 0;
-                reiniciarImport();
+                //reiniciarImport();
                 while((aux=lee.readLine())!=null){
-                    texto[i]=aux.trim().split(" ");
+                    texto=aux.trim().split(" ");
                     addElemento(texto[0],Integer.valueOf(texto[1]),Integer.valueOf(texto[2]));
                 }
                 lee.close();

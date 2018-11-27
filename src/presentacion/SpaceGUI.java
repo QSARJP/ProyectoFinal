@@ -9,6 +9,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.lang.reflect.InvocationTargetException;
 
 import aplicacion.*;
 import excepcion.*;
@@ -118,7 +120,7 @@ public class SpaceGUI extends JFrame {
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_UP){
                     Nave nave = space2.getNaves().get(0);
-                    space2.Disparo(nave);
+                    space2.disparo(nave);
                 }
             }
         
@@ -277,6 +279,7 @@ class Pintar extends JPanel {
             int[][] matriz = naves.get(i).getBinarios();
             for (int j = 0; j < matriz.length; j++){
                 for (int k = 0; k < matriz[j].length; k++){
+                    
                     if (matriz[j][k] == 1){
                         g.fillRect(posicion[0]+3*k, posicion[1]+3*j, 3, 3);
                     }
