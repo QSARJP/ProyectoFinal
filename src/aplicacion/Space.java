@@ -8,6 +8,7 @@ import java.util.*;
 import javax.swing.event.*;
 import java.lang.*;
 import java.lang.reflect.InvocationTargetException;
+import excepcion.*;
 
 public class Space implements Serializable {
     private TreeMap<String, Invasor> invasores;
@@ -58,13 +59,6 @@ public class Space implements Serializable {
         }
     }
 
-    public disparo(Nave nave){
-        int[] posicion = nave.getPosicionInt();
-        ArraryList<Disparo> disp = nave.getDisparos();
-        Disparo disparo = disp.remove(0);
-        disparo.setPosicionX(posicion[0]+21);
-        disparo.setPosicionY(posicion[1]);
-        disparos.add(disparo);
 
 
 
@@ -73,9 +67,16 @@ public class Space implements Serializable {
 
 
 
-        
 
-    }
+
+
+
+
+
+
+
+
+
 
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
@@ -97,8 +98,8 @@ public class Space implements Serializable {
         return naves;
     }
 
-    public ArrayList<Disparo> getDisparos(Disparo disparo){
-        return disparos;
+    public void addDisparo(Disparo disparo){
+        diaparos.add(disparo);
     }
     public void salvar(File archivo) throws spaceExcepcion {
         try {
@@ -118,10 +119,10 @@ public class Space implements Serializable {
 		
 		
 	}
-    public AutomataCelular abra(File file) throws spaceExcepcion {
-        AutomataCelular au = null ;
+    public Space abra(File file) throws spaceExcepcion {
+        Space space = null ;
         try{
-            				
+			
             FileInputStream archivos=new FileInputStream(file);
             ObjectInputStream lee=new ObjectInputStream(archivos);
             au = (AutomataCelular)lee.readObject();
@@ -136,7 +137,7 @@ public class Space implements Serializable {
                   "\nNo se ha encontrado el archivo",
                   "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
         }
-        return au;
+        return space;
 		
 		//throw new automataExcepcion(automataExcepcion.CONSTRUCCION_ABRA);
 	}
@@ -145,14 +146,18 @@ public class Space implements Serializable {
             if (archivo != null){
                 FileWriter  save=new FileWriter(archivo+".txt");
                 BufferedWriter save2 = new BufferedWriter(save);
-                
-                for (int f=0;f<LONGITUD;f++){
-                    for (int c=0;c<LONGITUD;c++){
-                        if (getElemento(f, c)!=null){
-                            save2.write(getElemento(f, c).getClass().getName()+" "+Integer.toString(f)+" "+Integer.toString(c));
-                            save2.newLine();
-                        }
-                    }
+
+                for (int i = 0;i<invasores.size() ; i++){
+                    save2.write(invasores.get(i).getName()+" "+invasores.get(i).getPosicion());
+                    save2.newLine();
+                }
+                for (int i = 0;i<naves.size() ; i++){
+                    save2.write(naves.get(i).getName()+" "+naves.get(i).getPosicion());
+                    save2.newLine();
+                }
+                for (int i = 0;i<barreras.size() ; i++){
+                    save2.write(barreras.get(i).getName()+" "+barreras.get(i).getPosicion()[0]+" "+barreras.get(i).getPosicion()[1]);
+                    save2.newLine();
                 }
                 save2.close();
                 JOptionPane.showMessageDialog(null,"El archivo se a guardado Exitosamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
@@ -169,7 +174,7 @@ public class Space implements Serializable {
 	}
 	public void importe(File abre) throws spaceExcepcion,ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         String aux=""; 		
-        String [][] texto= new String [20][3];
+        String [] texto= new String [3];
          
         try{
             if(abre!=null){ 				
@@ -179,7 +184,7 @@ public class Space implements Serializable {
                 reiniciarImport();
                 while((aux=lee.readLine())!=null){
                     texto[i]=aux.trim().split(" ");
-                    setElemento(Integer.valueOf(texto[i][1]),Integer.valueOf(texto[i][2]), (Elemento)(Class.forName(texto[i][0]).getConstructors()[0].newInstance(this,Integer.valueOf(texto[i][1]),Integer.valueOf(texto[i][2]))));
+                    addElemento(texto[0],Integer.valueOf(texto[1]),Integer.valueOf(texto[2]));
                 }
                 lee.close();
             } 			

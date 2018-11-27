@@ -11,10 +11,12 @@ import java.util.*;
 import javax.swing.event.*;
 
 import aplicacion.*;
-import expecion.*;
+import excepcion.*;
 
 public class SpaceGUI extends JFrame {
     public Space space2;
+    //archivo
+	private JFileChooser archivo;
 
     //aributos menu
     private JMenuBar barra;
@@ -116,7 +118,7 @@ public class SpaceGUI extends JFrame {
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_UP){
                     Nave nave = space2.getNaves().get(0);
-                    space2.disparo(nave);
+                    space2.Disparo(nave);
                 }
             }
         
@@ -158,7 +160,7 @@ public class SpaceGUI extends JFrame {
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
 			File abre=archivo.getSelectedFile();
-			System.out.println(automata.abra(abre)); 
+			System.out.println(space2.abra(abre)); 
 			//AutomataCelular ac=automata.abra(abre);
 
 		}catch(spaceExcepcion e){
