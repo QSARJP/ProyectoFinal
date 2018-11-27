@@ -11,14 +11,15 @@ import java.util.*;
 import javax.swing.event.*;
 
 import aplicacion.*;
+import expecion.*;
 
-public class SpaceGUI extends JFrame{
+public class SpaceGUI extends JFrame {
     public Space space2;
 
     //aributos menu
     private JMenuBar barra;
     private JMenu menu;
-    private JMenuItem open, save, saveAs, exit;
+    private JMenuItem open, save, saveAs, exit,importe,exporte;
     private JFileChooser fileChooser;
     
     //Atributos tablero
@@ -47,6 +48,8 @@ public class SpaceGUI extends JFrame{
         open = new JMenuItem("Abrir");
         save = new JMenuItem("Guardar");
         saveAs = new JMenuItem("Guardar como");
+        importe = new JMenuItem("Importar");
+        exporte = new JMenuItem("Exportar");
         exit = new JMenuItem("Salir");
 
         setJMenuBar(barra);
@@ -56,6 +59,8 @@ public class SpaceGUI extends JFrame{
         menu.add(save);
         menu.add(saveAs);
         menu.add(exit);
+        menu.add(importe);
+        menu.add(exporte);
     }
 
     private void prepareElementosJuego(){
@@ -92,13 +97,19 @@ public class SpaceGUI extends JFrame{
                 }
                 else if(e.getSource() == save){
                     salvar();
+                }else if(e.getSource() == importe){
+                    importe();
+                }
+                else if(e.getSource() == exporte){
+                    exporte();
                 }
             }
         };
         exit.addActionListener(accionMenu);
         open.addActionListener(accionMenu);
         save.addActionListener(accionMenu);
-
+        importe.addActionListener(accionMenu);
+        exporte.addActionListener(accionMenu);
         KeyListener accionNave = new KeyListener(){
         
             @Override
@@ -143,48 +154,75 @@ public class SpaceGUI extends JFrame{
     }
 
     private void abra(){
-        fileChooser = new JFileChooser();
-        fileChooser.showOpenDialog(this);
-        File abre = fileChooser.getSelectedFile();
+        try {
+			archivo = new JFileChooser();
+			archivo.showOpenDialog(this);
+			File abre=archivo.getSelectedFile();
+			System.out.println(automata.abra(abre)); 
+			//AutomataCelular ac=automata.abra(abre);
+
+		}catch(spaceExcepcion e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}
     }
     private void salvar(){
-        fileChooser = new JFileChooser();
-        fileChooser.showSaveDialog(this);
-        File guardar = fileChooser.getSelectedFile();
+        try {
+			archivo = new JFileChooser();
+        	archivo.showSaveDialog(this);
+        	File guardar = archivo.getSelectedFile();
+			space2.salvar(guardar);
+		}catch(spaceExcepcion e){
+
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}
+    }
+    private void importe(){
+        try {
+			archivo = new JFileChooser();
+			archivo.showOpenDialog(this);
+			File abre=archivo.getSelectedFile();
+			space2.importe(abre);
+			refresque();
+		}catch(spaceExcepcion e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}catch(ClassNotFoundException e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}catch(InstantiationException e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}
+		catch(IllegalAccessException e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}catch(InvocationTargetException e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}
+		
+    }
+    private void exporte(){
+        try {
+			archivo = new JFileChooser();
+        	archivo.showSaveDialog(this);
+        	File guardar = archivo.getSelectedFile();
+			space2.exporte(guardar);
+		}catch(spaceExcepcion e){
+			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
+		}
     }
 
     private void refresque(){
         invaders.repaint();
     }
 
+
+
+
+
+
+
     public static void main(String[] args) {
         Space space = new Space();
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    }  
 }
 
 class Pintar extends JPanel {

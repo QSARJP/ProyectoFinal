@@ -1,6 +1,7 @@
 package aplicacion;
 
-public abstract class Elemento{
+
+public abstract class Elemento  {
     protected int posicionX;
 	protected int posicionY;
     public Space space;
