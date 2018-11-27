@@ -78,8 +78,6 @@ public  class Space implements Serializable {
 
 
 
-
-        
     }
 
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{

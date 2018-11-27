@@ -1,6 +1,7 @@
 package aplicacion;
 
-import javafx.scene.paint.Color;
+import java.awt.*;
+
 
 public abstract class Disparo extends Elemento{
     public Disparo(Space space, int posicionX, int posicionY){
