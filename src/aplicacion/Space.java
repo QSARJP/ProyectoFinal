@@ -9,9 +9,12 @@ import javax.swing.event.*;
 import java.lang.*;
 import java.lang.reflect.InvocationTargetException;
 import excepcion.*;
+import java.io.Serializable;
 
 
-public class Space implements Serializable {
+
+
+public  class Space implements Serializable {
     private TreeMap<String, Invasor> invasores;
     private TreeMap<String, Barrera> barreras;
     private ArrayList<Nave> naves;
@@ -105,9 +108,9 @@ public class Space implements Serializable {
     public void salvar(File archivo) throws spaceExcepcion {
         try {
             if (archivo != null){
-                System.out.println(archivo+".dat");
                 ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(archivo+".dat"));
                 Space object = this;
+                System.out.println(object.preuba());
                 save.writeObject(object);
                 save.close();
                 JOptionPane.showMessageDialog(null,"El archivo se a guardado Exitosamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
@@ -115,7 +118,7 @@ public class Space implements Serializable {
 
         }catch(IOException ex)
 		   {
-			 JOptionPane.showMessageDialog(null,"Su archivo no se ha guardado","Advertencia",JOptionPane.WARNING_MESSAGE);
+			 JOptionPane.showMessageDialog(null,"Por que no da ","Advertencia",JOptionPane.WARNING_MESSAGE);
 		   }
 		
 		
@@ -148,16 +151,16 @@ public class Space implements Serializable {
                 FileWriter  save=new FileWriter(archivo+".txt");
                 BufferedWriter save2 = new BufferedWriter(save);
 
-                for (int i = 0;i<invasores.size() ; i++){
-                    save2.write(invasores.get(i).getClass().getName()+" "+invasores.get(i).getPosicionInt()[0]+" "+invasores.get(i).getPosicionInt()[1]);
+                for (String i : invasores.keySet()){
+                    save2.write(invasores.get(i).getClass().getName()+" "+Integer.toString(invasores.get(i).getPosicionInt()[0])+" "+Integer.toString(invasores.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
                 for (int i = 0;i<naves.size() ; i++){
-                    save2.write(naves.get(i).getClass().getName()+" "+naves.get(i).getPosicionInt()[0]+" "+naves.get(i).getPosicionInt()[1]);
+                    save2.write(naves.get(i).getClass().getName()+" "+Integer.toString(naves.get(i).getPosicionInt()[0])+" "+Integer.toString(naves.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
-                for (int i = 0;i<barreras.size() ; i++){
-                    save2.write(barreras.get(i).getClass().getName()+" "+barreras.get(i).getPosicionInt()[0]+" "+barreras.get(i).getPosicionInt()[1]);
+                for (String i : barreras.keySet()){
+                    save2.write(barreras.get(i).getClass().getName()+" "+Integer.toString(barreras.get(i).getPosicionInt()[0])+" "+Integer.toString(barreras.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
                 save2.close();
@@ -182,7 +185,7 @@ public class Space implements Serializable {
                 FileReader archivos=new FileReader(abre);
                 BufferedReader lee=new BufferedReader(archivos);
                 int i = 0;
-                //reiniciarImport();
+                reiniciarImport();
                 while((aux=lee.readLine())!=null){
                     texto=aux.trim().split(" ");
                     addElemento(texto[0],Integer.valueOf(texto[1]),Integer.valueOf(texto[2]));
@@ -198,6 +201,16 @@ public class Space implements Serializable {
         }
         
 		//throw new automataExcepcion(automataExcepcion.CONSTRUCCION_IMPORTE);
-	}
-//98
+    }
+    
+    private void reiniciarImport(){
+        invasores = new TreeMap<String, Invasor>();
+        barreras = new TreeMap<String, Barrera>();
+        naves = new ArrayList<Nave>();
+        disparos = new ArrayList<Disparo>();
+    }
+    public int preuba(){
+        return 1;
+    }
+
 }
