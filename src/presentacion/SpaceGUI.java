@@ -284,4 +284,8 @@ class Pintar extends JPanel {
             }
         }
     }
+
+    public void pintarDisparos(Graphics g){
+
+    }
 }

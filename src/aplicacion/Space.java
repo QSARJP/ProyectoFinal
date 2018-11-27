@@ -10,6 +10,7 @@ import java.lang.*;
 import java.lang.reflect.InvocationTargetException;
 import excepcion.*;
 
+
 public class Space implements Serializable {
     private TreeMap<String, Invasor> invasores;
     private TreeMap<String, Barrera> barreras;
@@ -59,6 +60,15 @@ public class Space implements Serializable {
         }
     }
 
+    public void disparo(Nave nave){
+        ArraryList<Disparo> disp = nave.getDisparos();
+        if (disp.size() != 0){
+            int[] posicion = nave.getPosicionInt();
+            Disparo disparo = disp.remove(0);
+            disparo.setPosicionX(posicion[0]+21);
+            disparo.setPosicionY(posicion[1]);
+            disparos.add(disparo);
+        }
 
 
 
@@ -66,17 +76,8 @@ public class Space implements Serializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+        
+    }
 
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
