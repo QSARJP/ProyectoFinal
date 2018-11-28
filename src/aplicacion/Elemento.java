@@ -15,8 +15,8 @@ public abstract class Elemento implements Serializable {
     }
 
     public void mover(int posicionX, int posicionY){
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+        this.posicionX += posicionX;
+        this.posicionY += posicionY;
     }
     
     public String getPosicion(){

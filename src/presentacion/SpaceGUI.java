@@ -47,6 +47,7 @@ public class SpaceGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         prepareElementosVentanaInicial();
         prepareAccionesVentanaInicial();
+        
 
     }
     private void prepareElementosVentanaInicial(){
@@ -106,6 +107,9 @@ public class SpaceGUI extends JFrame {
         juego.setVisible(true);
         prepareElementos();
         prepareAcciones();
+        MoverInvaders m = new MoverInvaders(this,space2);
+        m.start();
+
 
     }
     private void dosJugadoresP(){
@@ -204,12 +208,12 @@ public class SpaceGUI extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT){
                     int dx = -5;
                     Nave nave = space2.getNaves().get(0);
-                    space2.mover(nave, nave.getPosicionInt()[0] + dx, nave.getPosicionInt()[1]);
+                    space2.mover(nave, dx, 0);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT){
                     int dx = 5;
                     Nave nave = space2.getNaves().get(0);
-                    space2.mover(nave, nave.getPosicionInt()[0] + dx, nave.getPosicionInt()[1]);
+                    space2.mover(nave, dx, 0);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP){
                     Nave nave = space2.getNaves().get(0);
@@ -286,7 +290,7 @@ public class SpaceGUI extends JFrame {
 		}
     }
 
-    private void refresque(){
+    public void refresque(){
         invaders.repaint();
     }
 
@@ -300,6 +304,7 @@ public class SpaceGUI extends JFrame {
         Space space = new Space();
         SpaceGUI s = new SpaceGUI(space);
         s.setVisible(true);
+        
     }  
 }
 
@@ -350,6 +355,7 @@ class Pintar extends JPanel {
     public void pintarNaves(Graphics g){
         ArrayList<Nave> naves = space3.getNaves();
         for (int i = 0; i < naves.size(); i++){
+            g.setColor(naves.get(i).getColor());
             int[] posicion = naves.get(i).getPosicionInt();
             int[][] matriz = naves.get(i).getBinarios();
             for (int j = 0; j < matriz.length; j++){
