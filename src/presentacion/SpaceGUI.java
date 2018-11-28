@@ -218,7 +218,7 @@ public class SpaceGUI extends JFrame {
                 refresque();
             }
         };
-        this.addKeyListener(accionNave);
+        juego.addKeyListener(accionNave);
     }
 
     private void salga(){
