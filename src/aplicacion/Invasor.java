@@ -1,6 +1,8 @@
 package aplicacion;
 
-public abstract class Invasor extends Elemento{
+import java.io.Serializable;
+
+public abstract class Invasor extends Elemento implements Serializable{
 
     public Invasor(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);

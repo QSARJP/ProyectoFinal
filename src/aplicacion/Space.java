@@ -121,7 +121,7 @@ public  class Space implements Serializable {
 		
 		
 	}
-    public Space abra(File file) throws spaceExcepcion {
+    public void abra(File file) throws spaceExcepcion {
         Space space = null ;
         try{
 			
@@ -129,7 +129,12 @@ public  class Space implements Serializable {
             ObjectInputStream lee=new ObjectInputStream(archivos);
             space = (Space)lee.readObject();
             lee.close();
-            
+
+            reiniciar();
+            this.barreras=space.getBarreras();
+            this.disparos=space.getDisparos();
+            this.invasores=space.getInvasores();
+            this.naves=space.getNaves();            
         }catch(IOException ex){
           JOptionPane.showMessageDialog(null,ex+"" +
                   "\nNo se ha encontrado el archivo",
@@ -139,7 +144,7 @@ public  class Space implements Serializable {
                   "\nNo se ha encontrado el archivo",
                   "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
         }
-        return space;
+
 		
 		//throw new automataExcepcion(automataExcepcion.CONSTRUCCION_ABRA);
 	}
@@ -183,7 +188,7 @@ public  class Space implements Serializable {
                 FileReader archivos=new FileReader(abre);
                 BufferedReader lee=new BufferedReader(archivos);
                 int i = 0;
-                reiniciarImport();
+                reiniciar();
                 while((aux=lee.readLine())!=null){
                     texto=aux.trim().split(" ");
                     addElemento(texto[0],Integer.valueOf(texto[1]),Integer.valueOf(texto[2]));
@@ -201,7 +206,7 @@ public  class Space implements Serializable {
 		//throw new automataExcepcion(automataExcepcion.CONSTRUCCION_IMPORTE);
     }
     
-    private void reiniciarImport(){
+    private void reiniciar(){
         invasores = new TreeMap<String, Invasor>();
         barreras = new TreeMap<String, Barrera>();
         naves = new ArrayList<Nave>();

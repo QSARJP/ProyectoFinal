@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Pulpo extends Invasor{
+import java.io.Serializable;
+
+public class Pulpo extends Invasor implements Serializable{
 
     private int resistencia;
     private int[][] forma = {{0,0,0,0,1,1,1,1,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,1,0,0,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,1,0,1,1,0,1,1,0,0},{1,1,0,0,0,0,0,0,0,0,1,1}};

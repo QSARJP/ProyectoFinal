@@ -10,8 +10,10 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
+import java.io.Serializable;
 
-public class Material extends Elemento{
+
+public class Material extends Elemento implements Serializable{
     public Material(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
     }

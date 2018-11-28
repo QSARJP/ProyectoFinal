@@ -23,7 +23,7 @@ public class SpaceGUI extends JFrame {
     //aributos menu
     private JMenuBar barra;
     private JMenu menu;
-    private JMenuItem open, save, saveAs, exit,importe,exporte;
+    private JMenuItem open, save, exit,importe,exporte;
     private JFileChooser fileChooser;
     
     //Atributos tablero
@@ -51,7 +51,6 @@ public class SpaceGUI extends JFrame {
         menu = new JMenu("Menu");
         open = new JMenuItem("Abrir");
         save = new JMenuItem("Guardar");
-        saveAs = new JMenuItem("Guardar como");
         importe = new JMenuItem("Importar");
         exporte = new JMenuItem("Exportar");
         exit = new JMenuItem("Salir");
@@ -61,10 +60,10 @@ public class SpaceGUI extends JFrame {
         barra.add(menu);
         menu.add(open);
         menu.add(save);
-        menu.add(saveAs);
-        menu.add(exit);
         menu.add(importe);
         menu.add(exporte);
+        menu.add(exit);
+        
     }
 
     private void prepareElementosJuego(){
@@ -162,9 +161,9 @@ public class SpaceGUI extends JFrame {
         try {
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
-			File abre=archivo.getSelectedFile();
-			System.out.println(space2.abra(abre)); 
-			//AutomataCelular ac=automata.abra(abre);
+            File abre=archivo.getSelectedFile();
+            space2.abra(abre); 
+            refresque();
 
 		}catch(spaceExcepcion e){
 			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);

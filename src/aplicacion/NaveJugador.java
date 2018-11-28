@@ -2,8 +2,8 @@ package aplicacion;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
-public class NaveJugador extends Nave{
+import java.io.Serializable;
+public class NaveJugador extends Nave implements Serializable{
     
     private Color color;
     

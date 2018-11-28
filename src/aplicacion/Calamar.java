@@ -1,6 +1,7 @@
 package aplicacion;
+import java.io.Serializable;
 
-public class Calamar extends Invasor{
+public class Calamar extends Invasor implements Serializable{
 
     private int[][] forma = {{0,0,0,0,1,1,0,0,0,0,0},{0,0,0,1,1,1,1,0,0,0,0},{0,0,1,1,1,1,1,1,0,0,0},{0,1,1,0,1,1,0,1,1,0,0},{0,1,1,1,1,1,1,1,1,0,0},{0,0,0,1,0,0,1,0,0,0,0},{0,0,1,0,1,1,0,1,0,0,0},{0,1,0,1,0,0,1,0,1,0,0}};
     private int resistencia;

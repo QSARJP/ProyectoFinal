@@ -2,8 +2,9 @@ package aplicacion;
 
 import java.awt.color.*;
 import java.awt.*;
+import java.io.Serializable;
 
-public class DisparoNormal extends Disparo{
+public class DisparoNormal extends Disparo implements Serializable{
 
     private Color color;
 
