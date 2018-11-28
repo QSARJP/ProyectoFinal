@@ -32,14 +32,88 @@ public class SpaceGUI extends JFrame {
     private JLabel vidas;
     private Pintar invaders;
 
+    //Atributos ventana inicial
+    private JFrame juego;
+    private JPanel infoMenu;
+    //private JLabel spaceInvaders;
+    private JButton unJugador;
+    private JButton dosJugadores;
+    private JButton unovsma;
+    private JButton mavsma;
+
     public SpaceGUI(Space space){
         this.space2 = space;
         this.setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        prepareElementos();
-        prepareAcciones();
+        prepareElementosVentanaInicial();
+        prepareAccionesVentanaInicial();
+
+    }
+    private void prepareElementosVentanaInicial(){
+        infoMenu = new JPanel();
+        infoMenu.setBorder(new CompoundBorder(new EmptyBorder(30,30,30,30),new TitledBorder("Opciones")));
+        infoMenu.setLayout(new GridLayout(4, 1, 5, 5));
+        unJugador = new JButton("1 Jugador");
+        dosJugadores=new JButton("2 Jugadores");
+        unovsma=new JButton("1 vs Maquina");
+        mavsma = new JButton("Maquina vs Maquina");
+        infoMenu.add(unJugador);
+        infoMenu.add(dosJugadores);
+        infoMenu.add(unovsma);
+        infoMenu.add(mavsma);
+        getContentPane().setLayout(new GridLayout(4,1,5,5));
+        getContentPane().add(unJugador);
+        getContentPane().add(dosJugadores);  
+        getContentPane().add(unovsma);
+        getContentPane().add(mavsma);  
+
     }
 
+
+    private void prepareAccionesVentanaInicial(){
+
+        WindowListener w = new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                salga();
+            }
+        };
+        this.addWindowListener(w);
+        ActionListener accionPrincipal = new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(e.getSource() == unJugador){
+                    unJugadorP();
+                }
+                else if(e.getSource() == dosJugadores){
+                    dosJugadoresP();
+                }
+                else if(e.getSource() == unovsma){
+                    unovsmaP();
+                }else if(e.getSource() == mavsma){
+                    mavsmaP();
+                }
+            }
+        };
+        unJugador.addActionListener(accionPrincipal);
+        dosJugadores.addActionListener(accionPrincipal);
+        unovsma.addActionListener(accionPrincipal);
+        mavsma.addActionListener(accionPrincipal);
+
+    }
+
+    private void unJugadorP(){
+        juego = new JFrame();
+        juego.setSize(800,600);
+        juego.setVisible(true);
+        prepareElementos();
+        prepareAcciones();
+
+    }
+    private void dosJugadoresP(){
+    }
+    private void unovsmaP(){
+    }
+    private void mavsmaP(){
+    }
     private void prepareElementos(){
         prepareElementosMenu();
         prepareElementosJuego();
@@ -55,7 +129,7 @@ public class SpaceGUI extends JFrame {
         exporte = new JMenuItem("Exportar");
         exit = new JMenuItem("Salir");
 
-        setJMenuBar(barra);
+        juego.setJMenuBar(barra);
 
         barra.add(menu);
         menu.add(open);
@@ -76,9 +150,9 @@ public class SpaceGUI extends JFrame {
         infoHUD.setLayout(new BorderLayout());
         infoHUD.add(puntaje,BorderLayout.EAST);
         infoHUD.add(vidas,BorderLayout.WEST);
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(infoHUD,BorderLayout.NORTH);
-        getContentPane().add(invaders,BorderLayout.CENTER);   
+        juego.setLayout(new BorderLayout());
+        juego.add(infoHUD,BorderLayout.NORTH);
+        juego.add(invaders,BorderLayout.CENTER);   
     }
 
     private void prepareAcciones(){
