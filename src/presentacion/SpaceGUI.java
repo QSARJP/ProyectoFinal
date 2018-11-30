@@ -40,6 +40,8 @@ public class SpaceGUI extends JFrame {
     private JButton dosJugadores;
     private JButton unovsma;
     private JButton mavsma;
+    //preuba
+    private MoverInvaders m;
 
     public SpaceGUI(Space space){
         this.space2 = space;
@@ -107,7 +109,7 @@ public class SpaceGUI extends JFrame {
         juego.setVisible(true);
         prepareElementos();
         prepareAcciones();
-        MoverInvaders m = new MoverInvaders(this,space2);
+        m = new MoverInvaders(this,space2);
         m.start();
 
 
@@ -163,15 +165,15 @@ public class SpaceGUI extends JFrame {
 
         WindowListener w = new WindowAdapter(){
             public void windowClosing(WindowEvent e){
-                salga();
+                salga2();
             }
         };
-        this.addWindowListener(w);
+        juego.addWindowListener(w);
 
         ActionListener accionMenu = new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(e.getSource() == exit){
-                    salga();
+                    salga2();
                 }
                 else if(e.getSource() == open){
                     abra();
@@ -195,12 +197,12 @@ public class SpaceGUI extends JFrame {
         
             @Override
             public void keyTyped(KeyEvent e) {
-
+                
             }
         
             @Override
             public void keyReleased(KeyEvent e) {
-                
+
             }
         
             @Override
@@ -224,7 +226,17 @@ public class SpaceGUI extends JFrame {
         };
         juego.addKeyListener(accionNave);
     }
-
+    private void salga2(){
+        int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.NO_OPTION){
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+        else{
+            juego.dispose();
+            space2.cargar();
+            m.interrupt();
+        }
+    }
     private void salga(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.NO_OPTION){
@@ -325,9 +337,9 @@ class Pintar extends JPanel {
     }
     
     public void pintarInvasores(Graphics g){
-        TreeMap<String, Invasor> invasores = space3.getInvasores();
+        ArrayList<Invasor> invasores = space3.getInvasores();
         g.setColor(Color.white);
-        for (String i: invasores.keySet()){
+        for (int i = 0 ;i< invasores.size();i++){
             int[] posicion = invasores.get(i).getPosicionInt();
             int[][] matriz = invasores.get(i).getBinarios();
             for (int j = 0; j < matriz.length; j++){

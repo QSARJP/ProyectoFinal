@@ -15,13 +15,13 @@ import java.io.Serializable;
 
 
 public  class Space implements Serializable {
-    private TreeMap<String, Invasor> invasores;
+    private ArrayList<Invasor> invasores;
     private TreeMap<String, Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
 
     public Space(){
-        invasores = new TreeMap<String, Invasor>();
+        invasores = new ArrayList<Invasor>();
         barreras = new TreeMap<String, Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
@@ -29,7 +29,7 @@ public  class Space implements Serializable {
     }
 
     public void addInvasor(Invasor invasor){
-        invasores.put(invasor.getPosicion(), invasor);
+        invasores.add(invasor);
     }
 
     public void addBarrera(Barrera barrera){
@@ -88,7 +88,7 @@ public  class Space implements Serializable {
         elemento.mover(posicionX, posicionY);
     }
 
-    public TreeMap<String, Invasor> getInvasores(){
+    public ArrayList<Invasor> getInvasores(){
         return invasores;
     }
 
@@ -154,7 +154,7 @@ public  class Space implements Serializable {
                 FileWriter  save=new FileWriter(archivo+".txt");
                 BufferedWriter save2 = new BufferedWriter(save);
 
-                for (String i : invasores.keySet()){
+                for (int i=0;i<invasores.size();i++){
                     save2.write(invasores.get(i).getClass().getName()+" "+Integer.toString(invasores.get(i).getPosicionInt()[0])+" "+Integer.toString(invasores.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
@@ -207,10 +207,14 @@ public  class Space implements Serializable {
     }
     
     private void reiniciar(){
-        invasores = new TreeMap<String, Invasor>();
+        invasores = new ArrayList<Invasor>();
         barreras = new TreeMap<String, Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
+    }
+    public void cargar(){
+        reiniciar();
+        leerElemento();
     }
     public int preuba(){
         return 1;

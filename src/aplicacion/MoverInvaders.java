@@ -16,13 +16,12 @@ public class MoverInvaders extends Thread{
     public void run(){
         int n = 1;
         while(true){
-            for (String i: space.getInvasores().keySet()){
+            for (int i = 0;i< space.getInvasores().size();i++){
                 Invasor invasor = space.getInvasores().get(i);
-                if(invasor.getPosicionInt()[0] >= 750 || invasor.getPosicionInt()[0] <= 50){
+                space.mover(invasor, 1*n, 0);
+                if(invasor.getPosicionInt()[0] == 750 || invasor.getPosicionInt()[0] == 0){
                     n = n*-1;
-                    space.mover(invasor,0,50);
                 }
-                space.mover(invasor, 2*n, 0);
             }
             esperar();
             spaceGUI.refresque();
