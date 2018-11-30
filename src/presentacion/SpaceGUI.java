@@ -33,7 +33,7 @@ public class SpaceGUI extends JFrame {
     private Pintar invaders;
 
     //Atributos ventana inicial
-    private JFrame juego;
+    public JFrame juego;
     private JPanel infoMenu;
     //private JLabel spaceInvaders;
     private JButton unJugador;
@@ -107,6 +107,7 @@ public class SpaceGUI extends JFrame {
         juego = new JFrame();
         juego.setSize(800,600);
         juego.setVisible(true);
+        space2.selectNave(1);
         prepareElementos();
         prepareAcciones();
         m = new MoverInvaders(this,space2);
@@ -115,6 +116,16 @@ public class SpaceGUI extends JFrame {
 
     }
     private void dosJugadoresP(){
+        juego = new JFrame();
+        juego.setSize(800,600);
+        juego.setVisible(true);
+        space2.selectNave(2);
+        prepareElementos();
+        prepareAcciones();
+        MoveNave2 mNave =new MoveNave2(this, space2);
+        mNave.start();
+        MoverInvaders m2 = new MoverInvaders(this,space2);
+        m2.start();
     }
     private void unovsmaP(){
     }
@@ -207,6 +218,7 @@ public class SpaceGUI extends JFrame {
         
             @Override
             public void keyPressed(KeyEvent e) {
+                
                 if (e.getKeyCode() == KeyEvent.VK_LEFT){
                     int dx = -5;
                     Nave nave = space2.getNaves().get(0);

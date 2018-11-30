@@ -62,7 +62,7 @@ public  class Space implements Serializable {
             addElemento("aplicacion.BarreraRoja",200,400);
             addElemento("aplicacion.BarreraRoja",400,400);
             addElemento("aplicacion.BarreraVerde",500,400);
-            addElemento("aplicacion.NaveJugador",400, 480);
+            
         }
         catch(Exception e){
             throw new RuntimeException(e);
@@ -224,6 +224,22 @@ public  class Space implements Serializable {
     }
     public int preuba(){
         return 1;
+    }
+
+    public void selectNave(int numero){
+        try{
+        
+            for (int i=0;i<numero;i++){
+                addElemento("aplicacion.NaveJugador",400*i+100, 480);
+            }
+            if (getNaves().size()>1){
+                getNaves().get(1).changeColor(Color.red);
+            }
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

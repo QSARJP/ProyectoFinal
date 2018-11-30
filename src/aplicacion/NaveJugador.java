@@ -20,6 +20,9 @@ public class NaveJugador extends Nave implements Serializable{
         return color;
     }
 
+    public void changeColor(Color newColor){
+        this.color=newColor;
+    }
     
 
  

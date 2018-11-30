@@ -21,6 +21,8 @@ public abstract class Nave extends Elemento implements Serializable{
     }
 
     public abstract Color getColor();
+    
+    public abstract void changeColor(Color newColor);
 
     public void prepareDisparos(){
         for (int i = 0; i < disparosNormales; i++){
