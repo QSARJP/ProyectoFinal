@@ -17,4 +17,8 @@ public class Material extends Elemento implements Serializable{
     public Material(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
     }
+    public void mover(int posicionX, int posicionY){
+        this.posicionX += posicionX;
+        this.posicionY += posicionY;
+    }
 }

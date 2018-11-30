@@ -14,10 +14,8 @@ public abstract class Elemento implements Serializable {
         this.posicionY = posicionY;
     }
 
-    public void mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
-    }
+    public abstract void mover(int posicionX, int posicionY);
+        
     
     public String getPosicion(){
         String posicion = Integer.toString(posicionX) +","+Integer.toString(posicionY);

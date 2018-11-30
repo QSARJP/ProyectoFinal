@@ -23,4 +23,9 @@ public class Calamar extends Invasor implements Serializable{
     public int getResistencia(){
         return resistencia;
     }
+
+    public void mover(int posicionX, int posicionY){
+        this.posicionX += posicionX;
+        this.posicionY += posicionY;
+    }
 }

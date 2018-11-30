@@ -235,6 +235,7 @@ public class SpaceGUI extends JFrame {
             juego.dispose();
             space2.cargar();
             m.interrupt();
+            refresque();
         }
     }
     private void salga(){

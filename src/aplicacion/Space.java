@@ -52,6 +52,12 @@ public  class Space implements Serializable {
             addElemento("aplicacion.Pulpo", 450, 50);
             addElemento("aplicacion.Pulpo", 490, 50);
             addElemento("aplicacion.Pulpo", 530, 50);
+            addElemento("aplicacion.Pulpo", 450, 80);
+            addElemento("aplicacion.Pulpo", 490, 80);
+            addElemento("aplicacion.Pulpo", 530, 80);
+            addElemento("aplicacion.Cangrejo", 450, 110);
+            addElemento("aplicacion.Cangrejo", 490, 110);
+            addElemento("aplicacion.Cangrejo", 530, 110);
             addElemento("aplicacion.BarreraVerde",300,400);
             addElemento("aplicacion.BarreraRoja",200,400);
             addElemento("aplicacion.BarreraRoja",400,400);

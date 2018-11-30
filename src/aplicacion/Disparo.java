@@ -20,4 +20,5 @@ public abstract class Disparo extends Elemento implements Serializable{
         this.posicionY = posicionY;
     }
 
+    public abstract void mover(int posicionX, int posicionY);
 }

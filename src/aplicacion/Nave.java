@@ -30,6 +30,10 @@ public abstract class Nave extends Elemento implements Serializable{
     public ArrayList<Disparo> getDisparos(){
         return disparos;
     }
+    public void mover(int posicionX, int posicionY){
+        this.posicionX += posicionX;
+        this.posicionY += posicionY;
+    }
 
     
 }

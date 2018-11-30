@@ -14,4 +14,7 @@ public abstract class Barrera extends Elemento implements Serializable{
     public abstract TreeMap<String, Material> getMateriales();
     public abstract Color getColor();
 
+    public void mover(int posicionX, int posicionY){
+    }
+
 }
