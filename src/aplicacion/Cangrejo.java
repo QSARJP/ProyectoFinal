@@ -23,8 +23,18 @@ public class Cangrejo extends Invasor implements Serializable{
     public int getResistencia(){
         return resistencia;
     }
-    public void mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
+    public int mover(int X, int Y){
+        //if (sePuede())
+        this.posicionX += X;
+        this.posicionY += Y;
+        if(this.posicionX == 750 || this.posicionX == 0){return 1;}
+        else{return 0;}
+    }
+
+    private boolean sePuede(){
+        for(int i = 0; i < space.getInvasores().size();i++){
+            Invasor invasor = space.getInvasores()
+        }
+        return true;
     }
 }

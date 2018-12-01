@@ -15,29 +15,23 @@ public class MoverInvaders extends Thread{
     @Override
     public void run(){
         int n = 1;
-        boolean b= true;
         while(true){
-            for (int i = 0;i< space.getInvasores().size();i++){
-                Invasor invasor = space.getInvasores().get(i);
-                space.mover(invasor, 1*n, 0);
-                if(invasor.getPosicionInt()[0] == 750 || invasor.getPosicionInt()[0] == 0){
-                    if (b){
-                        b = false;
-                    }
-
-                }  
-            }  
-            if (!b){
-                for (int j = 0;j< space.getInvasores().size();j++){
-                    Invasor invasor2 = space.getInvasores().get(j);
-                    space.mover(invasor2, 0, 5);
-                }
-                b=true;
+            if (moverTodosInvasores(1*n,0) >= 1){
+                moverTodosInvasores(0,5);
                 n = n*-1;
             }
             esperar();
             spaceGUI.refresque();
         }
+    }
+
+    public int moverTodosInvasores(int x, int y){
+        int cont = 0;
+        for (int i = 0;i< space.getInvasores().size();i++){
+            Invasor invasor = space.getInvasores().get(i);
+            cont += space.mover(invasor, x, y);
+        }
+        return cont;
     }
 
     private void esperar(){

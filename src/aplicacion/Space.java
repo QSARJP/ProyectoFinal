@@ -90,8 +90,8 @@ public  class Space implements Serializable {
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
     }
 
-    public void mover(Elemento elemento, int posicionX, int posicionY){
-        elemento.mover(posicionX, posicionY);
+    public int mover(Elemento elemento, int posicionX, int posicionY){
+        return elemento.mover(posicionX, posicionY);
     }
 
     public ArrayList<Invasor> getInvasores(){

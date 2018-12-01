@@ -24,8 +24,10 @@ public class Calamar extends Invasor implements Serializable{
         return resistencia;
     }
 
-    public void mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
+    public int mover(int X, int Y){
+        this.posicionX += X;
+        this.posicionY += Y;
+        if(this.posicionX == 750 || this.posicionX == 0){return 1;}
+        else{return 0;}
     }
 }

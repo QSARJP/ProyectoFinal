@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class Elemento implements Serializable {
     protected int posicionX;
 	protected int posicionY;
-    public Space space;
+    protected Space space;
 
     public Elemento(Space space, int posicionX, int posicionY){
 
@@ -14,7 +14,7 @@ public abstract class Elemento implements Serializable {
         this.posicionY = posicionY;
     }
 
-    public abstract void mover(int posicionX, int posicionY);
+    public abstract int mover(int posicionX, int posicionY);
         
     
     public String getPosicion(){

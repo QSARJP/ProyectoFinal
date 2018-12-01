@@ -18,8 +18,9 @@ public class Platillo extends Invasor implements Serializable{
     public int[][] getBinarios(){
         return forma;
     }
-    public void mover(int posicionX, int posicionY){
+    public int mover(int posicionX, int posicionY){
         this.posicionX += posicionX;
         this.posicionY += posicionY;
+        return 0;
     }
 }
