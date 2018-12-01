@@ -36,7 +36,7 @@ public class MoverInvaders extends Thread{
 
     private void esperar(){
         try{
-            Thread.sleep(5);
+            Thread.sleep(20);
         }
         catch(InterruptedException e){
             Thread.currentThread().interrupt();
