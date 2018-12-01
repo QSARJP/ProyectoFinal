@@ -41,6 +41,7 @@ public class SpaceGUI extends JFrame {
     private JButton unovsma;
     private JButton mavsma;
     //preuba
+    private Set<Integer> pressed = new HashSet<Integer>();
     private MoverInvaders m;
 
     public SpaceGUI(Space space){
@@ -212,28 +213,48 @@ public class SpaceGUI extends JFrame {
             }
         
             @Override
-            public void keyReleased(KeyEvent e) {
+            public synchronized void keyReleased(KeyEvent e) {
+                pressed.remove(e.getKeyCode());
+                refresque();
 
             }
         
             @Override
-            public void keyPressed(KeyEvent e) {
-                
-                if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                    int dx = -5;
-                    Nave nave = space2.getNaves().get(0);
-                    space2.mover(nave, dx, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    int dx = 5;
-                    Nave nave = space2.getNaves().get(0);
-                    space2.mover(nave, dx, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_UP){
-                    Nave nave = space2.getNaves().get(0);
-                    space2.disparo(nave);
+            public synchronized void keyPressed(KeyEvent e) {
+                pressed.add(e.getKeyCode());
+                //System.out.println(pressed.toString());
+                if (pressed.size()>1){
+                    if (pressed.contains(37) && pressed.contains(38) ){
+                        int dx = -5;
+                        Nave nave = space2.getNaves().get(0);
+                        space2.mover(nave, dx, 0);
+                        space2.disparo(nave);
+                    }
+                    if (pressed.contains(39) && pressed.contains(38) ){
+                        int dx = 5;
+                        Nave nave = space2.getNaves().get(0);
+                        space2.mover(nave, dx, 0);
+                        space2.disparo(nave);
+                    }
+
+                }else{
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                        int dx = -5;
+                        Nave nave = space2.getNaves().get(0);
+                        space2.mover(nave, dx, 0);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                        int dx = 5;
+                        Nave nave = space2.getNaves().get(0);
+                        space2.mover(nave, dx, 0);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_UP){
+                        Nave nave = space2.getNaves().get(0);
+                        space2.disparo(nave);
+                    }
                 }
                 refresque();
+                
             }
         };
         juego.addKeyListener(accionNave);
