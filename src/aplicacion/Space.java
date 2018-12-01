@@ -42,22 +42,9 @@ public  class Space implements Serializable {
 
     private void leerElemento(){
         try{
-            addElemento("aplicacion.Platillo", 330, 10);
-            addElemento("aplicacion.Calamar", 210, 50);
-            addElemento("aplicacion.Calamar", 250, 50);
-            addElemento("aplicacion.Calamar", 290, 50);
-            addElemento("aplicacion.Cangrejo", 330, 50);
-            addElemento("aplicacion.Cangrejo", 370, 50);
-            addElemento("aplicacion.Cangrejo", 410, 50);
-            addElemento("aplicacion.Pulpo", 450, 50);
-            addElemento("aplicacion.Pulpo", 490, 50);
-            addElemento("aplicacion.Pulpo", 530, 50);
-            addElemento("aplicacion.Pulpo", 450, 80);
-            addElemento("aplicacion.Pulpo", 490, 80);
-            addElemento("aplicacion.Pulpo", 530, 80);
-            addElemento("aplicacion.Cangrejo", 450, 110);
-            addElemento("aplicacion.Cangrejo", 490, 110);
-            addElemento("aplicacion.Cangrejo", 530, 110);
+            addElemento("aplicacion.Cangrejo",100,100);
+            addElemento("aplicacion.Calamar",200,100);
+            addElemento("aplicacion.Pulpo",100,300);
             addElemento("aplicacion.BarreraVerde",300,400);
             addElemento("aplicacion.BarreraRoja",200,400);
             addElemento("aplicacion.BarreraRoja",400,400);
