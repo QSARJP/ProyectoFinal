@@ -38,17 +38,33 @@ public class Cangrejo extends Invasor implements Serializable{
 
     private boolean sePuede(){
         boolean ok = true;
-        for(int i = 0; i < space.getInvasores().size();i++){
-            Invasor invasor = space.getInvasores().get(i);
-            int x = invasor.getPosicionInt()[0];
-            int y = invasor.getPosicionInt()[1];
-            boolean a = x >= this.posicionX && x <= this.posicionX+33;
-            boolean b = y >= this.posicionY+30 && y <= this.posicionY+54;
-            if (a && b && invasor != this){
-                ok = false;
-                break;
+        if (this.posicionY == maxY()){
+            ok = false;
+        }
+        else{
+            for(int i = 0; i < space.getInvasores().size();i++){
+                Invasor invasor = space.getInvasores().get(i);
+                int x = invasor.getPosicionInt()[0];
+                int y = invasor.getPosicionInt()[1];
+                boolean a = x >= this.posicionX && x <= this.posicionX+33 || x+33 >= this.posicionX && x+33 <= this.posicionX+33;
+                boolean b = y == this.posicionY+30;
+                if (a && b && invasor != this){
+                    ok = false;
+                    break;
+                }
             }
         }
         return ok;
+    }
+
+    private int maxY(){
+        int max = 0;
+        for(int i = 0; i < space.getInvasores().size(); i++){
+            Invasor invasor = space.getInvasores().get(i);
+            if (invasor.getPosicionInt()[1] > max){
+                max = invasor.getPosicionInt()[1];
+            }
+        }
+        return max;
     }
 }
