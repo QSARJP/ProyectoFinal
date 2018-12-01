@@ -9,6 +9,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
+
+
 import java.lang.reflect.InvocationTargetException;
 
 
@@ -43,6 +45,7 @@ public class SpaceGUI extends JFrame {
     //preuba
     private Set<Integer> pressed = new HashSet<Integer>();
     private MoverInvaders m;
+    public boolean flag;
 
     public SpaceGUI(Space space){
         this.space2 = space;
@@ -111,6 +114,7 @@ public class SpaceGUI extends JFrame {
         space2.selectNave(1);
         prepareElementos();
         prepareAcciones();
+        flag = true;
         m = new MoverInvaders(this,space2);
         m.start();
 
@@ -123,9 +127,10 @@ public class SpaceGUI extends JFrame {
         space2.selectNave(2);
         prepareElementos();
         prepareAcciones();
-        MoveNave2 mNave =new MoveNave2(this, space2);
-        mNave.start();
-        MoverInvaders m2 = new MoverInvaders(this,space2);
+        flag = true;
+        m = new MoverInvaders(this,space2);
+        m.start();
+        MoveNave2 m2 = new MoveNave2(this, space2);
         m2.start();
     }
     private void unovsmaP(){
@@ -221,41 +226,44 @@ public class SpaceGUI extends JFrame {
         
             @Override
             public synchronized void keyPressed(KeyEvent e) {
-                pressed.add(e.getKeyCode());
-                //System.out.println(pressed.toString());
-                if (pressed.size()>1){
-                    if (pressed.contains(37) && pressed.contains(38) ){
-                        int dx = -5;
-                        Nave nave = space2.getNaves().get(0);
-                        space2.mover(nave, dx, 0);
-                        space2.disparo(nave);
-                    }
-                    if (pressed.contains(39) && pressed.contains(38) ){
-                        int dx = 5;
-                        Nave nave = space2.getNaves().get(0);
-                        space2.mover(nave, dx, 0);
-                        space2.disparo(nave);
-                    }
+                /*if (e.getKeyCode()!=37 || e.getKeyCode()!=38 || e.getKeyCode()!=37){
+                    pressed.add(e.getKeyCode());
+                    //System.out.println(pressed.toString());
+                    if (pressed.size()>1){
+                        if (pressed.contains(37) && pressed.contains(38) ){
+                            int dx = -5;
+                            Nave nave = space2.getNaves().get(0);
+                            space2.mover(nave, dx, 0);
+                            space2.disparo(nave);
+                        }
+                        if (pressed.contains(39) && pressed.contains(38) ){
+                            int dx = 5;
+                            Nave nave = space2.getNaves().get(0);
+                            space2.mover(nave, dx, 0);
+                            space2.disparo(nave);
+                        }
 
-                }else{
-                    if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                        int dx = -5;
-                        Nave nave = space2.getNaves().get(0);
-                        space2.mover(nave, dx, 0);
+                    }else{*/
+                        if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                            int dx = -5;
+                            Nave nave = space2.getNaves().get(0);
+                            space2.mover(nave, dx, 0);
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                            int dx = 5;
+                            Nave nave = space2.getNaves().get(0);
+                            space2.mover(nave, dx, 0);
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_UP){
+                            Nave nave = space2.getNaves().get(0);
+                            space2.disparo(nave);
+                        }
+                        refresque();
                     }
-                    if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                        int dx = 5;
-                        Nave nave = space2.getNaves().get(0);
-                        space2.mover(nave, dx, 0);
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_UP){
-                        Nave nave = space2.getNaves().get(0);
-                        space2.disparo(nave);
-                    }
-                }
-                refresque();
+                    
+                //}
                 
-            }
+            //}
         };
         juego.addKeyListener(accionNave);
     }
@@ -267,8 +275,9 @@ public class SpaceGUI extends JFrame {
         else{
             juego.dispose();
             space2.cargar();
-            m.interrupt();
-            refresque();
+            flag= false;
+            //m.stop();
+            
         }
     }
     private void salga(){
