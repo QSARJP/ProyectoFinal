@@ -33,7 +33,7 @@ public class Cangrejo extends Invasor implements Serializable{
 
     private boolean sePuede(){
         for(int i = 0; i < space.getInvasores().size();i++){
-            Invasor invasor = space.getInvasores()
+            //Invasor invasor = space.getInvasores();
         }
         return true;
     }
