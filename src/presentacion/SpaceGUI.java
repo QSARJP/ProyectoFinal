@@ -219,9 +219,12 @@ public class SpaceGUI extends JFrame {
         
             @Override
             public synchronized void keyReleased(KeyEvent e) {
-                pressed.remove(e.getKeyCode());
+                //pressed.remove(e.getKeyCode());
+                if (e.getKeyCode() == KeyEvent.VK_UP){
+                    Nave nave = space2.getNaves().get(0);
+                    space2.disparo(nave);
+                }     
                 refresque();
-
             }
         
             @Override
@@ -245,18 +248,14 @@ public class SpaceGUI extends JFrame {
 
                     }else{*/
                         if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                            int dx = -5;
+                            int dx = -10;
                             Nave nave = space2.getNaves().get(0);
                             space2.mover(nave, dx, 0);
                         }
                         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                            int dx = 5;
+                            int dx = 10;
                             Nave nave = space2.getNaves().get(0);
                             space2.mover(nave, dx, 0);
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_UP){
-                            Nave nave = space2.getNaves().get(0);
-                            space2.disparo(nave);
                         }
                         refresque();
                     }

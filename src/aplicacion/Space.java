@@ -56,17 +56,21 @@ public  class Space implements Serializable {
         }
     }
 
-    public void disparo(Nave nave){
-        ArrayList<Disparo> disp = nave.getDisparos();
+    public void disparo(Elemento elemento){
+        ArrayList<Disparo> disp = elemento.getDisparos();
+        int[] posicion = elemento.getPosicionInt();
         if (disp.size() != 0){
-            int[] posicion = nave.getPosicionInt();
             Disparo disparo = disp.remove(0);
             disparo.setPosicionX(posicion[0]+21);
-            disparo.setPosicionY(posicion[1]);
+            disparo.setPosicionY(posicion[1]-9);
+            disparo.setElemento(elemento);
             disparos.add(disparo);
         }
-
-
+        else{
+            Disparo d = new DisparoNormal(this, posicion[0]+21, posicion[1]-9);
+            d.setElemento(elemento);
+            disparos.add(d);
+        }
 
 
 

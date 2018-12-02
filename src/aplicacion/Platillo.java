@@ -1,12 +1,11 @@
 package aplicacion;
 import java.io.Serializable;
-public class Platillo extends Invasor implements Serializable{
+public class Platillo extends Elemento implements Serializable{
     private int resistencia;
     private int[][] forma = {{0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0},{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},{0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0},{0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0},{0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0}};
 
     public Platillo(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
-        addInvasor(this);
     }
 
     public void setResistencia(){}
@@ -23,4 +22,5 @@ public class Platillo extends Invasor implements Serializable{
         this.posicionY += posicionY;
         return 0;
     }
+    
 }

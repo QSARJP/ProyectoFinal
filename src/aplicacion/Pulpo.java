@@ -37,7 +37,16 @@ public class Pulpo extends Invasor implements Serializable{
             else{return 0;}
         }
     }
+    public void disminuirResistencia(){
+        this.resistencia -= 1;
+        muere();
+    }
 
+    private void muere(){
+        if (this.resistencia == 0){
+            space.getInvasores().remove(this);
+        }
+    }
     private boolean sePuede(){
         boolean ok = true;
         if (this.posicionY == 30){

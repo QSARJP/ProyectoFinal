@@ -15,6 +15,8 @@ public abstract class Invasor extends Elemento implements Serializable{
         space.addInvasor(invasor);
     }
 
+    public abstract void disminuirResistencia();
+
     public abstract int getResistencia();
 
     public abstract int mover(int posicionX, int posicionY);

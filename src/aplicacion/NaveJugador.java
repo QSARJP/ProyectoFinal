@@ -12,8 +12,6 @@ public class NaveJugador extends Nave implements Serializable{
         super(space, posicionX, posicionY);
         this.color = Color.green;
         space.addNave(this);
-        this.disparosNormales = 60;
-        prepareDisparos();
     }
 
     public Color getColor(){

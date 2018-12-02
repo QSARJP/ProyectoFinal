@@ -24,6 +24,17 @@ public class Calamar extends Invasor implements Serializable{
         return resistencia;
     }
 
+    public void disminuirResistencia(){
+        this.resistencia -= 1;
+        muere();
+    }
+
+    private void muere(){
+        if (this.resistencia == 0){
+            space.getInvasores().remove(this);
+        }
+    }
+
     public int mover(int X, int Y){
         this.posicionX += X;
         this.posicionY += Y;

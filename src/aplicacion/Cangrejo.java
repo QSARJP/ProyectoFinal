@@ -11,7 +11,17 @@ public class Cangrejo extends Invasor implements Serializable{
         setResistencia();
         addInvasor(this);
     }
+    
+    public void disminuirResistencia(){
+        this.resistencia -= 1;
+        muere();
+    }
 
+    private void muere(){
+        if (this.resistencia == 0){
+            space.getInvasores().remove(this);
+        }
+    }
     public void setResistencia(){
         this.resistencia = 2;
     }

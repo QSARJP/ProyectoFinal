@@ -28,9 +28,16 @@ public class MoverInvaders extends Thread{
                 moverTodosInvasores(0,5);
                 n = n*-1;
             }
+
+            for(int i = 0; i < space.getDisparos().size();i++){
+                Disparo disparo = space.getDisparos().get(i);
+                if(space.mover(disparo,0,-2) == 1){
+                    space.getDisparos().remove(disparo);
+                }                
+            }
             esperar();
             spaceGUI.refresque();
-            
+            if(space.getInvasores().size() == 0){spaceGUI.flag = false;}
         }
 
         
@@ -82,7 +89,7 @@ public class MoverInvaders extends Thread{
 
     private void esperar(){
         try{
-            Thread.sleep(5);
+            Thread.sleep(15);
         }
         catch(InterruptedException e){
             Thread.currentThread().interrupt();
