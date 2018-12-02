@@ -16,13 +16,13 @@ import java.io.Serializable;
 
 public  class Space implements Serializable {
     private ArrayList<Invasor> invasores;
-    private TreeMap<String, Barrera> barreras;
+    private ArrayList<Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
 
     public Space(){
         invasores = new ArrayList<Invasor>();
-        barreras = new TreeMap<String, Barrera>();
+        barreras = new ArrayList<Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
         leerElemento();
@@ -33,7 +33,7 @@ public  class Space implements Serializable {
     }
 
     public void addBarrera(Barrera barrera){
-        barreras.put(barrera.getPosicion(), barrera);
+        barreras.add(barrera);
     }
 
     public void addNave(Nave nave){
@@ -65,8 +65,7 @@ public  class Space implements Serializable {
             disparo.setPosicionY(posicion[1]-9);
             disparo.setElemento(elemento);
             disparos.add(disparo);
-        }
-        else{
+        }else{
             Disparo d = new DisparoNormal(this, posicion[0]+21, posicion[1]-9);
             d.setElemento(elemento);
             disparos.add(d);
@@ -89,7 +88,7 @@ public  class Space implements Serializable {
         return invasores;
     }
 
-    public TreeMap<String, Barrera> getBarreras(){
+    public ArrayList<Barrera> getBarreras(){
         return barreras;
     }
 
@@ -159,7 +158,7 @@ public  class Space implements Serializable {
                     save2.write(naves.get(i).getClass().getName()+" "+Integer.toString(naves.get(i).getPosicionInt()[0])+" "+Integer.toString(naves.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
-                for (String i : barreras.keySet()){
+                for (int i = 0;i<naves.size() ; i++){
                     save2.write(barreras.get(i).getClass().getName()+" "+Integer.toString(barreras.get(i).getPosicionInt()[0])+" "+Integer.toString(barreras.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
@@ -205,7 +204,7 @@ public  class Space implements Serializable {
     
     private void reiniciar(){
         invasores = new ArrayList<Invasor>();
-        barreras = new TreeMap<String, Barrera>();
+        barreras = new ArrayList<Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
     }

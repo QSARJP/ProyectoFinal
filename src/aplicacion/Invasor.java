@@ -1,8 +1,11 @@
 package aplicacion;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class Invasor extends Elemento implements Serializable{
+
+    protected ArrayList<Disparo> disparos = new ArrayList<Disparo>();
 
     public Invasor(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
@@ -20,5 +23,13 @@ public abstract class Invasor extends Elemento implements Serializable{
     public abstract int getResistencia();
 
     public abstract int mover(int posicionX, int posicionY);
+
+    public ArrayList<Disparo> getDisparos(){
+        return disparos;
+    }
+    public int disparo(){
+        return 2;
+    }
+
 
 }

@@ -1,11 +1,13 @@
 package aplicacion;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class Elemento implements Serializable {
     protected int posicionX;
 	protected int posicionY;
     protected Space space;
+
 
     public Elemento(Space space, int posicionX, int posicionY){
 
@@ -15,6 +17,8 @@ public abstract class Elemento implements Serializable {
     }
 
     public abstract int mover(int posicionX, int posicionY);
+    public abstract ArrayList<Disparo> getDisparos();
+    public abstract int disparo();
         
     
     public String getPosicion(){
@@ -34,4 +38,6 @@ public abstract class Elemento implements Serializable {
     public void setPosicionY(int posicionY){
         this.posicionY = posicionY;
     }
+    
+
 }

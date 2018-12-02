@@ -8,7 +8,8 @@ public abstract class Nave extends Elemento implements Serializable{
 
     private int[][] forma = {{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
     protected ArrayList<Disparo> disparos;
-
+    
+    
     public Nave(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         disparos = new ArrayList<Disparo>();
@@ -30,6 +31,9 @@ public abstract class Nave extends Elemento implements Serializable{
         this.posicionX += posicionX;
         this.posicionY += posicionY;
         return 0;
+    }
+    public int disparo(){
+        return -2;
     }
 
     

@@ -20,21 +20,22 @@ public class DisparoNormal extends Disparo implements Serializable{
     }
 
     
-    public int mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
+    public int mover(int newPosicionX, int newPosicionY){
+        this.posicionX += newPosicionX;
+        this.posicionY += newPosicionY;
         if(this.posicionY == 0){return 1;}
-        else if (lePegue(posicionY)){
+        else if (lePegue(newPosicionY)){
             return 1;
         }
         else{return 0;}
     }
 
-    private boolean lePegue(posicionY){
+    private boolean lePegue(int dy){
         boolean si = false;
         ArrayList<Invasor> invasores = space.getInvasores();
         ArrayList<Nave> naves = space.getNaves();
-        if (invasores.size()>0 && posicionY < 0){
+        ArrayList<Barrera> barreras = space.getBarreras();
+        if (dy < 0){
             for(int i = 0; i < space.getInvasores().size(); i ++){
                 Invasor invasor = space.getInvasores().get(i);
                 int x = invasor.getPosicionInt()[0];
@@ -46,8 +47,31 @@ public class DisparoNormal extends Disparo implements Serializable{
                     invasor.disminuirResistencia();
                 }
             }
+            
+            for (int i = 0; i< space.getBarreras().size();i++){
+                Barrera barrera = space.getBarreras().get(i);
+                int x = barrera.getPosicionInt()[0];
+                int y = barrera.getPosicionInt()[1];
+                boolean a = this.posicionX >= x && this.posicionX <= x + 40;
+                boolean b = this.posicionY >= y+40 && this.posicionY <= y;
+                if (a&&b){
+                    si = true;
+                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy);
+                }
+            }
         }
-        else if(invasores.size()>0 && posicionY > 0){
+        else if(dy > 0){
+            for(int i = 0; i < space.getNaves().size(); i ++){
+                /*Nave nave = space.getNaves().get(i);
+                int x = nave.getPosicionInt()[0];
+                int y = nave.getPosicionInt()[1];
+                boolean a = this.posicionX >= x && this.posicionX <= x + 33;
+                boolean b = this.posicionY >= y-24 && this.posicionY <= y;
+                if (a&&b){
+                    si = true;
+                    nave.disminuirResistencia();
+                }*/
+            }
             
         }
         return si;

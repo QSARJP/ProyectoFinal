@@ -395,11 +395,11 @@ class Pintar extends JPanel {
     }
 
     public void pintarBarreras(Graphics g){
-        TreeMap<String, Barrera> barreras = space3.getBarreras();
-        for (String i: barreras.keySet()){
+        ArrayList<Barrera> barreras = space3.getBarreras();
+        for (int i = 0 ; i<barreras.size();i++){
             g.setColor(barreras.get(i).getColor());
-            TreeMap<String, Material> materiales = barreras.get(i).getMateriales();
-            for (String j: materiales.keySet()){
+            ArrayList<Material> materiales = barreras.get(i).getMateriales();
+            for (int j = 0 ; j<materiales.size();j++){
                 int[] posicion = materiales.get(j).getPosicionInt();
                 g.fillRect(posicion[0], posicion[1], 2, 2);
             }

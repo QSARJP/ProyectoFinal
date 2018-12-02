@@ -31,7 +31,8 @@ public class MoverInvaders extends Thread{
 
             for(int i = 0; i < space.getDisparos().size();i++){
                 Disparo disparo = space.getDisparos().get(i);
-                if(space.mover(disparo,0,-2) == 1){
+                int dx = disparo.getElemento().disparo();
+                if(space.mover(disparo,0,dx) == 1){
                     space.getDisparos().remove(disparo);
                 }                
             }
@@ -82,6 +83,10 @@ public class MoverInvaders extends Thread{
         int cont = 0;
         for (int i = 0;i< space.getInvasores().size();i++){
             Invasor invasor = space.getInvasores().get(i);
+            int aleatorio=(int) (Math.random()*100) + 1;
+            if (aleatorio == 22 ){
+                space.disparo(invasor);
+            }
             cont += space.mover(invasor, x, y);
         }
         return cont;
