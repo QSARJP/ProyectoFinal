@@ -39,17 +39,24 @@ public class BarreraVerde extends Barrera implements Serializable{
         return color;
     }
     public  void disminuirResistencia(int poX,int poY, int dy){
-        if (dy < 0){
+        if (dy > 0){
             for (int i =0; i<materiales.size();i++){
                 Material ma = materiales.get(i);
                 int x = ma.getPosicionInt()[0];
                 int y = ma.getPosicionInt()[1];
-                boolean a =  poX>= x && poX <= x + 2;
-                boolean b = poY >= y && poY <= y-2;
+                boolean a =  poX>= x && poX <= x+40;
+                boolean b = poY <= y && poY >= y-40;
+                //System.out.println(a+" "+poY+" "+y);
                 if (a && b ){
+                    //System.out.println("hola");
+                    //System.out.println(poX+" "+x);
+                    //System.out.println(poY+" "+y);
                     //destruirBarrera(x,y);
                     materiales.remove(ma);
                 }
+            }
+            if (materiales.size()==0){
+                space.getBarreras().remove(this);
             }
         }
     }

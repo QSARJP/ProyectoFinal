@@ -5,15 +5,20 @@ public class Calamar extends Invasor implements Serializable{
 
     private int[][] forma = {{0,0,0,0,1,1,0,0,0,0,0},{0,0,0,1,1,1,1,0,0,0,0},{0,0,1,1,1,1,1,1,0,0,0},{0,1,1,0,1,1,0,1,1,0,0},{0,1,1,1,1,1,1,1,1,0,0},{0,0,0,1,0,0,1,0,0,0,0},{0,0,1,0,1,1,0,1,0,0,0},{0,1,0,1,0,0,1,0,1,0,0}};
     private int resistencia;
+    private int puntaje;
 
     public Calamar(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
         addInvasor(this);
+        setPuntaje();
     }
 
     public void setResistencia(){
-        this.resistencia = (int)Math.random()*3 + 1;
+        this.resistencia = (int)(Math.random()*3) + 1;
+    }
+    public void setPuntaje(){
+        this.puntaje=50;
     }
 
     public int[][] getBinarios(){
@@ -32,6 +37,7 @@ public class Calamar extends Invasor implements Serializable{
     private void muere(){
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
+            space.actualizarPuntaje(puntaje);
         }
     }
 

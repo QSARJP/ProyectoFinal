@@ -43,12 +43,10 @@ public class BarreraRoja extends Barrera implements Serializable{
                 Material ma = materiales.get(i);
                 int x = ma.getPosicionInt()[0];
                 int y = ma.getPosicionInt()[1];
-                boolean a =  poX>= x && poX <= x + 2;
-                boolean b = poY >= y && poY <= y-2;
+                boolean a =  poX>= x && poX <= x+40;
+                boolean b = poY <= y+40 && poY >= y;
                 if (a && b ){
-                    System.out.println();
-                    //destruirBarrera(x,y);
-                    materiales.remove(ma);
+                    space.getBarreras().remove(this);
                 }
             }
         }

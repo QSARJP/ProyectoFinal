@@ -52,8 +52,9 @@ public class DisparoNormal extends Disparo implements Serializable{
                 Barrera barrera = space.getBarreras().get(i);
                 int x = barrera.getPosicionInt()[0];
                 int y = barrera.getPosicionInt()[1];
+                
                 boolean a = this.posicionX >= x && this.posicionX <= x + 40;
-                boolean b = this.posicionY >= y+40 && this.posicionY <= y;
+                boolean b = this.posicionY >= y && this.posicionY <= y+40;
                 if (a&&b){
                     si = true;
                     barrera.disminuirResistencia(this.posicionX,this.posicionY,dy);
@@ -71,6 +72,18 @@ public class DisparoNormal extends Disparo implements Serializable{
                     si = true;
                     nave.disminuirResistencia();
                 }*/
+            }
+            for (int i = 0; i< space.getBarreras().size();i++){
+                Barrera barrera = space.getBarreras().get(i);
+                int x = barrera.getPosicionInt()[0];
+                int y = barrera.getPosicionInt()[1];
+                
+                boolean a = this.posicionX >= x && this.posicionX <= x + 40;
+                boolean b = this.posicionY >= y && this.posicionY <= y+40;
+                if (a&&b){
+                    si = true;
+                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy);
+                }
             }
             
         }

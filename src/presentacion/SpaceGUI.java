@@ -167,7 +167,7 @@ public class SpaceGUI extends JFrame {
 
         invaders = new Pintar(space2);
         infoHUD = new JPanel();
-        puntaje = new JLabel("Puntaje:");
+        puntaje = new JLabel("Puntaje: "+space2.getPuntaje());
         vidas = new JLabel("Vidas:");
         infoHUD.setBorder(new EmptyBorder(5,50,5,50));
         infoHUD.setLayout(new BorderLayout());
@@ -346,6 +346,7 @@ public class SpaceGUI extends JFrame {
 
     public void refresque(){
         invaders.repaint();
+        infoHUD.repaint();
     }
 
 
@@ -375,6 +376,7 @@ class Pintar extends JPanel {
         pintarBarreras(g);
         pintarNaves(g);
         pintarDisparos(g);
+        space3.getPuntaje();
 
     }
     

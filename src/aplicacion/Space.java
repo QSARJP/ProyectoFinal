@@ -19,6 +19,7 @@ public  class Space implements Serializable {
     private ArrayList<Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
+    private HUD hud;
 
     public Space(){
         invasores = new ArrayList<Invasor>();
@@ -26,6 +27,7 @@ public  class Space implements Serializable {
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
         leerElemento();
+        hud = new HUD();
     }
 
     public void addInvasor(Invasor invasor){
@@ -44,7 +46,10 @@ public  class Space implements Serializable {
         try{
             addElemento("aplicacion.Calamar",100,300);
             addElemento("aplicacion.Cangrejo",100,100);
-            addElemento("aplicacion.Pulpo",749,300);
+            addElemento("aplicacion.Pulpo",450,300);
+            addElemento("aplicacion.Calamar",50,300);
+            addElemento("aplicacion.Calamar",50,100);
+
             addElemento("aplicacion.BarreraVerde",300,400);
             addElemento("aplicacion.BarreraRoja",200,400);
             addElemento("aplicacion.BarreraRoja",400,400);
@@ -75,7 +80,12 @@ public  class Space implements Serializable {
 
 
     }
-
+    public void actualizarPuntaje(int puntaje){
+        hud.setPuntaje(puntaje);
+    }
+    public int getPuntaje(){
+        return hud.getPuntaje();
+    }
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
     }

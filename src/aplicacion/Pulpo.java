@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Pulpo extends Invasor implements Serializable{
 
     private int resistencia;
+    private int puntaje;
     private int[][] forma = {{0,0,0,0,1,1,1,1,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,1,0,0,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,1,0,1,1,0,1,1,0,0},{1,1,0,0,0,0,0,0,0,0,1,1}};
 
     public Pulpo(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
         addInvasor(this);
+        setPuntaje();
     }
 
     public void setResistencia(){
@@ -19,6 +21,9 @@ public class Pulpo extends Invasor implements Serializable{
 
     public int[][] getBinarios(){
         return forma;
+    }
+    public void setPuntaje(){
+        this.puntaje=10;
     }
 
     public int getResistencia(){
@@ -45,6 +50,7 @@ public class Pulpo extends Invasor implements Serializable{
     private void muere(){
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
+            space.actualizarPuntaje(puntaje);
         }
     }
     private boolean sePuede(){

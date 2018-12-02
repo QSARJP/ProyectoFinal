@@ -34,6 +34,7 @@ public class MoverInvaders extends Thread{
                 int dx = disparo.getElemento().disparo();
                 if(space.mover(disparo,0,dx) == 1){
                     space.getDisparos().remove(disparo);
+                    System.out.println(space.getPuntaje());
                 }                
             }
             esperar();
@@ -83,7 +84,7 @@ public class MoverInvaders extends Thread{
         int cont = 0;
         for (int i = 0;i< space.getInvasores().size();i++){
             Invasor invasor = space.getInvasores().get(i);
-            int aleatorio=(int) (Math.random()*100) + 1;
+            int aleatorio=(int) (Math.random()*50) + 1;
             if (aleatorio == 22 ){
                 space.disparo(invasor);
             }

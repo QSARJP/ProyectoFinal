@@ -4,12 +4,14 @@ import java.io.Serializable;
 public class Cangrejo extends Invasor implements Serializable{
 
     private int resistencia;
+    private int puntaje;
     private int[][] forma = {{0,0,1,0,0,0,0,0,1,0,0},{0,0,0,1,0,0,0,1,0,0,0},{0,0,1,1,1,1,1,1,1,0,0},{0,1,1,0,1,1,1,0,1,1,0},{1,1,1,1,1,1,1,1,1,1,1},{1,0,1,1,1,1,1,1,1,0,1},{1,0,1,0,0,0,0,0,1,0,1},{0,0,0,1,1,0,1,1,0,0,0}};
 
     public Cangrejo(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
         addInvasor(this);
+        setPuntaje();
     }
     
     public void disminuirResistencia(){
@@ -20,10 +22,14 @@ public class Cangrejo extends Invasor implements Serializable{
     private void muere(){
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
+            space.actualizarPuntaje(puntaje);
         }
     }
     public void setResistencia(){
         this.resistencia = 2;
+    }
+    public void setPuntaje(){
+        this.puntaje=30;
     }
 
     public int[][] getBinarios(){
