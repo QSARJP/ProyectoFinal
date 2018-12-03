@@ -167,11 +167,11 @@ public  class Space implements Serializable {
                     save2.write(invasores.get(i).getClass().getName()+" "+Integer.toString(invasores.get(i).getPosicionInt()[0])+" "+Integer.toString(invasores.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
-                for (int i = 0;i<naves.size() ; i++){
+                /*for (int i = 0;i<naves.size() ; i++){
                     save2.write(naves.get(i).getClass().getName()+" "+Integer.toString(naves.get(i).getPosicionInt()[0])+" "+Integer.toString(naves.get(i).getPosicionInt()[1]));
                     save2.newLine();
-                }
-                for (int i = 0;i<naves.size() ; i++){
+                }*/
+                for (int i = 0;i<barreras.size() ; i++){
                     save2.write(barreras.get(i).getClass().getName()+" "+Integer.toString(barreras.get(i).getPosicionInt()[0])+" "+Integer.toString(barreras.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }

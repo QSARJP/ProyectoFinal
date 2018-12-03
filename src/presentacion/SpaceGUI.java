@@ -295,6 +295,8 @@ public class SpaceGUI extends JFrame {
 
     private void abra(){
         try {
+            juego.dispose();
+            flag= false;
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
             File abre=archivo.getSelectedFile();
@@ -318,6 +320,8 @@ public class SpaceGUI extends JFrame {
     }
     private void importe(){
         try {
+            juego.dispose();
+            flag= false;
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
 			File abre=archivo.getSelectedFile();

@@ -1,0 +1,9 @@
+aplicacion.Calamar 270 300
+aplicacion.Cangrejo 100 270
+aplicacion.Pulpo 450 130
+aplicacion.Calamar 220 300
+aplicacion.Calamar 220 100
+aplicacion.BarreraVerde 300 400
+aplicacion.BarreraRoja 200 400
+aplicacion.BarreraRoja 400 400
+aplicacion.BarreraVerde 500 400
