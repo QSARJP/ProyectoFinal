@@ -23,7 +23,7 @@ public class MoverInvaders extends Thread{
     public void run(){
         
         int n = 1;
-        while(spaceGUI.flag){
+        while(space.flag){
             if (moverTodosInvasores(1*n,0) >= 1){
                 moverTodosInvasores(0,5);
                 n = n*-1;
@@ -38,7 +38,10 @@ public class MoverInvaders extends Thread{
             }
             esperar();
             spaceGUI.refresque();
-            if(space.getInvasores().size() == 0 || space.getNaves().size()==0){spaceGUI.flag = false;}
+            if(space.getInvasores().size() == 0 ){
+                space.niveles();
+            }
+            if(space.getNaves().size()==0){space.flag = false;}
             while (space.pausa){
                 esperar();
             }
@@ -86,7 +89,7 @@ public class MoverInvaders extends Thread{
         int cont = 0;
         for (int i = 0;i< space.getInvasores().size();i++){
             Invasor invasor = space.getInvasores().get(i);
-            int aleatorio=(int) (Math.random()*50) + 1;
+            int aleatorio=(int) (Math.random()*1000) + 1;
             if (aleatorio == 22 ){
                 space.disparo(invasor);
             }

@@ -47,7 +47,7 @@ public class SpaceGUI extends JFrame {
     //preuba
     private Set<Integer> pressed = new HashSet<Integer>();
     private MoverInvaders m;
-    public boolean flag;
+    
 
     public SpaceGUI(Space space){
         this.space2 = space;
@@ -117,7 +117,7 @@ public class SpaceGUI extends JFrame {
         Nave nave = space2.getNaves().get(0);
         prepareElementos();
         prepareAcciones(nave);
-        flag = true;
+        space2.setFlag();
         m = new MoverInvaders(this,space2);
         m.start();
 
@@ -131,7 +131,7 @@ public class SpaceGUI extends JFrame {
         Nave nave = space2.getNaves().get(0);
         prepareElementos();
         prepareAcciones(nave);
-        flag = true;
+        space2.setFlag();
         m = new MoverInvaders(this,space2);
         m.start();
         MoveNave2 m2 = new MoveNave2(this, space2);
@@ -278,7 +278,7 @@ public class SpaceGUI extends JFrame {
         else{
             juego.dispose();
             space2.cargar();
-            flag= false;
+            space2.changeFlag();
 
             
         }
@@ -296,7 +296,7 @@ public class SpaceGUI extends JFrame {
     private void abra(){
         try {
             juego.dispose();
-            flag= false;
+            space2.changeFlag();
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
             File abre=archivo.getSelectedFile();
@@ -321,7 +321,7 @@ public class SpaceGUI extends JFrame {
     private void importe(){
         try {
             juego.dispose();
-            flag= false;
+            space2.changeFlag();
 			archivo = new JFileChooser();
 			archivo.showOpenDialog(this);
 			File abre=archivo.getSelectedFile();

@@ -20,6 +20,7 @@ public  class Space implements Serializable {
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
     public boolean pausa;
+    public boolean flag;
 
 
     public Space(){
@@ -29,6 +30,7 @@ public  class Space implements Serializable {
         disparos = new ArrayList<Disparo>();
         leerElemento();
         pausa=false;
+        
         
     }
 
@@ -46,11 +48,14 @@ public  class Space implements Serializable {
 
     private void leerElemento(){
         try{
-            addElemento("aplicacion.Calamar",100,300);
-            addElemento("aplicacion.Cangrejo",100,100);
-            addElemento("aplicacion.Pulpo",450,300);
-            addElemento("aplicacion.Calamar",50,300);
-            addElemento("aplicacion.Calamar",50,100);
+            int aleatorio2=(int) (Math.random()*8) + 1;
+            String[] inv = {"aplicacion.Calamar", "aplicacion.Cangrejo", "aplicacion.Pulpo","aplicacion.Calamar"};
+            for (int i = 0; i< aleatorio2; i++){
+                for (int j = 0 ;j<aleatorio2;j++){
+                    int aleatorio=(int) (Math.random()*3) + 1;
+                    addElemento(inv[aleatorio], 50+i*40, 50+j*30);
+                }
+            }
 
             addElemento("aplicacion.BarreraVerde",300,400);
             addElemento("aplicacion.BarreraRoja",200,400);
@@ -82,6 +87,15 @@ public  class Space implements Serializable {
 
 
     }
+
+    public void setFlag(){
+        this.flag = true;
+
+    }
+    public void changeFlag(){
+        this.flag = false;
+        
+    }
     
 
     public int getPuntaje(Nave nave){
@@ -89,6 +103,14 @@ public  class Space implements Serializable {
     }
     public int getVidas(Nave nave){
         return nave.getHUD().getVidas();
+    }
+    public void niveles(){
+
+        invasores = new ArrayList<Invasor>();
+        barreras = new ArrayList<Barrera>();
+        disparos = new ArrayList<Disparo>();
+        leerElemento();
+        flag = true;
     }
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
@@ -143,7 +165,7 @@ public  class Space implements Serializable {
             this.barreras=space.getBarreras();
             this.disparos=space.getDisparos();
             this.invasores=space.getInvasores();
-            this.naves=space.getNaves();            
+            //this.naves=space.getNaves();            
         }catch(IOException ex){
           JOptionPane.showMessageDialog(null,ex+"" +
                   "\nNo se ha encontrado el archivo",
