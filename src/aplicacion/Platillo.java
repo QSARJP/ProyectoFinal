@@ -34,5 +34,9 @@ public class Platillo extends Elemento implements Serializable{
     public  ArrayList<Disparo> getDisparos(){
         return disparos;
     }
+    public int getPuntaje(){
+        return puntaje;
+    }
+    public void setPuntajeHUD(int puntaje){}
     
 }

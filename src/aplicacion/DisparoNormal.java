@@ -44,7 +44,9 @@ public class DisparoNormal extends Disparo implements Serializable{
                 boolean b = this.posicionY >= y-24 && this.posicionY <= y;
                 if (a&&b){
                     si = true;
-                    invasor.disminuirResistencia();
+                    if (invasor.disminuirResistencia()){
+                        elemento.setPuntajeHUD(invasor.getPuntaje());
+                    }
                 }
             }
             
@@ -63,15 +65,15 @@ public class DisparoNormal extends Disparo implements Serializable{
         }
         else if(dy > 0){
             for(int i = 0; i < space.getNaves().size(); i ++){
-                /*Nave nave = space.getNaves().get(i);
+                Nave nave = space.getNaves().get(i);
                 int x = nave.getPosicionInt()[0];
                 int y = nave.getPosicionInt()[1];
-                boolean a = this.posicionX >= x && this.posicionX <= x + 33;
-                boolean b = this.posicionY >= y-24 && this.posicionY <= y;
+                boolean a = this.posicionX >= x && this.posicionX <= x + 45;
+                boolean b = this.posicionY >= y && this.posicionY <= y+27;
                 if (a&&b){
                     si = true;
                     nave.disminuirResistencia();
-                }*/
+                }
             }
             for (int i = 0; i< space.getBarreras().size();i++){
                 Barrera barrera = space.getBarreras().get(i);

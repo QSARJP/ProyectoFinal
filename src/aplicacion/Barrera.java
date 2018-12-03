@@ -26,5 +26,6 @@ public abstract class Barrera extends Elemento implements Serializable{
         return disparos;
     }
     public abstract void disminuirResistencia(int poX,int poY,int dy);
+    public  void setPuntajeHUD(int puntaje){}
 
 }

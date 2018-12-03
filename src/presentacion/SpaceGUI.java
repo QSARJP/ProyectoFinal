@@ -1,3 +1,5 @@
+
+
 package presentacion;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -112,8 +114,9 @@ public class SpaceGUI extends JFrame {
         juego.setSize(800,600);
         juego.setVisible(true);
         space2.selectNave(1);
+        Nave nave = space2.getNaves().get(0);
         prepareElementos();
-        prepareAcciones();
+        prepareAcciones(nave);
         flag = true;
         m = new MoverInvaders(this,space2);
         m.start();
@@ -125,8 +128,9 @@ public class SpaceGUI extends JFrame {
         juego.setSize(800,600);
         juego.setVisible(true);
         space2.selectNave(2);
+        Nave nave = space2.getNaves().get(0);
         prepareElementos();
-        prepareAcciones();
+        prepareAcciones(nave);
         flag = true;
         m = new MoverInvaders(this,space2);
         m.start();
@@ -167,7 +171,7 @@ public class SpaceGUI extends JFrame {
 
         invaders = new Pintar(space2);
         infoHUD = new JPanel();
-        puntaje = new JLabel("Puntaje: "+space2.getPuntaje());
+        puntaje = new JLabel("Puntaje:");
         vidas = new JLabel("Vidas:");
         infoHUD.setBorder(new EmptyBorder(5,50,5,50));
         infoHUD.setLayout(new BorderLayout());
@@ -178,7 +182,7 @@ public class SpaceGUI extends JFrame {
         juego.add(invaders,BorderLayout.CENTER);   
     }
 
-    private void prepareAcciones(){
+    private void prepareAcciones(Nave nave){
 
         WindowListener w = new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -221,7 +225,6 @@ public class SpaceGUI extends JFrame {
             public synchronized void keyReleased(KeyEvent e) {
                 //pressed.remove(e.getKeyCode());
                 if (e.getKeyCode() == KeyEvent.VK_UP){
-                    Nave nave = space2.getNaves().get(0);
                     space2.disparo(nave);
                 }     
                 refresque();
@@ -249,13 +252,14 @@ public class SpaceGUI extends JFrame {
                     }else{*/
                         if (e.getKeyCode() == KeyEvent.VK_LEFT){
                             int dx = -10;
-                            Nave nave = space2.getNaves().get(0);
                             space2.mover(nave, dx, 0);
                         }
                         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
                             int dx = 10;
-                            Nave nave = space2.getNaves().get(0);
                             space2.mover(nave, dx, 0);
+                        }
+                        if (e.getKeyCode() == KeyEvent.VK_P){
+                            space2.pausa();
                         }
                         refresque();
                     }
@@ -275,7 +279,7 @@ public class SpaceGUI extends JFrame {
             juego.dispose();
             space2.cargar();
             flag= false;
-            //m.stop();
+
             
         }
     }
@@ -346,7 +350,6 @@ public class SpaceGUI extends JFrame {
 
     public void refresque(){
         invaders.repaint();
-        infoHUD.repaint();
     }
 
 
@@ -376,7 +379,7 @@ class Pintar extends JPanel {
         pintarBarreras(g);
         pintarNaves(g);
         pintarDisparos(g);
-        space3.getPuntaje();
+        pintarHUD(g);
 
     }
     
@@ -434,5 +437,12 @@ class Pintar extends JPanel {
                 g.fillRect(posicion[0], posicion[1]+j*3, 3, 3);
             }
         }
+    }
+    public void pintarHUD(Graphics g){
+        ArrayList<Nave> naves = space3.getNaves();
+        for (int i = 0; i < naves.size(); i++){
+            g.drawString("Nave "+i+ ": "+Integer.toString(space3.getVidas(naves.get(i))), 10,10+i*10 );
+            g.drawString("Nave "+i+ ": "+Integer.toString(space3.getPuntaje(naves.get(i))), 600,10+i*10 );
+        }   
     }
 }

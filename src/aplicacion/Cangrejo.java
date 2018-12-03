@@ -5,6 +5,7 @@ public class Cangrejo extends Invasor implements Serializable{
 
     private int resistencia;
     private int puntaje;
+    private boolean flag;
     private int[][] forma = {{0,0,1,0,0,0,0,0,1,0,0},{0,0,0,1,0,0,0,1,0,0,0},{0,0,1,1,1,1,1,1,1,0,0},{0,1,1,0,1,1,1,0,1,1,0},{1,1,1,1,1,1,1,1,1,1,1},{1,0,1,1,1,1,1,1,1,0,1},{1,0,1,0,0,0,0,0,1,0,1},{0,0,0,1,1,0,1,1,0,0,0}};
 
     public Cangrejo(Space space, int posicionX, int posicionY){
@@ -14,19 +15,24 @@ public class Cangrejo extends Invasor implements Serializable{
         setPuntaje();
     }
     
-    public void disminuirResistencia(){
+    public boolean disminuirResistencia(){
         this.resistencia -= 1;
-        muere();
+        return muere();
     }
 
-    private void muere(){
+    private boolean muere(){
+        flag = false;
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
-            space.actualizarPuntaje(puntaje);
+            flag=true;
         }
+        return flag;
     }
     public void setResistencia(){
         this.resistencia = 2;
+    }
+    public int getPuntaje(){
+        return puntaje;
     }
     public void setPuntaje(){
         this.puntaje=30;

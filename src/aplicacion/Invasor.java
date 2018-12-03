@@ -18,11 +18,17 @@ public abstract class Invasor extends Elemento implements Serializable{
         space.addInvasor(invasor);
     }
 
-    public abstract void disminuirResistencia();
+    public abstract boolean disminuirResistencia();
 
     public abstract int getResistencia();
 
     public abstract int mover(int posicionX, int posicionY);
+
+    public  void setPuntajeHUD(int puntaje){
+        
+    }
+
+    public abstract int getPuntaje();
 
     public ArrayList<Disparo> getDisparos(){
         return disparos;
@@ -30,6 +36,7 @@ public abstract class Invasor extends Elemento implements Serializable{
     public int disparo(){
         return 2;
     }
+    
 
 
 }

@@ -35,6 +35,13 @@ public abstract class Nave extends Elemento implements Serializable{
     public int disparo(){
         return -2;
     }
+    public abstract void disminuirResistencia();
+
+    public abstract void stratHUD(HUD hud);
+    public abstract HUD getHUD();
+    
+    public abstract void setPuntajeHUD(int puntaje);
+
 
     
 }

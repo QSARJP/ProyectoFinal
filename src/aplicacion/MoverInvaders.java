@@ -34,12 +34,14 @@ public class MoverInvaders extends Thread{
                 int dx = disparo.getElemento().disparo();
                 if(space.mover(disparo,0,dx) == 1){
                     space.getDisparos().remove(disparo);
-                    System.out.println(space.getPuntaje());
                 }                
             }
             esperar();
             spaceGUI.refresque();
-            if(space.getInvasores().size() == 0){spaceGUI.flag = false;}
+            if(space.getInvasores().size() == 0 || space.getNaves().size()==0){spaceGUI.flag = false;}
+            while (space.pausa){
+                esperar();
+            }
         }
 
         

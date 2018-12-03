@@ -6,6 +6,7 @@ public class Pulpo extends Invasor implements Serializable{
 
     private int resistencia;
     private int puntaje;
+    private boolean flag;
     private int[][] forma = {{0,0,0,0,1,1,1,1,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,1,0,0,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,1,0,1,1,0,1,1,0,0},{1,1,0,0,0,0,0,0,0,0,1,1}};
 
     public Pulpo(Space space, int posicionX, int posicionY){
@@ -29,6 +30,9 @@ public class Pulpo extends Invasor implements Serializable{
     public int getResistencia(){
         return resistencia;
     }
+    public int getPuntaje(){
+        return puntaje;
+    }
 
     public int mover(int X, int Y){
         if(sePuede()){
@@ -42,16 +46,18 @@ public class Pulpo extends Invasor implements Serializable{
             else{return 0;}
         }
     }
-    public void disminuirResistencia(){
+    public boolean disminuirResistencia(){
         this.resistencia -= 1;
-        muere();
+        return muere();
     }
 
-    private void muere(){
+    private boolean muere(){
+        flag = false;
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
-            space.actualizarPuntaje(puntaje);
+            flag=true;
         }
+        return flag;
     }
     private boolean sePuede(){
         boolean ok = true;

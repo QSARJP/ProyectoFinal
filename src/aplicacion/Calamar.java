@@ -5,6 +5,7 @@ public class Calamar extends Invasor implements Serializable{
 
     private int[][] forma = {{0,0,0,0,1,1,0,0,0,0,0},{0,0,0,1,1,1,1,0,0,0,0},{0,0,1,1,1,1,1,1,0,0,0},{0,1,1,0,1,1,0,1,1,0,0},{0,1,1,1,1,1,1,1,1,0,0},{0,0,0,1,0,0,1,0,0,0,0},{0,0,1,0,1,1,0,1,0,0,0},{0,1,0,1,0,0,1,0,1,0,0}};
     private int resistencia;
+    private boolean flag;
     private int puntaje;
 
     public Calamar(Space space, int posicionX, int posicionY){
@@ -28,17 +29,22 @@ public class Calamar extends Invasor implements Serializable{
     public int getResistencia(){
         return resistencia;
     }
-
-    public void disminuirResistencia(){
-        this.resistencia -= 1;
-        muere();
+    public int getPuntaje(){
+        return puntaje;
     }
 
-    private void muere(){
+    public boolean disminuirResistencia(){
+        this.resistencia -= 1;
+        return muere();
+    }
+
+    private boolean muere(){
+        flag = false;
         if (this.resistencia == 0){
             space.getInvasores().remove(this);
-            space.actualizarPuntaje(puntaje);
+            flag=true;
         }
+        return flag;
     }
 
     public int mover(int X, int Y){

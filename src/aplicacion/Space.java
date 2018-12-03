@@ -19,7 +19,8 @@ public  class Space implements Serializable {
     private ArrayList<Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
-    private HUD hud;
+    public boolean pausa;
+
 
     public Space(){
         invasores = new ArrayList<Invasor>();
@@ -27,7 +28,8 @@ public  class Space implements Serializable {
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
         leerElemento();
-        hud = new HUD();
+        pausa=false;
+        
     }
 
     public void addInvasor(Invasor invasor){
@@ -80,11 +82,13 @@ public  class Space implements Serializable {
 
 
     }
-    public void actualizarPuntaje(int puntaje){
-        hud.setPuntaje(puntaje);
+    
+
+    public int getPuntaje(Nave nave){
+        return nave.getHUD().getPuntaje();
     }
-    public int getPuntaje(){
-        return hud.getPuntaje();
+    public int getVidas(Nave nave){
+        return nave.getHUD().getVidas();
     }
     private void addElemento(String objeto, int posicionX, int posicionY) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException{
         Elemento elemento = (Elemento)Class.forName(objeto).getConstructors()[0].newInstance(this, posicionX, posicionY);
@@ -114,7 +118,6 @@ public  class Space implements Serializable {
             if (archivo != null){
                 ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(archivo+".dat"));
                 Space object = this;
-                System.out.println(object.preuba());
                 save.writeObject(object);
                 save.close();
                 JOptionPane.showMessageDialog(null,"El archivo se a guardado Exitosamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
@@ -222,15 +225,14 @@ public  class Space implements Serializable {
         reiniciar();
         leerElemento();
     }
-    public int preuba(){
-        return 1;
-    }
+
 
     public void selectNave(int numero){
         try{
         
             for (int i=0;i<numero;i++){
                 addElemento("aplicacion.NaveJugador",400*i+100, 480);
+                getNaves().get(i).stratHUD(new HUD());
             }
             if (getNaves().size()>1){
                 getNaves().get(1).changeColor(Color.red);
@@ -240,6 +242,9 @@ public  class Space implements Serializable {
             throw new RuntimeException(e);
         }
 
+    }
+    public void pausa(){
+        this.pausa = !pausa;
     }
 
 }

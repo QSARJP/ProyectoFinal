@@ -13,10 +13,12 @@ public class MoveNave2 extends Thread{
 
     private Space space;
     private SpaceGUI spaceGUI;
+    private Nave nave;
 
     public MoveNave2(SpaceGUI spaceGUI, Space space){
         this.space = space;
         this.spaceGUI = spaceGUI;
+        nave = space.getNaves().get(1);
     }
 
     @Override
@@ -30,7 +32,10 @@ public class MoveNave2 extends Thread{
         
             @Override
             public void keyReleased(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_W){
+                    space.disparo(nave);
+                }
+                spaceGUI.refresque();
             }
         
             @Override
@@ -38,17 +43,11 @@ public class MoveNave2 extends Thread{
                 
                 if (e.getKeyCode() == KeyEvent.VK_A){
                     int dx = -5;
-                    Nave nave = space.getNaves().get(1);
                     space.mover(nave, dx, 0);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_D){
                     int dx = 5;
-                    Nave nave = space.getNaves().get(1);
                     space.mover(nave, dx, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_W){
-                    Nave nave = space.getNaves().get(1);
-                    space.disparo(nave);
                 }
                 spaceGUI.refresque();
             }

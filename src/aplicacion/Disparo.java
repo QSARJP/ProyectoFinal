@@ -41,4 +41,5 @@ public abstract class Disparo extends Elemento implements Serializable{
     public  ArrayList<Disparo> getDisparos(){
         return disparos;
     }
+    public  void setPuntajeHUD(int puntaje){}
 }

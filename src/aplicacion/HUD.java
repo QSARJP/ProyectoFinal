@@ -18,7 +18,7 @@ public class HUD implements Serializable{
     }
 
     public void setVidas(int vidas){
-        this.vidas+=vidas;
+        this.vidas=vidas;
 
     }
     public void setPuntaje(int newPuntaje){
@@ -31,6 +31,10 @@ public class HUD implements Serializable{
     }
     public int getPuntaje(){
         return puntaje;
+    }
+
+    public int getVidas(){
+        return vidas;
     }
 
 

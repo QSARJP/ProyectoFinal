@@ -27,4 +27,7 @@ public class Material extends Elemento implements Serializable{
     public  ArrayList<Disparo> getDisparos(){
         return disparos;
     }
+    public  void setPuntajeHUD(int puntaje){
+        
+    }
 }
