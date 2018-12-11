@@ -7,7 +7,12 @@ public class Calamar extends Invasor implements Serializable{
     private int resistencia;
     private boolean flag;
     private int puntaje;
-
+    /**
+     * constructor de la clase Calamar
+     * @param space donde se tiene la informacion de la aplicacion
+     * @param posicionX posicion en x donde se ubica el calamar
+     * @param posicionY posicion en y donde se ubica el calamar
+     */
     public Calamar(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
@@ -32,12 +37,19 @@ public class Calamar extends Invasor implements Serializable{
     public int getPuntaje(){
         return puntaje;
     }
-
+    /**
+     * disminuye las vidas del calamar
+     * @return 1 si esta dentro de los limites permitidos del movimiento, 0 dlc
+     */
     public boolean disminuirResistencia(){
         this.resistencia -= 1;
         return muere();
     }
 
+    /**
+     * mata al invasor si sus vidas llegan a 0
+     * @return
+     */
     private boolean muere(){
         flag = false;
         if (this.resistencia == 0){

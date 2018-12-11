@@ -20,7 +20,9 @@ public class BarreraVerde extends Barrera implements Serializable{
         space.addBarrera(this);
 
     }
-
+    /**
+     * Añade materiales a la barrera para su construccion
+     */
     public void addMateriales(){
         for (int i = 0; i < forma.length; i++){
             for (int j = 0; j < forma[i].length; j++){
@@ -38,13 +40,21 @@ public class BarreraVerde extends Barrera implements Serializable{
     public Color getColor(){
         return color;
     }
+
+    /**
+     * disminuye las vidas de la barrera
+     * @param poX posicion en x donde golpea la bala
+     * @param poY posicion en y donde golpea la bala
+     * @param dy sentido del movimiento de la bala + hacia abajo, - hacia arriba
+     * @param bo indica la mierte del elemento
+     */
     public  void disminuirResistencia(int poX,int poY, int dy,boolean bo){
         if (dy > 0){
 			if (bo){
 				materiales=new ArrayList<Material>();
 			}
             for (int i =0; i<materiales.size();i++){
-                Material ma = materiales.get(i);
+       5         Material ma = materiales.get(i);
                 int x = ma.getPosicionInt()[0];
                 int y = ma.getPosicionInt()[1];
                 boolean a =  poX>= x && poX <= x+40;

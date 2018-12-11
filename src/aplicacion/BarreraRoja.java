@@ -19,7 +19,9 @@ public class BarreraRoja extends Barrera implements Serializable{
         space.addBarrera(this);
 
     }
-
+    /**
+     * añade el material de construccion a las barreras
+     */
     public void addMateriales(){
         for (int i = 0; i < forma.length; i++){
             for (int j = 0; j < forma[i].length; j++){
@@ -37,6 +39,9 @@ public class BarreraRoja extends Barrera implements Serializable{
     public Color getColor(){
         return color;
     }
+    /**
+     * Disminuye las vidas de la barrera
+     */
     public  void disminuirResistencia(int poX,int poY, int dy,boolean bo){
         if (dy < 0){
             for (int i =0; i<materiales.size();i++){

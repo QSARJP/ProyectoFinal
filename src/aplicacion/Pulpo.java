@@ -8,7 +8,12 @@ public class Pulpo extends Invasor implements Serializable{
     private int puntaje;
     private boolean flag;
     private int[][] forma = {{0,0,0,0,1,1,1,1,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,1,0,0,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,1,0,1,1,0,1,1,0,0},{1,1,0,0,0,0,0,0,0,0,1,1}};
-
+    /**
+     * Constructor de la clase Pulpo
+     * @param space Clase donde se tiene guardada la informacion de la aplicacion
+     * @param posicionX
+     * @param posicionY
+     */
     public Pulpo(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
@@ -59,6 +64,10 @@ public class Pulpo extends Invasor implements Serializable{
         }
         return flag;
     }
+    /**
+     * determina si se puede realizar el movimiento propio del invasor
+     * @return
+     */
     private boolean sePuede(){
         boolean ok = true;
         if (this.posicionY == 60){

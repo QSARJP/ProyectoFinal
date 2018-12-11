@@ -57,7 +57,10 @@ public class Cangrejo extends Invasor implements Serializable{
             else{return 0;}
         }
     }
-
+    /**
+     * determina si el invasor puede moverse en la direccion que se le ha especificado
+     * @return true si se puede, false dlc
+     */
     private boolean sePuede(){
         boolean ok = true;
         if (this.posicionY == maxY()){
@@ -81,7 +84,10 @@ public class Cangrejo extends Invasor implements Serializable{
         }
         return ok;
     }
-
+    /**
+     * dtermina el limite hasta donde se puede mover en el bloque de movimiento
+     * @return la posicion en y donde quda el limite del movimiento
+     */
     private int maxY(){
         int max = 0;
         for(int i = 0; i < space.getInvasores().size(); i++){
