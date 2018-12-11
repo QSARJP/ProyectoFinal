@@ -48,7 +48,10 @@ public class SpaceGUI extends JFrame {
     private Set<Integer> pressed = new HashSet<Integer>();
     private MoverInvaders m;
     
-
+    /**
+     * Constructor de la clase SpaceGUI
+     * @param space clase Space donde esta la información del juego
+     */
     public SpaceGUI(Space space){
         this.space2 = space;
         this.setSize(800,600);
@@ -58,6 +61,9 @@ public class SpaceGUI extends JFrame {
         
 
     }
+    /**
+     * Prepara los elementos del menu inicial
+     */
     private void prepareElementosVentanaInicial(){
         infoMenu = new JPanel();
         infoMenu.setBorder(new CompoundBorder(new EmptyBorder(30,30,30,30),new TitledBorder("Opciones")));
@@ -78,7 +84,9 @@ public class SpaceGUI extends JFrame {
 
     }
 
-
+    /**
+     * Prepara las acciones correspondientes a la ventana inicial
+     */
     private void prepareAccionesVentanaInicial(){
 
         WindowListener w = new WindowAdapter(){
@@ -108,7 +116,9 @@ public class SpaceGUI extends JFrame {
         mavsma.addActionListener(accionPrincipal);
 
     }
-
+    /**
+     * Prepara los elementos para un jugador
+     */
     private void unJugadorP(){
         juego = new JFrame();
         juego.setSize(800,600);
@@ -123,6 +133,9 @@ public class SpaceGUI extends JFrame {
 
 
     }
+    /**
+     * prepara los elementos para 2 jugadores
+     */
     private void dosJugadoresP(){
         juego = new JFrame();
         juego.setSize(800,600);
@@ -137,6 +150,9 @@ public class SpaceGUI extends JFrame {
         MoveNave2 m2 = new MoveNave2(this, space2);
         m2.start();
     }
+    /**
+     * Crea el ambiente 1 vs maquina
+     */
     private void unovsmaP(){
         space2.selectNave(1);
         String maquina = JOptionPane.showInputDialog(null,"Que tipo de maquina desea?");
@@ -152,6 +168,9 @@ public class SpaceGUI extends JFrame {
         m.start();
         
     }
+    /**
+     * Crea el ambiente para el maquina vs maquina
+     */
     private void mavsmaP(){
         for (int i = 0; i<2;i++){
             String maquina = JOptionPane.showInputDialog(null,"Que tipo de maquina desea?");
@@ -167,11 +186,16 @@ public class SpaceGUI extends JFrame {
         m = new MoverInvaders(this,space2);
         m.start();
     }
+    /**
+     * prepara los elementos del juego
+     */
     private void prepareElementos(){
         prepareElementosMenu();
         prepareElementosJuego();
     }
-
+    /**
+     * prepara los elementos del menu de la ventana
+     */
     private void prepareElementosMenu(){
 
         barra = new JMenuBar();
@@ -192,7 +216,9 @@ public class SpaceGUI extends JFrame {
         menu.add(exit);
         
     }
-
+    /**
+     * Prepara los elementos correspondientes al juego
+     */
     private void prepareElementosJuego(){
 
         invaders = new Pintar(space2);
@@ -207,7 +233,11 @@ public class SpaceGUI extends JFrame {
         juego.add(infoHUD,BorderLayout.NORTH);
         juego.add(invaders,BorderLayout.CENTER);   
     }
-
+    /**
+     * prepara las acciones correspondientes a la nave
+     * @param nave nave, que le corresponde la accion
+     * @param bo Si no hay ususario, no deje usar las teclas
+     */
     private void prepareAcciones(Nave nave,boolean bo){
 
         WindowListener w = new WindowAdapter(){
@@ -279,6 +309,9 @@ public class SpaceGUI extends JFrame {
         }
         
     }
+    /**
+     * accion para salir de la aplicacion
+     */
     private void salga2(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.NO_OPTION){
@@ -292,6 +325,9 @@ public class SpaceGUI extends JFrame {
             
         }
     }
+    /**
+     * Accion que permite salir de la aplicacion
+     */
     private void salga(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.NO_OPTION){
@@ -301,7 +337,9 @@ public class SpaceGUI extends JFrame {
             System.exit(0);
         }
     }
-
+    /**
+     * Se encarga de realizar la accion para la opcion abrir del menu
+     */
     private void abra(){
         try {
             juego.dispose();
@@ -316,6 +354,9 @@ public class SpaceGUI extends JFrame {
 			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
 		}
     }
+    /**
+     * Se encarga de realizar la accion para la opcion salvar del menu
+     */
     private void salvar(){
         try {
 			archivo = new JFileChooser();
@@ -327,6 +368,9 @@ public class SpaceGUI extends JFrame {
 			JOptionPane.showMessageDialog(null,e.getMessage(),"Construccion",JOptionPane.ERROR_MESSAGE);
 		}
     }
+    /**
+     * Se encarga de realizar la accion para opcion de importar del menu de opciones
+     */
     private void importe(){
         try {
             juego.dispose();
@@ -350,6 +394,9 @@ public class SpaceGUI extends JFrame {
 		}
 		
     }
+    /**
+     * Se encarga de realizar la accion para la opcion exportar del menu de opciones
+     */
     private void exporte(){
         try {
 			archivo = new JFileChooser();
@@ -370,7 +417,9 @@ public class SpaceGUI extends JFrame {
 
 
 
-
+    /**
+     * Funcion principal de la aplicacion
+     */
     public static void main(String[] args) {
         Space space = new Space();
         SpaceGUI s = new SpaceGUI(space);
@@ -385,7 +434,9 @@ class Pintar extends JPanel {
         this.space3 = space;
         setBackground(Color.black);
     }
-
+    /**
+     * Constructor de la clase pintar
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         pintarInvasores(g);
@@ -396,7 +447,10 @@ class Pintar extends JPanel {
         pintarPlatillo(g);
 
     }
-    
+    /**
+     * Se encarga de pintar los invasores en el ambiente de la aplicacion
+     * @param g parametro grafics
+     */
     public void pintarInvasores(Graphics g){
         ArrayList<Invasor> invasores = space3.getInvasores();
         g.setColor(Color.white);
@@ -412,7 +466,10 @@ class Pintar extends JPanel {
             }
         }
     }
-
+    /**
+     * pinta las barreras en el ambiente de trabajo
+     * @param g
+     */
     public void pintarBarreras(Graphics g){
         ArrayList<Barrera> barreras = space3.getBarreras();
         for (int i = 0 ; i<barreras.size();i++){
@@ -424,6 +481,10 @@ class Pintar extends JPanel {
             }
         }
     }
+    /**
+     * pinta los platillos en el ambiente de la aplicacion
+     * @param g
+     */
 	public void pintarPlatillo(Graphics g){
         ArrayList<Platillo> platillo = space3.getPlatillo();
         g.setColor(Color.ORANGE);
@@ -440,7 +501,10 @@ class Pintar extends JPanel {
             }
         }
     }
-
+    /**
+     * pinta las naves en el ambiente de la aplicacion
+     * @param g
+     */
     public void pintarNaves(Graphics g){
         ArrayList<Nave> naves = space3.getNaves();
         for (int i = 0; i < naves.size(); i++){
@@ -456,7 +520,9 @@ class Pintar extends JPanel {
             }
         }
     }
-
+    /**
+     * pinta los disparos en el ambiente de la aplicacion
+     */
     public void pintarDisparos(Graphics g){
         ArrayList<Disparo> disparos = space3.getDisparos();
         for (int i = 0; i < disparos.size(); i++){
@@ -468,6 +534,10 @@ class Pintar extends JPanel {
             }
         }
     }
+    /**
+     * pinta el HUD en el ambiente de la aplicacion
+     * @param g
+     */
     public void pintarHUD(Graphics g){
         ArrayList<Nave> naves = space3.getNaves();
         for (int i = 0; i < naves.size(); i++){
