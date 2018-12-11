@@ -47,6 +47,7 @@ public class DisparoEspecial extends Disparo implements Serializable{
                     if (invasor.disminuirResistencia()){
                         elemento.setPuntajeHUD(invasor.getPuntaje());
                     }
+                    destruir(x,y);
                 }
             }
             
@@ -79,5 +80,20 @@ public class DisparoEspecial extends Disparo implements Serializable{
         }
         
         return si;
+    }
+
+    private void destruir(int x, int y){
+        for (int i = 0; i < space.getInvasores().size();i++){
+            Invasor invasor = space.getInvasores().get(i);
+            int xI = invasor.getPosicionInt()[0];
+            int yI = invasor.getPosicionInt()[1];
+            boolean a = (yI >= y && yI <= y+24) && (xI-(x-38) >= 4);
+            boolean b = (yI >= y && yI <= y+24) && (xI-(x+40) >= 4);
+            if (a||b){
+                if (invasor.disminuirResistencia()){
+                    elemento.setPuntajeHUD(invasor.getPuntaje());
+                }
+            }
+        }
     }
 }

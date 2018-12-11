@@ -62,7 +62,7 @@ public class Rana extends Invasor implements Serializable{
     }
     private boolean sePuede(){
         boolean ok = true;
-        if (this.posicionY == 30){
+        if (this.posicionY == 100){
             ok = false;
         }
         else{

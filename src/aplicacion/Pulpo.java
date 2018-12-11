@@ -61,7 +61,7 @@ public class Pulpo extends Invasor implements Serializable{
     }
     private boolean sePuede(){
         boolean ok = true;
-        if (this.posicionY == 60){
+        if (this.posicionY == 100){
             ok = false;
         }
         else{
