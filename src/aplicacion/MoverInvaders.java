@@ -13,13 +13,20 @@ public class MoverInvaders extends Thread{
 
     private Space space;
     private SpaceGUI spaceGUI;
-
+    /**
+     * Constructor de la clase MoverInvaders
+     * @param spaceGUI SpaceGUI
+     * @param space Space que tiene la imformacion de la aplicacion
+     */
     public MoverInvaders(SpaceGUI spaceGUI, Space space){
         this.space = space;
         this.spaceGUI = spaceGUI;
     }
 
     @Override
+    /**
+     * ejecuta el movimiento de los elementos
+     */
     public void run(){
         
         int n = 1;
@@ -63,7 +70,12 @@ public class MoverInvaders extends Thread{
 
         
     }
-
+    /**
+     * Metodo que se encarga de mover los invasores y las maquinas
+     * @param x posicion x que se va a mover
+     * @param y posicion y que se va a over
+     * @return retorna 1 o 0 dependiendo de si el elemento esta en los limites permitidos
+     */
     public int moverTodosInvasores(int x, int y){
         int cont = 0;
         for (int i = 0;i< space.getInvasores().size();i++){
@@ -77,6 +89,12 @@ public class MoverInvaders extends Thread{
         
         return cont;
     }
+    /**
+     * mueve el platillo
+     * @param x  posicion x que se va a mover
+     * @param y posicion y que se va a over
+     * @return retorna 1 o 0 dependiendo de si el elemento esta en los limites permitidos
+     */
     public int moverPlatillo(int x, int y){
         int cont = 0;
         for (int i = 0;i< space.getPlatillo().size();i++){
@@ -89,6 +107,11 @@ public class MoverInvaders extends Thread{
         }
         return cont;
     }
+    /**
+     * mueve las maquinas
+     * @param n determina el sentido del movimiento
+     * @return
+     */
     private int moveMaquinas(int n){
         int cont = 0;
         if (space.opcion==1){
@@ -113,7 +136,9 @@ public class MoverInvaders extends Thread{
         }
         return cont;
     }
-
+    /**
+     * Detiene el thread los milisegundos asignados
+     */
     private void esperar(){
         try{
             Thread.sleep(15);
