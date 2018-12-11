@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.event.*;
 import java.lang.reflect.InvocationTargetException;
+import javax.swing.*;
 
 public class MoverInvaders extends Thread{
 
@@ -16,19 +17,29 @@ public class MoverInvaders extends Thread{
     public MoverInvaders(SpaceGUI spaceGUI, Space space){
         this.space = space;
         this.spaceGUI = spaceGUI;
-        //prepareAccionTeclado();
     }
 
     @Override
     public void run(){
         
         int n = 1;
+        int n2=1;
+        int n3=1;
         while(space.flag){
             if (moverTodosInvasores(1*n,0) >= 1){
                 moverTodosInvasores(0,5);
                 n = n*-1;
             }
-
+            for (int i= 0;i<2;i++){
+                if (moverPlatillo(1*n2,0) >= 1){
+                    n2 = n2*-1;
+                }
+            }
+            if (space.hayMaquina()){
+                if (moveMaquinas(n3)>=1){
+                    n3 = n3*-1;
+                }
+            }
             for(int i = 0; i < space.getDisparos().size();i++){
                 Disparo disparo = space.getDisparos().get(i);
                 int dx = disparo.getElemento().disparo();
@@ -41,48 +52,16 @@ public class MoverInvaders extends Thread{
             if(space.getInvasores().size() == 0 ){
                 space.niveles();
             }
-            if(space.getNaves().size()==0){space.flag = false;}
+            if(space.getNaves().size()==0){
+                space.flag = false;
+                JOptionPane.showMessageDialog(null, "Se termino el juego ");
+            }
             while (space.pausa){
                 esperar();
             }
         }
 
         
-    }
-    public void prepareAccionTeclado(){
-        KeyListener accionNave2 = new KeyListener(){
-        
-            @Override
-            public void keyTyped(KeyEvent e) {
-                
-            }
-        
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        
-            @Override
-            public void keyPressed(KeyEvent e) {
-                
-                if (e.getKeyCode() == KeyEvent.VK_A){
-                    int dx = -5;
-                    Nave nave = space.getNaves().get(1);
-                    space.mover(nave, dx, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_D){
-                    int dx = 5;
-                    Nave nave = space.getNaves().get(1);
-                    space.mover(nave, dx, 0);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_W){
-                    Nave nave = space.getNaves().get(1);
-                    space.disparo(nave,false);
-                }
-                spaceGUI.refresque();
-            }
-        };
-        spaceGUI.juego.addKeyListener(accionNave2);
     }
 
     public int moverTodosInvasores(int x, int y){
@@ -95,6 +74,11 @@ public class MoverInvaders extends Thread{
             }
             cont += space.mover(invasor, x, y);
         }
+        
+        return cont;
+    }
+    public int moverPlatillo(int x, int y){
+        int cont = 0;
         for (int i = 0;i< space.getPlatillo().size();i++){
             Platillo pla = space.getPlatillo().get(i);
             int aleatorio=(int) (Math.random()*100) + 1;
@@ -102,6 +86,30 @@ public class MoverInvaders extends Thread{
                 space.disparo(pla,true);
             }
             cont += space.mover(pla, x, y);
+        }
+        return cont;
+    }
+    private int moveMaquinas(int n){
+        int cont = 0;
+        if (space.opcion==1){
+            Nave nave = space.getNaves().get(1);
+            int aleatorio=(int) (Math.random()*100) + 1;
+            
+            if (nave.aleatoria() == 50){
+                space.disparo(nave,false);
+            }
+            
+            cont += space.mover(nave, 1*n, 0);
+        }else if (space.opcion==2){
+            for (int i =0; i<space.getNaves().size();i++){
+                Nave nave = space.getNaves().get(i);
+                
+                if (nave.aleatoria() == 50){
+                    space.disparo(nave,false);
+                }
+                
+                cont += space.mover(nave, 1*n, 0);
+            }
         }
         return cont;
     }

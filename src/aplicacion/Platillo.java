@@ -42,7 +42,7 @@ public class Platillo extends Elemento implements Serializable{
         return forma;
     }
     public int mover(int X, int Y){
-        this.posicionX += 2*X;
+        this.posicionX += X;
 		if(this.posicionX == 750 || this.posicionX == 0){return 1;}
 		else{return 0;}
     }

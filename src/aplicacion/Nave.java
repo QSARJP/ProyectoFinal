@@ -27,11 +27,8 @@ public abstract class Nave extends Elemento implements Serializable{
     public ArrayList<String> getDisparos(){
         return disparos;
     }
-    public int mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
-        return 0;
-    }
+    public abstract int mover(int posicionX, int posicionY);
+    
     public int disparo(){
         return -2;
     }
@@ -43,6 +40,7 @@ public abstract class Nave extends Elemento implements Serializable{
     public abstract void setPuntajeHUD(int puntaje);
 
     public abstract void mejoraNave();
+    public abstract int aleatoria();
 
 
     

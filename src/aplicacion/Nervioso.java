@@ -3,15 +3,15 @@ package aplicacion;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.io.Serializable;
-public class NaveJugador extends Nave implements Serializable{
+public class Nervioso extends Nave implements Serializable{
     
     private Color color;
     private int  vidas;
     private HUD hud;
 
-    public NaveJugador(Space space, int posicionX, int posicionY){
+    public Nervioso(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
-        this.color = Color.green;
+        this.color = Color.WHITE;
         space.addNave(this);
         setVida();
     }
@@ -38,13 +38,8 @@ public class NaveJugador extends Nave implements Serializable{
 		}
         if (this.vidas == 0){
             space.getNaves().remove(this);
-            
+            space.setMaquina();
         }
-    }
-    public int mover(int posicionX, int posicionY){
-        this.posicionX += posicionX;
-        this.posicionY += posicionY;
-        return 0;
     }
 
     public void stratHUD(HUD newHud){
@@ -65,10 +60,21 @@ public class NaveJugador extends Nave implements Serializable{
         }
     
     }
-
-    public int aleatoria(){
-        return 0;
+    public int mover(int X, int Y){
+        int aleatorio=(int) (Math.random()*10) + 1;
+        if (aleatorio != 1){
+            this.posicionX += X;
+        }else{
+            this.posicionX -= X;
+        }
+        if(this.posicionX == 750 || this.posicionX == 0){return 1;}
+        else{return 0;}
     }
+    public int aleatoria(){
+        int aleatorio=(int) (Math.random()*500) + 1;
+        return aleatorio;
+    }
+    
 
 
  

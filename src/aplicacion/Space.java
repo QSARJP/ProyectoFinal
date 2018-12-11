@@ -22,6 +22,9 @@ public  class Space implements Serializable {
 	private ArrayList<Platillo> platillos;
     public boolean pausa;
     public boolean flag;
+    private boolean maquina;
+    private int numMaquina;
+    public int opcion;
 
 
     public Space(){
@@ -32,8 +35,9 @@ public  class Space implements Serializable {
 		platillos = new ArrayList<Platillo>();
         leerElemento();
         pausa=false;
-        
-        
+        maquina=false;
+        numMaquina=0;
+        opcion=0;
     }
 
     public void addInvasor(Invasor invasor){
@@ -260,6 +264,9 @@ public  class Space implements Serializable {
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
         platillos = new ArrayList<Platillo>();
+        maquina=false;
+        numMaquina=0;
+        opcion=0;
     }
     public void cargar(){
         reiniciar();
@@ -283,8 +290,44 @@ public  class Space implements Serializable {
         }
 
     }
+    public void selectMa(int numero, String name,int i){
+        try{
+            maquina=true;
+            numMaquina+=1;
+            opcion+=1;
+            char[] caract = name.toCharArray();
+            caract[0] = Character.toUpperCase(caract[0]);
+            name = new String(caract);
+            System.out .println("aplicacion."+name);
+            if (numero == 1){
+                addElemento("aplicacion."+name,400*i+100, 480);
+                getNaves().get(numero).stratHUD(new HUD());
+            }else{
+                addElemento("aplicacion."+name,400*i+100, 480);
+                getNaves().get(i).stratHUD(new HUD());
+            }
+            
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
+    }
     public void pausa(){
         this.pausa = !pausa;
     }
+    public boolean hayMaquina(){
+        if (numMaquina == 0){
+            maquina=false;
+        }
+        return maquina;
+    }
+    public int numerosM(){
+        return numMaquina;
+    }
+    public void setMaquina(){
+        numMaquina-=1;
+    }
+
 
 }

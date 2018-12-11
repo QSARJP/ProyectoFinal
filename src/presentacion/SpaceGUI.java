@@ -116,7 +116,7 @@ public class SpaceGUI extends JFrame {
         space2.selectNave(1);
         Nave nave = space2.getNaves().get(0);
         prepareElementos();
-        prepareAcciones(nave);
+        prepareAcciones(nave,true);
         space2.setFlag();
         m = new MoverInvaders(this,space2);
         m.start();
@@ -130,7 +130,7 @@ public class SpaceGUI extends JFrame {
         space2.selectNave(2);
         Nave nave = space2.getNaves().get(0);
         prepareElementos();
-        prepareAcciones(nave);
+        prepareAcciones(nave,true);
         space2.setFlag();
         m = new MoverInvaders(this,space2);
         m.start();
@@ -138,8 +138,34 @@ public class SpaceGUI extends JFrame {
         m2.start();
     }
     private void unovsmaP(){
+        space2.selectNave(1);
+        String maquina = JOptionPane.showInputDialog(null,"Que tipo de maquina desea?");
+        space2.selectMa(1,maquina,1);
+        juego = new JFrame();
+        juego.setSize(800,600);
+        juego.setVisible(true);
+        Nave nave = space2.getNaves().get(0);
+        prepareElementos();
+        prepareAcciones(nave,true);
+        space2.setFlag();
+        m = new MoverInvaders(this,space2);
+        m.start();
+        
     }
     private void mavsmaP(){
+        for (int i = 0; i<2;i++){
+            String maquina = JOptionPane.showInputDialog(null,"Que tipo de maquina desea?");
+            space2.selectMa(2,maquina,i);
+        }
+        juego = new JFrame();
+        juego.setSize(800,600);
+        juego.setVisible(true);
+        Nave nave = space2.getNaves().get(0);
+        prepareElementos();
+        prepareAcciones(nave,false);
+        space2.setFlag();
+        m = new MoverInvaders(this,space2);
+        m.start();
     }
     private void prepareElementos(){
         prepareElementosMenu();
@@ -182,7 +208,7 @@ public class SpaceGUI extends JFrame {
         juego.add(invaders,BorderLayout.CENTER);   
     }
 
-    private void prepareAcciones(Nave nave){
+    private void prepareAcciones(Nave nave,boolean bo){
 
         WindowListener w = new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -214,61 +240,44 @@ public class SpaceGUI extends JFrame {
         save.addActionListener(accionMenu);
         importe.addActionListener(accionMenu);
         exporte.addActionListener(accionMenu);
-        KeyListener accionNave = new KeyListener(){
+        if (bo){
+            KeyListener accionNave = new KeyListener(){
         
-            @Override
-            public void keyTyped(KeyEvent e) {
-                
-            }
-        
-            @Override
-            public synchronized void keyReleased(KeyEvent e) {
-                //pressed.remove(e.getKeyCode());
-                if (e.getKeyCode() == KeyEvent.VK_UP){
-                    space2.disparo(nave,false);
-                }     
-                refresque();
-            }
-        
-            @Override
-            public synchronized void keyPressed(KeyEvent e) {
-                /*if (e.getKeyCode()!=37 || e.getKeyCode()!=38 || e.getKeyCode()!=37){
-                    pressed.add(e.getKeyCode());
-                    //System.out.println(pressed.toString());
-                    if (pressed.size()>1){
-                        if (pressed.contains(37) && pressed.contains(38) ){
-                            int dx = -5;
-                            Nave nave = space2.getNaves().get(0);
-                            space2.mover(nave, dx, 0);
-                            space2.disparo(nave);
-                        }
-                        if (pressed.contains(39) && pressed.contains(38) ){
-                            int dx = 5;
-                            Nave nave = space2.getNaves().get(0);
-                            space2.mover(nave, dx, 0);
-                            space2.disparo(nave);
-                        }
-
-                    }else{*/
-                        if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                            int dx = -10;
-                            space2.mover(nave, dx, 0);
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                            int dx = 10;
-                            space2.mover(nave, dx, 0);
-                        }
-                        if (e.getKeyCode() == KeyEvent.VK_P){
-                            space2.pausa();
-                        }
-                        refresque();
-                    }
+                @Override
+                public void keyTyped(KeyEvent e) {
                     
-                //}
-                
-            //}
-        };
-        juego.addKeyListener(accionNave);
+                }
+            
+                @Override
+                public synchronized void keyReleased(KeyEvent e) {
+                    //pressed.remove(e.getKeyCode());
+                    if (e.getKeyCode() == KeyEvent.VK_UP){
+                        space2.disparo(nave,false);
+                    }     
+                    refresque();
+                }
+            
+                @Override
+                public synchronized void keyPressed(KeyEvent e) {
+                    
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                        int dx = -10;
+                        space2.mover(nave, dx, 0);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                        int dx = 10;
+                        space2.mover(nave, dx, 0);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_P){
+                        space2.pausa();
+                    }
+                    refresque();
+                }
+                        
+            };
+            juego.addKeyListener(accionNave);
+        }
+        
     }
     private void salga2(){
         int i = JOptionPane.showConfirmDialog(null, "Desea salir","Salir",JOptionPane.YES_NO_OPTION);
