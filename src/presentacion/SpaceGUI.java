@@ -19,6 +19,14 @@ import java.lang.reflect.InvocationTargetException;
 import aplicacion.*;
 import excepcion.*;
 
+/**
+ * clase SpaceGUI POSEE TODA LA PARTE GRAFICA  DEL JUEGO 
+ *
+ * @author Ospina-Rivera
+ * 
+ * @version (a version 8/11/18)
+ */
+
 public class SpaceGUI extends JFrame {
     public Space space2;
     //archivo
