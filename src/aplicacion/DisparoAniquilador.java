@@ -33,7 +33,6 @@ public class DisparoAniquilador extends Disparo implements Serializable{
 
     private boolean lePegue(int dy){
         boolean si = false;
-        ArrayList<Invasor> invasores = space.getInvasores();
         ArrayList<Nave> naves = space.getNaves();
         ArrayList<Barrera> barreras = space.getBarreras();
 		if(dy > 0){

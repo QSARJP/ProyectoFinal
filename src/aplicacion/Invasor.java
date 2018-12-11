@@ -40,6 +40,7 @@ public abstract class Invasor extends Elemento implements Serializable{
     public int disparo(){
         return 2;
     }
+    public  void mejoraNave(){}
     
 
 

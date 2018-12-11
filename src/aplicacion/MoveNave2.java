@@ -33,7 +33,7 @@ public class MoveNave2 extends Thread{
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_W){
-                    space.disparo(nave);
+                    space.disparo(nave,false);
                 }
                 spaceGUI.refresque();
             }

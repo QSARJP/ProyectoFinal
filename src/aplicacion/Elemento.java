@@ -20,6 +20,7 @@ public abstract class Elemento implements Serializable {
     public abstract ArrayList<String> getDisparos();
     public abstract int disparo();
     public abstract void setPuntajeHUD(int puntaje);
+    public abstract void mejoraNave();
         
     
     public String getPosicion(){
@@ -39,6 +40,7 @@ public abstract class Elemento implements Serializable {
     public void setPosicionY(int posicionY){
         this.posicionY = posicionY;
     }
+    
 
     
 

@@ -30,4 +30,5 @@ public class Material extends Elemento implements Serializable{
     public  void setPuntajeHUD(int puntaje){
         
     }
+    public  void mejoraNave(){}
 }

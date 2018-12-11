@@ -5,13 +5,13 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 
-public class DisparoNormal extends Disparo implements Serializable{
+public class DisparoEspecial extends Disparo implements Serializable{
 
     private Color color;
 
-    public DisparoNormal(Space space, int posicionX, int posicionY){
+    public DisparoEspecial(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
-        this.color = Color.WHITE;
+        this.color = Color.RED;
         
     }
 
@@ -77,32 +77,7 @@ public class DisparoNormal extends Disparo implements Serializable{
                 }
             }
         }
-        else if(dy > 0){
-            for(int i = 0; i < space.getNaves().size(); i ++){
-                Nave nave = space.getNaves().get(i);
-                int x = nave.getPosicionInt()[0];
-                int y = nave.getPosicionInt()[1];
-                boolean a = this.posicionX >= x && this.posicionX <= x + 45;
-                boolean b = this.posicionY >= y && this.posicionY <= y+27;
-                if (a&&b){
-                    si = true;
-                    nave.disminuirResistencia(false);
-                }
-            }
-            for (int i = 0; i< space.getBarreras().size();i++){
-                Barrera barrera = space.getBarreras().get(i);
-                int x = barrera.getPosicionInt()[0];
-                int y = barrera.getPosicionInt()[1];
-                
-                boolean a = this.posicionX >= x && this.posicionX <= x + 40;
-                boolean b = this.posicionY >= y && this.posicionY <= y+40;
-                if (a&&b){
-                    si = true;
-                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy,false);
-                }
-            }
-            
-        }
+        
         return si;
     }
 }

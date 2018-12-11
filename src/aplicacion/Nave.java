@@ -7,7 +7,7 @@ import java.io.Serializable;
 public abstract class Nave extends Elemento implements Serializable{
 
     private int[][] forma = {{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-    protected ArrayList<String> disparos;
+    protected ArrayList<String> disparos = new ArrayList<String>();
     
     
     public Nave(Space space, int posicionX, int posicionY){
@@ -41,6 +41,8 @@ public abstract class Nave extends Elemento implements Serializable{
     public abstract HUD getHUD();
     
     public abstract void setPuntajeHUD(int puntaje);
+
+    public abstract void mejoraNave();
 
 
     

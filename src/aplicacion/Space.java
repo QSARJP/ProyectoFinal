@@ -19,7 +19,7 @@ public  class Space implements Serializable {
     private ArrayList<Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
-	//private ArrayList<Platillo> platillo;
+	private ArrayList<Platillo> platillos;
     public boolean pausa;
     public boolean flag;
 
@@ -29,7 +29,7 @@ public  class Space implements Serializable {
         barreras = new ArrayList<Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
-		//platillo = new ArrayList<Platillo>();
+		platillos = new ArrayList<Platillo>();
         leerElemento();
         pausa=false;
         
@@ -47,13 +47,13 @@ public  class Space implements Serializable {
     public void addNave(Nave nave){
         naves.add(nave);
     }
-	/*public void addPlatillo(Platillo platillo){
-        platillo.add(platillo);
-    }*/
+	public void addPlatillo(Platillo platillo){
+        platillos.add(platillo);
+    }
 
     private void leerElemento(){
         try{
-			//addElemento("aplicacion.Platillo",300,30);
+			addElemento("aplicacion.Platillo",300,30);
             int aleatorio2=(int) (Math.random()*8) + 1;
             String[] inv = {"aplicacion.Calamar", "aplicacion.Cangrejo", "aplicacion.Pulpo","aplicacion.Calamar","aplicacion.Rana"};
             for (int i = 0; i< aleatorio2; i++){
@@ -74,7 +74,7 @@ public  class Space implements Serializable {
         }
     }
 
-    public void disparo(Elemento elemento){
+    public void disparo(Elemento elemento,boolean bo){
         ArrayList<String> disp = elemento.getDisparos();
         int[] posicion = elemento.getPosicionInt();
         if (disp.size() != 0){
@@ -88,9 +88,12 @@ public  class Space implements Serializable {
 				throw new RuntimeException(e);
 			}
         }else{
-            Disparo d = new DisparoNormal(this, posicion[0]+21, posicion[1]-9);
-            d.setElemento(elemento);
-            disparos.add(d);
+            if (!bo){
+                Disparo d = new DisparoNormal(this, posicion[0]+21, posicion[1]-9);
+                d.setElemento(elemento);
+                disparos.add(d);
+            }
+            
         }
 
 
@@ -119,6 +122,7 @@ public  class Space implements Serializable {
         invasores = new ArrayList<Invasor>();
         barreras = new ArrayList<Barrera>();
         disparos = new ArrayList<Disparo>();
+        platillos = new ArrayList<Platillo>();
         leerElemento();
         flag = true;
     }
@@ -137,9 +141,9 @@ public  class Space implements Serializable {
     public ArrayList<Barrera> getBarreras(){
         return barreras;
     }
-	/*public ArrayList<Platillo> getPlatillo(){
-        return platillo;
-    }*/
+	public ArrayList<Platillo> getPlatillo(){
+        return platillos;
+    }
 
     public ArrayList<Nave> getNaves(){
         return naves;
@@ -178,7 +182,7 @@ public  class Space implements Serializable {
             this.barreras=space.getBarreras();
             this.disparos=space.getDisparos();
             this.invasores=space.getInvasores();
-            //this.naves=space.getNaves();            
+            this.platillos=space.getPlatillo();            
         }catch(IOException ex){
           JOptionPane.showMessageDialog(null,ex+"" +
                   "\nNo se ha encontrado el archivo",
@@ -202,10 +206,10 @@ public  class Space implements Serializable {
                     save2.write(invasores.get(i).getClass().getName()+" "+Integer.toString(invasores.get(i).getPosicionInt()[0])+" "+Integer.toString(invasores.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
-                /*for (int i = 0;i<naves.size() ; i++){
-                    save2.write(naves.get(i).getClass().getName()+" "+Integer.toString(naves.get(i).getPosicionInt()[0])+" "+Integer.toString(naves.get(i).getPosicionInt()[1]));
+                for (int i = 0;i<platillos.size() ; i++){
+                    save2.write(platillos.get(i).getClass().getName()+" "+Integer.toString(platillos.get(i).getPosicionInt()[0])+" "+Integer.toString(platillos.get(i).getPosicionInt()[1]));
                     save2.newLine();
-                }*/
+                }
                 for (int i = 0;i<barreras.size() ; i++){
                     save2.write(barreras.get(i).getClass().getName()+" "+Integer.toString(barreras.get(i).getPosicionInt()[0])+" "+Integer.toString(barreras.get(i).getPosicionInt()[1]));
                     save2.newLine();
@@ -255,6 +259,7 @@ public  class Space implements Serializable {
         barreras = new ArrayList<Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
+        platillos = new ArrayList<Platillo>();
     }
     public void cargar(){
         reiniciar();
