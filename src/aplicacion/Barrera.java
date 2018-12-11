@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public abstract class Barrera extends Elemento implements Serializable{
-    protected ArrayList<Disparo> disparos = new ArrayList<Disparo>();
+    protected ArrayList<String> disparos = new ArrayList<String>();
 
     public Barrera(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
@@ -22,10 +22,10 @@ public abstract class Barrera extends Elemento implements Serializable{
     public int disparo(){
         return 0;
     }
-    public  ArrayList<Disparo> getDisparos(){
+    public  ArrayList<String> getDisparos(){
         return disparos;
     }
-    public abstract void disminuirResistencia(int poX,int poY,int dy);
+    public abstract void disminuirResistencia(int poX,int poY,int dy,boolean bo);
     public  void setPuntajeHUD(int puntaje){}
 
 }

@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 
 public class Material extends Elemento implements Serializable{
-    private ArrayList<Disparo> disparos = new ArrayList<Disparo>();
+    private ArrayList<String> disparos = new ArrayList<String>();
     public Material(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
     }
@@ -24,7 +24,7 @@ public class Material extends Elemento implements Serializable{
     public int disparo(){
         return 0;
     }
-    public  ArrayList<Disparo> getDisparos(){
+    public  ArrayList<String> getDisparos(){
         return disparos;
     }
     public  void setPuntajeHUD(int puntaje){

@@ -8,7 +8,7 @@ import java.util.*;
 public abstract class Disparo extends Elemento implements Serializable{
 
     protected Elemento elemento;
-    private ArrayList<Disparo> disparos = new ArrayList<Disparo>();
+    private ArrayList<String> disparos = new ArrayList<String>();
 
     public Disparo(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
@@ -38,7 +38,7 @@ public abstract class Disparo extends Elemento implements Serializable{
     public int disparo(){
         return 0;
     }
-    public  ArrayList<Disparo> getDisparos(){
+    public  ArrayList<String> getDisparos(){
         return disparos;
     }
     public  void setPuntajeHUD(int puntaje){}

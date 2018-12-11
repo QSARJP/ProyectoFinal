@@ -27,12 +27,15 @@ public class NaveJugador extends Nave implements Serializable{
     public void changeColor(Color newColor){
         this.color=newColor;
     }
-    public  void disminuirResistencia(){
+    public  void disminuirResistencia(boolean bo){
         this.vidas-=1;
-        muere();
+        muere(bo);
     }
-    private void muere(){
+    private void muere(boolean bo){
         hud.setVidas(vidas);
+		if (bo){
+			this.vidas=0;
+		}
         if (this.vidas == 0){
             space.getNaves().remove(this);
             

@@ -2,14 +2,14 @@ package aplicacion;
 
 import java.io.Serializable;
 
-public class Pulpo extends Invasor implements Serializable{
+public class Rana extends Invasor implements Serializable{
 
     private int resistencia;
     private int puntaje;
     private boolean flag;
-    private int[][] forma = {{0,0,0,0,1,1,1,1,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,1,0,0,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,1,0,1,1,0,1,1,0,0},{1,1,0,0,0,0,0,0,0,0,1,1}};
+    private int[][] forma = {{0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,1,1,0,0,0,0,0},{0,0,0,0,1,1,1,1,0,0,0,0},{0,0,0,1,1,1,1,1,1,0,0,0},{0,0,0,1,1,0,0,1,1,0,0,0},{0,0,1,0,1,0,0,1,0,1,0,0}};
 
-    public Pulpo(Space space, int posicionX, int posicionY){
+    public Rana(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
         setResistencia();
         addInvasor(this);
@@ -24,7 +24,7 @@ public class Pulpo extends Invasor implements Serializable{
         return forma;
     }
     public void setPuntaje(){
-        this.puntaje=10;
+        this.puntaje=100;
     }
 
     public int getResistencia(){
@@ -37,6 +37,7 @@ public class Pulpo extends Invasor implements Serializable{
     public int mover(int X, int Y){
         if(sePuede()){
             this.posicionY -= 1;
+			//this.posicionX +=1;
             return 0;
         }
         else{
@@ -61,7 +62,7 @@ public class Pulpo extends Invasor implements Serializable{
     }
     private boolean sePuede(){
         boolean ok = true;
-        if (this.posicionY == 60){
+        if (this.posicionY == 30){
             ok = false;
         }
         else{

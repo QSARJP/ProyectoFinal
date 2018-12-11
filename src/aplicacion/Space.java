@@ -19,6 +19,7 @@ public  class Space implements Serializable {
     private ArrayList<Barrera> barreras;
     private ArrayList<Nave> naves;
     private ArrayList<Disparo> disparos;
+	//private ArrayList<Platillo> platillo;
     public boolean pausa;
     public boolean flag;
 
@@ -28,6 +29,7 @@ public  class Space implements Serializable {
         barreras = new ArrayList<Barrera>();
         naves = new ArrayList<Nave>();
         disparos = new ArrayList<Disparo>();
+		//platillo = new ArrayList<Platillo>();
         leerElemento();
         pausa=false;
         
@@ -45,15 +47,19 @@ public  class Space implements Serializable {
     public void addNave(Nave nave){
         naves.add(nave);
     }
+	/*public void addPlatillo(Platillo platillo){
+        platillo.add(platillo);
+    }*/
 
     private void leerElemento(){
         try{
+			//addElemento("aplicacion.Platillo",300,30);
             int aleatorio2=(int) (Math.random()*8) + 1;
-            String[] inv = {"aplicacion.Calamar", "aplicacion.Cangrejo", "aplicacion.Pulpo","aplicacion.Calamar"};
+            String[] inv = {"aplicacion.Calamar", "aplicacion.Cangrejo", "aplicacion.Pulpo","aplicacion.Calamar","aplicacion.Rana"};
             for (int i = 0; i< aleatorio2; i++){
                 for (int j = 0 ;j<aleatorio2;j++){
-                    int aleatorio=(int) (Math.random()*3) + 1;
-                    addElemento(inv[aleatorio], 50+i*40, 50+j*30);
+                    int aleatorio=(int) (Math.random()*4) + 1;
+                    addElemento(inv[aleatorio], 50+i*40, 60+j*30);
                 }
             }
 
@@ -69,14 +75,18 @@ public  class Space implements Serializable {
     }
 
     public void disparo(Elemento elemento){
-        ArrayList<Disparo> disp = elemento.getDisparos();
+        ArrayList<String> disp = elemento.getDisparos();
         int[] posicion = elemento.getPosicionInt();
         if (disp.size() != 0){
-            Disparo disparo = disp.remove(0);
-            disparo.setPosicionX(posicion[0]+21);
-            disparo.setPosicionY(posicion[1]-9);
-            disparo.setElemento(elemento);
-            disparos.add(disparo);
+			try{
+				String disparo = disp.remove(0);
+				Disparo d = (Disparo)Class.forName(disparo).getConstructors()[0].newInstance(this, posicion[0]+21, posicion[1]-9);
+				d.setElemento(elemento);
+				disparos.add(d);
+			}
+			catch(Exception e){
+				throw new RuntimeException(e);
+			}
         }else{
             Disparo d = new DisparoNormal(this, posicion[0]+21, posicion[1]-9);
             d.setElemento(elemento);
@@ -127,6 +137,9 @@ public  class Space implements Serializable {
     public ArrayList<Barrera> getBarreras(){
         return barreras;
     }
+	/*public ArrayList<Platillo> getPlatillo(){
+        return platillo;
+    }*/
 
     public ArrayList<Nave> getNaves(){
         return naves;

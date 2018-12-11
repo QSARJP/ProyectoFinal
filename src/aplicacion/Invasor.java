@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Invasor extends Elemento implements Serializable{
 
-    protected ArrayList<Disparo> disparos = new ArrayList<Disparo>();
+    protected ArrayList<String> disparos = new ArrayList<String>();
 
     public Invasor(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
@@ -30,7 +30,11 @@ public abstract class Invasor extends Elemento implements Serializable{
 
     public abstract int getPuntaje();
 
-    public ArrayList<Disparo> getDisparos(){
+    public ArrayList<String> getDisparos(){
+		int aleatorio=(int) (Math.random()*5) + 1;
+		if (aleatorio==2){
+			disparos.add("aplicacion.DisparoPlasma");
+		}
         return disparos;
     }
     public int disparo(){

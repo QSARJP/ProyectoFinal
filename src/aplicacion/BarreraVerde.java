@@ -38,8 +38,11 @@ public class BarreraVerde extends Barrera implements Serializable{
     public Color getColor(){
         return color;
     }
-    public  void disminuirResistencia(int poX,int poY, int dy){
+    public  void disminuirResistencia(int poX,int poY, int dy,boolean bo){
         if (dy > 0){
+			if (bo){
+				materiales=new ArrayList<Material>();
+			}
             for (int i =0; i<materiales.size();i++){
                 Material ma = materiales.get(i);
                 int x = ma.getPosicionInt()[0];

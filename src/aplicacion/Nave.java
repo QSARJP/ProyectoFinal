@@ -7,12 +7,12 @@ import java.io.Serializable;
 public abstract class Nave extends Elemento implements Serializable{
 
     private int[][] forma = {{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},{0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-    protected ArrayList<Disparo> disparos;
+    protected ArrayList<String> disparos;
     
     
     public Nave(Space space, int posicionX, int posicionY){
         super(space, posicionX, posicionY);
-        disparos = new ArrayList<Disparo>();
+        disparos = new ArrayList<String>();
         
     }
 
@@ -24,7 +24,7 @@ public abstract class Nave extends Elemento implements Serializable{
     
     public abstract void changeColor(Color newColor);
 
-    public ArrayList<Disparo> getDisparos(){
+    public ArrayList<String> getDisparos(){
         return disparos;
     }
     public int mover(int posicionX, int posicionY){
@@ -35,7 +35,7 @@ public abstract class Nave extends Elemento implements Serializable{
     public int disparo(){
         return -2;
     }
-    public abstract void disminuirResistencia();
+    public abstract void disminuirResistencia(boolean bo);
 
     public abstract void stratHUD(HUD hud);
     public abstract HUD getHUD();

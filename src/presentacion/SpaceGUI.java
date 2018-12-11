@@ -414,6 +414,21 @@ class Pintar extends JPanel {
             }
         }
     }
+	/*public void pintarPlatillo(Graphics g){
+        ArrayList<Platillo> Platillo = space3.getPlatillo();
+        g.setColor(Color.ORANGE);
+        for (int i = 0 ;i< platillo.size();i++){
+            int[] posicion = platillo.get(i).getPosicionInt();
+            int[][] matriz = platillo.get(i).getBinarios();
+            for (int j = 0; j < matriz.length; j++){
+                for (int k = 0 ; k < matriz[j].length; k++){
+                    if(matriz[j][k] == 1){
+                        g.fillRect(posicion[0]+k*3,posicion[1]+j*3,3,3);
+                    }
+                }
+            }
+        }
+    }*/
 
     public void pintarNaves(Graphics g){
         ArrayList<Nave> naves = space3.getNaves();

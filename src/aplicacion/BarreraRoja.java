@@ -37,7 +37,7 @@ public class BarreraRoja extends Barrera implements Serializable{
     public Color getColor(){
         return color;
     }
-    public  void disminuirResistencia(int poX,int poY, int dy){
+    public  void disminuirResistencia(int poX,int poY, int dy,boolean bo){
         if (dy < 0){
             for (int i =0; i<materiales.size();i++){
                 Material ma = materiales.get(i);
@@ -49,6 +49,22 @@ public class BarreraRoja extends Barrera implements Serializable{
                     space.getBarreras().remove(this);
                 }
             }
-        }
+        }else if(dy >0){
+			for (int i =0; i<materiales.size();i++){
+                Material ma = materiales.get(i);
+                int x = ma.getPosicionInt()[0];
+                int y = ma.getPosicionInt()[1];
+                boolean a =  poX>= x && poX <= x+40;
+                boolean b = poY <= y+40 && poY >= y;
+                if (a && b ){
+					if (bo){
+						space.getBarreras().remove(this);
+					}
+                }
+            }
+			
+			
+		}
+		
     }
 }

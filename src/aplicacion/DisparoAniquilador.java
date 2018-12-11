@@ -5,19 +5,20 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 
-public class DisparoNormal extends Disparo implements Serializable{
+public class DisparoAniquilador extends Disparo implements Serializable{
 
     private Color color;
 
-    public DisparoNormal(Space space, int posicionX, int posicionY){
+    public DisparoAniquilador(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
-        this.color = Color.WHITE;
+        this.color = Color.BLUE;
         
     }
 
     public Color getColor(){
         return color;
     }
+
 
     
     public int mover(int newPosicionX, int newPosicionY){
@@ -35,35 +36,7 @@ public class DisparoNormal extends Disparo implements Serializable{
         ArrayList<Invasor> invasores = space.getInvasores();
         ArrayList<Nave> naves = space.getNaves();
         ArrayList<Barrera> barreras = space.getBarreras();
-        if (dy < 0){
-            for(int i = 0; i < space.getInvasores().size(); i ++){
-                Invasor invasor = space.getInvasores().get(i);
-                int x = invasor.getPosicionInt()[0];
-                int y = invasor.getPosicionInt()[1];
-                boolean a = this.posicionX >= x && this.posicionX <= x + 33;
-                boolean b = this.posicionY >= y-24 && this.posicionY <= y;
-                if (a&&b){
-                    si = true;
-                    if (invasor.disminuirResistencia()){
-                        elemento.setPuntajeHUD(invasor.getPuntaje());
-                    }
-                }
-            }
-            
-            for (int i = 0; i< space.getBarreras().size();i++){
-                Barrera barrera = space.getBarreras().get(i);
-                int x = barrera.getPosicionInt()[0];
-                int y = barrera.getPosicionInt()[1];
-                
-                boolean a = this.posicionX >= x && this.posicionX <= x + 40;
-                boolean b = this.posicionY >= y && this.posicionY <= y+40;
-                if (a&&b){
-                    si = true;
-                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy,false);
-                }
-            }
-        }
-        else if(dy > 0){
+		if(dy > 0){
             for(int i = 0; i < space.getNaves().size(); i ++){
                 Nave nave = space.getNaves().get(i);
                 int x = nave.getPosicionInt()[0];
@@ -72,7 +45,7 @@ public class DisparoNormal extends Disparo implements Serializable{
                 boolean b = this.posicionY >= y && this.posicionY <= y+27;
                 if (a&&b){
                     si = true;
-                    nave.disminuirResistencia(false);
+                    nave.disminuirResistencia(true);
                 }
             }
             for (int i = 0; i< space.getBarreras().size();i++){
@@ -84,7 +57,7 @@ public class DisparoNormal extends Disparo implements Serializable{
                 boolean b = this.posicionY >= y && this.posicionY <= y+40;
                 if (a&&b){
                     si = true;
-                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy,false);
+                    barrera.disminuirResistencia(this.posicionX,this.posicionY,dy,true);
                 }
             }
             
