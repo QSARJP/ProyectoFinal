@@ -68,9 +68,12 @@ public class Cangrejo extends Invasor implements Serializable{
                 Invasor invasor = space.getInvasores().get(i);
                 int x = invasor.getPosicionInt()[0];
                 int y = invasor.getPosicionInt()[1];
-                boolean a = x >= this.posicionX && x <= this.posicionX+33 || x+33 >= this.posicionX && x+33 <= this.posicionX+33;
+                boolean a = x >= this.posicionX-3 && x <= this.posicionX+33+3 || x+33 >= this.posicionX-3 && x+33 <= this.posicionX+33+3;
                 boolean b = y == this.posicionY+30;
-                if (a && b && invasor != this){
+                boolean c = (y > this.posicionY-3 && y < this.posicionY+24+3 || y+24+3 > this.posicionY-3 && y+24+3 < this.posicionY+3+24) && x+40 == this.posicionX;
+                boolean d = (y > this.posicionY-3 && y < this.posicionY+24+3 || y+24+3 > this.posicionY-3 && y+24+3 < this.posicionY+3+24) && x-40 == this.posicionX;
+               
+                if ((a && b) || c || d && invasor != this){
                     ok = false;
                     break;
                 }
