@@ -11,8 +11,13 @@ import java.lang.reflect.InvocationTargetException;
 import excepcion.*;
 import java.io.Serializable;
 
-
-
+/**
+ * clase Space genera toda la parte logica del juegpo permitiendo cada movimineto y serciorando que todo este bien 
+ *
+ * @author Ospina-Rivera
+ * 
+ * @version (a version 8/11/18)
+ */
 
 public  class Space implements Serializable {
     private ArrayList<Invasor> invasores;

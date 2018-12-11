@@ -1,7 +1,13 @@
 package aplicacion;
 import java.io.Serializable;
 
-
+/**
+ * clase HUD Contiene toda la informacion de una nave como lo es la vida y su puntaje
+ *
+ * @author Ospina-Rivera
+ * 
+ * @version (a version 8/11/18)
+ */
 
 public class HUD implements Serializable{
     private int vidas;
@@ -9,7 +15,9 @@ public class HUD implements Serializable{
     private float presicion;
     private int fallo;
 
-
+    /**
+     * Constructor del HUD
+     */
     public HUD(){
         this.vidas = 0;
         this.puntaje=0;
