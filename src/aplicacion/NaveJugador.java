@@ -52,6 +52,14 @@ public class NaveJugador extends Nave implements Serializable{
     public  HUD getHUD(){
         return hud;
     }
+    public  void mejoraNave(){
+        this.vidas += 1;
+        hud.setVidas(vidas);
+        for (int i = 0; i < 3 ;i++){
+            disparos.add("aplicacion.DisparoEspecial");
+        }
+    
+    }
 
 
  

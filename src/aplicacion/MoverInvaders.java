@@ -77,7 +77,7 @@ public class MoverInvaders extends Thread{
                 }
                 if (e.getKeyCode() == KeyEvent.VK_W){
                     Nave nave = space.getNaves().get(1);
-                    space.disparo(nave);
+                    space.disparo(nave,false);
                 }
                 spaceGUI.refresque();
             }
@@ -91,9 +91,17 @@ public class MoverInvaders extends Thread{
             Invasor invasor = space.getInvasores().get(i);
             int aleatorio=(int) (Math.random()*1000) + 1;
             if (aleatorio == 22 ){
-                space.disparo(invasor);
+                space.disparo(invasor,false);
             }
             cont += space.mover(invasor, x, y);
+        }
+        for (int i = 0;i< space.getPlatillo().size();i++){
+            Platillo pla = space.getPlatillo().get(i);
+            int aleatorio=(int) (Math.random()*100) + 1;
+            if (aleatorio == 22 ){
+                space.disparo(pla,true);
+            }
+            cont += space.mover(pla, x, y);
         }
         return cont;
     }
