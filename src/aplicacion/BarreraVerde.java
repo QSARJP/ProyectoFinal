@@ -54,7 +54,7 @@ public class BarreraVerde extends Barrera implements Serializable{
 				materiales=new ArrayList<Material>();
 			}
             for (int i =0; i<materiales.size();i++){
-       5         Material ma = materiales.get(i);
+                Material ma = materiales.get(i);
                 int x = ma.getPosicionInt()[0];
                 int y = ma.getPosicionInt()[1];
                 boolean a =  poX>= x && poX <= x+40;
