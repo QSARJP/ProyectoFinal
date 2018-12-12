@@ -12,6 +12,7 @@ public class DisparoEspecial extends Disparo implements Serializable{
     public DisparoEspecial(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
         this.color = Color.RED;
+        addDisparo(this);
         
     }
 

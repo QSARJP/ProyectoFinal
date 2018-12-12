@@ -32,6 +32,9 @@ public abstract class Disparo extends Elemento implements Serializable{
     public Elemento getElemento(){
         return elemento;
     }
+    public void addDisparo(Disparo newDisparo){
+        space.addDisparo(newDisparo);
+    }
 
 
     public abstract Color getColor();

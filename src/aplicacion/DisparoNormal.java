@@ -12,6 +12,7 @@ public class DisparoNormal extends Disparo implements Serializable{
     public DisparoNormal(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
         this.color = Color.WHITE;
+        addDisparo(this);
         
     }
 

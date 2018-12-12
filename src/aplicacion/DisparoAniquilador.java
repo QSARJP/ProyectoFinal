@@ -12,6 +12,7 @@ public class DisparoAniquilador extends Disparo implements Serializable{
     public DisparoAniquilador(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
         this.color = Color.BLUE;
+        addDisparo(this);
         
     }
 

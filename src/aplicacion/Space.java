@@ -76,6 +76,9 @@ public  class Space implements Serializable {
 	public void addPlatillo(Platillo platillo){
         platillos.add(platillo);
     }
+    public void addDisparo(Disparo disparo){
+        disparos.add(disparo);
+    }
 
     /**
      * Se encarga de agregar los elementos que se va a usar dentro del juego, este puede estar definido por un archivo de texto o por los niveles que se diseñaron para el juego
@@ -115,7 +118,7 @@ public  class Space implements Serializable {
 				String disparo = disp.remove(0);
 				Disparo d = (Disparo)Class.forName(disparo).getConstructors()[0].newInstance(this, posicion[0]+21, posicion[1]-9);
 				d.setElemento(elemento);
-				disparos.add(d);
+				//disparos.add(d);
 			}
 			catch(Exception e){
 				throw new RuntimeException(e);
@@ -279,6 +282,10 @@ public  class Space implements Serializable {
                     save2.write(barreras.get(i).getClass().getName()+" "+Integer.toString(barreras.get(i).getPosicionInt()[0])+" "+Integer.toString(barreras.get(i).getPosicionInt()[1]));
                     save2.newLine();
                 }
+                /*for (int i = 0;i<disparos.size() ; i++){
+                    save2.write(disparos.get(i).getClass().getName()+" "+Integer.toString(disparos.get(i).getPosicionInt()[0])+" "+Integer.toString(disparos.get(i).getPosicionInt()[1]));
+                    save2.newLine();
+                }*/
                 save2.close();
                 JOptionPane.showMessageDialog(null,"El archivo se a guardado Exitosamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
             }             

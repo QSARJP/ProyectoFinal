@@ -12,6 +12,7 @@ public class DisparoPlasma extends Disparo implements Serializable{
     public DisparoPlasma(Space space, int posicionX, int posicionY){
         super(space,posicionX,posicionY);
         this.color = Color.GREEN;
+        addDisparo(this);
         
     }
 
